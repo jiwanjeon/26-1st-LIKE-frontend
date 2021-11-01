@@ -1,0 +1,10 @@
+:root {
+  --color-navy-900: #0a0d1c;
+  --color-white: #ffffff;
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
