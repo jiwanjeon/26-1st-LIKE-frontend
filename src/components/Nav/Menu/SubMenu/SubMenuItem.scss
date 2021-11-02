@@ -1,0 +1,8 @@
+nav {
+  .subMenuItem {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

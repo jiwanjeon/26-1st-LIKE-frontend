@@ -1,0 +1,25 @@
+nav {
+  .subMenu {
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    width: 400px;
+    padding: 16px 40px 40px;
+    background-color: white;
+    transform: translateX(-200px);
+    &:hover {
+      visibility: visible;
+      height: auto;
+    }
+    .subMenuList {
+      line-height: 1.7;
+      .subMenuItem {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

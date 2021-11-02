@@ -1,0 +1,14 @@
+nav {
+  .menuItem {
+    display: inline-block;
+    position: relative;
+    padding: 22px 40px;
+    cursor: pointer;
+    &:hover span {
+      text-decoration: underline;
+    }
+    &:hover .subMenu {
+      visibility: visible;
+    }
+  }
+}
