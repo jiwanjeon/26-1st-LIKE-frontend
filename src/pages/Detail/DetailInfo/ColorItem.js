@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import './ColorItem.scss';
 
 export class ColorItem extends Component {
   render() {
-    return <span>{this.props.color} </span>;
+    const { color } = this.props;
+    return <span className="ColorItem">{color}</span>;
   }
 }
 
