@@ -5,7 +5,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "1"
+    "color_kind": "1",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 2,
@@ -13,7 +31,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "1"
+    "color_kind": "1",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 3,
@@ -21,7 +57,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "1"
+    "color_kind": "1",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 4,
@@ -29,7 +83,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "1"
+    "color_kind": "1",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 5,
@@ -37,7 +109,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "1"
+    "color_kind": "1",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 6,
@@ -45,7 +135,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "6"
+    "color_kind": "6",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 7,
@@ -53,7 +161,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "2"
+    "color_kind": "2",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 8,
@@ -61,7 +187,25 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "4"
+    "color_kind": "4",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   },
   {
     "product_id": 9,
@@ -69,6 +213,24 @@
     "ecoFriendly": "친환경소재",
     "title": "너무이쁜신발",
     "sub_title": "신발 라이프스타일",
-    "color_kind": "3"
+    "color_kind": "3",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
   }
 ]

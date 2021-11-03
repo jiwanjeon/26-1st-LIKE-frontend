@@ -23,13 +23,14 @@ export class Main extends Component {
   }
 
   render() {
+    const { productsInfo } = this.state;
     return (
       <div>
         <div className="mainWrapper">
           <div className="sectionHeader">
             <div className="sectionTitle">
               <div className="sectionTitleCategory">
-                <a>Men</a>
+                <span className="categoryName">Men</span>
                 <br />
                 <br />
                 <span>Men's 의류(12)</span>
@@ -48,14 +49,14 @@ export class Main extends Component {
 
           <div className="contentsWrapper">
             <aside className="contentsSide">
-              <div className="HorizontalLine"></div>
+              <div className="HorizontalLine" />
               <div className="colors">
                 <span>색상</span>
                 <ul className="colorLists">
-                  {COLOR_LISTS.map(color => {
+                  {COLOR_LISTS.map((color, idx) => {
                     return (
-                      <li className="colorLayout" title="베이지">
-                        <input type="checkbox" id="checkbox"></input>
+                      <li className="colorLayout" title="베이지" key={idx}>
+                        <input type="checkbox" id="checkbox" />
                         <label
                           for="checkbox"
                           style={{ backgroundColor: color.colorProps }}
@@ -67,7 +68,7 @@ export class Main extends Component {
                 </ul>
               </div>
               <div className="sizes">
-                <div className="HorizontalLine"></div>
+                <div className="HorizontalLine" />
                 <span>사이즈</span>
                 <div className="sizeLists">
                   <button title="230">230</button>
@@ -82,7 +83,7 @@ export class Main extends Component {
                   <button title="230">275</button>
                   <button title="230">280</button>
                 </div>
-                <div className="HorizontalLine"></div>
+                <div className="HorizontalLine" />
               </div>
             </aside>
 
@@ -110,8 +111,8 @@ export class Main extends Component {
                 </div>
               </div>
               <div className="productsMapping">
-                {this.state.productsInfo &&
-                  this.state.productsInfo.map((productsInfo, idx) => {
+                {productsInfo &&
+                  productsInfo.map((productsInfo, idx) => {
                     return (
                       <div className="productsContainer" key={idx}>
                         <div className="productLayout">
@@ -145,232 +146,6 @@ export class Main extends Component {
                     );
                   })}
               </div>
-
-              {/* <div className="productsContainer">
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div> */}
-
-              {/* <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="productLayout">
-                  <div className="productImage">
-                    <img alt="productImage" src="/images/example.jpg"></img>
-                  </div>
-                  <div className="productInfo">
-                    <div className="productInfoDisplay">
-                      <div className="productStatus">
-                        <span>친환경 소재</span>
-                      </div>
-                      <div className="productName">
-                        <span>나이키 와플 트레이너2</span>
-                      </div>
-                      <div className="productCategory">
-                        <span>여성 신발 라이프스타일</span>
-                      </div>
-                      <div className="productColorChoices">
-                        <span>1 컬러</span>
-                      </div>
-                    </div>
-                    <div className="productPrice">
-                      <span>11,900 원</span>
-                    </div>
-                  </div>
-                </div> */}
             </main>
           </div>
         </div>
