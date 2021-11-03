@@ -59,7 +59,7 @@ export class DetailInfo extends Component {
     } = this.props;
 
     return (
-      <div key={id} className="detailInfo">
+      <div key={id} className="DetailInfo">
         <div className="detailInfoWrap">
           <div className="preInfo">
             <span className="subTitle">{subTitle}</span>
