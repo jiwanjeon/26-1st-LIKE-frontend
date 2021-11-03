@@ -1,0 +1,105 @@
+section{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.login {
+  width: 700px;
+  margin: 10rem auto;
+  padding: 5rem 0;
+  border: 1px solid rgb(206, 206, 206);
+
+  .loginTitle {
+    color: #24292f;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 4rem;
+    letter-spacing: -1px;
+    margin-bottom: 4rem;
+  }
+
+  .Logo{
+    width: 300px;
+    height: 50px;
+    margin: 3rem auto;
+  }
+
+  /* input */
+  .inputContainer {
+    width: 500px;
+    margin: 3rem auto;
+
+    .inputWrap input {
+      width: 100%;
+      font-size: 18px;
+      margin-bottom: 40px;
+      padding: 20px 12px;
+      border: 1px solid rgb(206, 206, 206);
+      background-color:white;
+      color: black;
+
+
+
+      &:focus {
+        outline: 1px solid black;
+      }
+
+      .id {
+        margin-bottom: 10px;
+      }
+      .password{
+        margin-bottom: 10px;
+      }
+
+      
+    }
+    .inputBox{
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+
+      .checkboxWrap{
+        color: rgb(206, 206, 206);
+
+      }
+
+      .findAccount{
+        color: rgb(206, 206, 206);
+      }
+      
+    }
+
+
+    button {
+      width: 500px;
+      padding: 16px 12px;
+      margin: 2.5rem auto;
+      font-size: 22px;
+      color: white;
+      font-weight: bolder;
+      background-color: black;
+      border: none;
+      cursor: pointer;
+  }
+  button:hover{
+    opacity: 0.2;
+
+  }
+  }
+
+  .last {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 8rem;
+
+    p{
+      color: rgb(206, 206, 206);
+    }
+
+    p a {
+      color: black;
+      font-weight: bolder;
+    }
+  }
+}
