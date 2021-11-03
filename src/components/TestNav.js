@@ -9,18 +9,22 @@ export class TestNav extends Component {
       loginModal: false,
     };
   }
+
   toggleLogin = () => {
     const { loginModal } = this.state;
+
     this.setState({
       loginModal: !loginModal,
     });
   };
+
   render() {
     const { loginModal } = this.state;
+
     return (
       <div style={{ backgroundColor: 'blue', height: '100%' }}>
         <Nav toggle={this.toggleLogin} />
-        {loginModal ? <TCLogin toggle={this.toggleLogin} /> : null}
+        {loginModal && <TCLogin toggle={this.toggleLogin} />}
       </div>
     );
   }

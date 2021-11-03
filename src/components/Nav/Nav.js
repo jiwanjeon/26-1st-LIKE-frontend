@@ -15,14 +15,13 @@ export class Nav extends Component {
       categories: [],
     };
   }
+
   componentDidMount() {
-    this.getMockUpCategoriesData();
+    this.getCategoriesData();
   }
 
-  getMockUpCategoriesData() {
-    fetch('http://localhost:3000/data/ysLim/navCategories.json', {
-      method: 'GET',
-    })
+  getCategoriesData() {
+    fetch('./data/ysLim/navCategories.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -30,11 +29,13 @@ export class Nav extends Component {
         });
       });
   }
+
   render() {
     const { toggle } = this.props;
     const { categories } = this.state;
+
     return (
-      <header>
+      <header className="Nav">
         <div className="preHeader">
           <ul>
             <li>고객센터</li>
@@ -51,7 +52,7 @@ export class Nav extends Component {
                   pathname: `/main`,
                 }}
               >
-                <img src="images/LogoLIKE.svg" alt="라이키 로고" />
+                <img src="/images/LogoLIKE.svg" alt="라이키 로고" />
               </Link>
             </div>
 

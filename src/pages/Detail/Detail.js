@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Nav from '../../components/Nav/Nav';
+import ColorItem from './Comp/ColorItem';
 import TCLogin from '../../components/TestComp/TCLogin';
 import './Detail.scss';
 
@@ -7,25 +8,43 @@ export class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      detailData: [],
       quantity: 1,
       loginModal: false,
     };
   }
 
+  componentDidMount() {
+    this.detailData();
+  }
+
+  detailData() {
+    fetch('http://localhost:3000/data/ysLim/detailData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          detailData: data[0],
+        });
+      });
+  }
+
   handleInput = e => {
-    const re = /^[0-9\b]+$/;
+    const numberOnly = /^[0-9\b]+$/;
     const { value } = e.target;
 
-    if (re.test(value)) {
+    if (numberOnly.test(value)) {
       this.setState({ quantity: Number(value) });
     }
-    if (value === '') {
+    if (!value) {
       this.setState({ quantity: Number(1) });
     }
   };
 
   increment = () => {
     const { quantity } = this.state;
+
     this.setState({
       quantity: quantity + 1,
     });
@@ -33,6 +52,7 @@ export class Detail extends Component {
 
   decrement = () => {
     const { quantity } = this.state;
+
     if (quantity > 1) {
       this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
     }
@@ -40,6 +60,7 @@ export class Detail extends Component {
 
   toggleLogin = () => {
     const { loginModal } = this.state;
+
     this.setState({
       loginModal: !loginModal,
     });
@@ -47,6 +68,7 @@ export class Detail extends Component {
 
   render() {
     const { loginModal, quantity } = this.state;
+
     return (
       <>
         <Nav toggle={this.toggleLogin} />
@@ -78,14 +100,22 @@ export class Detail extends Component {
             <div className="detailInfo">
               <div className="detailInfoWrap">
                 <div className="preInfo">
-                  <span className="subTitle">여성 신발 라이프 스타일</span>
-                  <span className="price">119,000원</span>
+                  <span className="subTitle">
+                    {this.state.detailData.sub_title}
+                  </span>
+                  <span className="price">{`${this.state.detailData.price}원`}</span>
                 </div>
                 <div>
-                  <h1 className="title">라이키 와플 트레이너 2</h1>
+                  <h1 className="title">{this.state.detailData.title}</h1>
                 </div>
                 <div className="colors">
-                  <div className="colorList">빨강, 노랑, 파랑</div>
+                  <div className="colorList">
+                    {this.state.detailData.colors
+                      ? this.state.detailData.colors.map((colors, index) => (
+                          <ColorItem key={index} color={colors} />
+                        ))
+                      : null}
+                  </div>
                 </div>
                 <div className="sizes">
                   <h2>사이즈 선택</h2>
@@ -98,6 +128,8 @@ export class Detail extends Component {
                     <span className="input-ratio">890</span>
                     <span className="input-ratio">445</span>
                     <span className="input-ratio">345</span>
+                    <span className="input-ratio">153</span>
+                    <span className="input-ratio">889</span>
                     <span className="input-ratio">153</span>
                     <span className="input-ratio">889</span>
                   </div>

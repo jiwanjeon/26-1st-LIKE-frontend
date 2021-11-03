@@ -5,16 +5,14 @@ import './MenuList.scss';
 export class MenuList extends Component {
   render() {
     const { categories } = this.props;
+
     return (
-      <div className="menu">
-        <ul className="menuList">
-          {categories.map(category => (
-            <MenuItem
-              key={category.id}
-              name={category.name}
-              list={category.list}
-            />
-          ))}
+      <div className="MenuList">
+        <ul className="menuInner">
+          {categories.map(category => {
+            const { id, name, list } = category;
+            return <MenuItem key={id} name={name} list={list} />;
+          })}
         </ul>
       </div>
     );

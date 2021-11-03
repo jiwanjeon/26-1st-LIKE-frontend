@@ -1,14 +1,12 @@
-nav {
-  .menu {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
+.MenuList {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+
+  .menuInner {
+    display: inline-block;
     margin: 0 auto;
-    .menuList {
-      display: inline-block;
-      margin: 0 auto;
-    }
   }
 }

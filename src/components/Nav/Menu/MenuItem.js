@@ -5,8 +5,9 @@ import './MunuItem.scss';
 export class MenuItem extends Component {
   render() {
     const { name, list } = this.props;
+
     return (
-      <li className="menuItem">
+      <li className="MenuItem">
         <span>{name}</span>
         <SubMenuList list={list} />
       </li>

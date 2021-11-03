@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './TCLogin.scss';
 
 export class TCLogin extends Component {
   handleClick = () => {
@@ -8,18 +9,7 @@ export class TCLogin extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '110px',
-          width: '600px',
-          height: '600px',
-          marginLeft: '-300px',
-          backgroundColor: 'lightgray',
-          zIndex: '300',
-        }}
-      >
+      <div className="TCLogin">
         <span
           style={{ fontSize: '40px', cursor: 'pointer' }}
           onClick={this.handleClick}
