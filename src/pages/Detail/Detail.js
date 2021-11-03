@@ -56,7 +56,7 @@ export class Detail extends Component {
       <>
         <Nav toggle={this.toggleLogin} />
         {loginModal ? <TCLogin toggle={this.toggleLogin} /> : null}
-        <div className="detailPage">
+        <div className="Detail">
           <main className="detailWrap">
             <DetailGallery image={images} />
             <DetailInfo

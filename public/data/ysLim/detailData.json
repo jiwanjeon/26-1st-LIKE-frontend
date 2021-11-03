@@ -21,33 +21,5 @@
       "https://picsum.photos/200/200",
       "https://picsum.photos/100/100"
     ]
-  },
-  {
-    "id": 2,
-    "serial": "S100-100",
-    "title": "에어 포스 1",
-    "sub_title": "신발 라이프스타일",
-    "price": "199000",
-    "colors": ["White", "Red"],
-    "eco_friendly": true,
-    "quantity": 100,
-    "color_kind": "2",
-    "categories_master": "신발",
-    "categories_detail": "라이프스타일",
-    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
-  },
-  {
-    "id": 3,
-    "serial": "S100-100",
-    "title": "에어 포스 1",
-    "sub_title": "신발 라이프스타일",
-    "price": "199000",
-    "colors": ["white", "red"],
-    "eco_friendly": true,
-    "quantity": 100,
-    "color_kind": "2",
-    "categories_master": "신발",
-    "categories_detail": "라이프스타일",
-    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
   }
 ]
