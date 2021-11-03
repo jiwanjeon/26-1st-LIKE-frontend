@@ -21,7 +21,7 @@ export class Nav extends Component {
   }
 
   getCategoriesData() {
-    fetch('./data/ysLim/navCategories.json')
+    fetch('./data/ysLim/navCategories2.json')
       .then(res => res.json())
       .then(data => {
         this.setState({

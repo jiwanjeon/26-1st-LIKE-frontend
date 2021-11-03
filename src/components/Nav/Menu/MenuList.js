@@ -10,8 +10,8 @@ export class MenuList extends Component {
       <div className="MenuList">
         <ul className="menuInner">
           {categories.map(category => {
-            const { id, name, list } = category;
-            return <MenuItem key={id} name={name} list={list} />;
+            const { id, name, sub_categories } = category;
+            return <MenuItem key={id} name={name} list={sub_categories} />;
           })}
         </ul>
       </div>

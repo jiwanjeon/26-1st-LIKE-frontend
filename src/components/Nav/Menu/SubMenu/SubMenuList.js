@@ -10,8 +10,8 @@ export class SubMenuList extends Component {
       <div className="SubMenuList">
         <div className="subMenuInner">
           <ul className="subMenuItemWarp">
-            {list.map((item, index) => (
-              <SubMenuItem key={index + 1} name={item} />
+            {list.map(item => (
+              <SubMenuItem key={item.id} name={item.name} />
             ))}
           </ul>
         </div>
