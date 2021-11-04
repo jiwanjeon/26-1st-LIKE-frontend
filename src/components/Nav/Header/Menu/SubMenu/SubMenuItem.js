@@ -8,7 +8,7 @@ export class SubMenuItem extends Component {
 
     return (
       <li className="SubMenuItem">
-        <Link to={`./product/${menuName}/${id}`}>{name}</Link>
+        <Link to={`/product/${menuName}/${id}`}>{name}</Link>
       </li>
     );
   }
