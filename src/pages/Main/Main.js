@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Main.scss';
 import COLOR_LISTS from './colorList';
+import Products from './ProductsInfo/Products';
 
 export class Main extends Component {
   constructor() {
@@ -12,7 +13,7 @@ export class Main extends Component {
 
   componentDidMount() {
     // query =>
-    fetch('/data/mainproducts.json', {
+    fetch('/data/MainProducts.json', {
       // method: 'GET',
     })
       .then(res => res.json())
@@ -25,7 +26,7 @@ export class Main extends Component {
 
   render() {
     const { productsInfo } = this.state;
-
+    // console.log(productsInfo);
     return (
       <div>
         <div className="mainWrapper">
@@ -63,7 +64,7 @@ export class Main extends Component {
                           className="checkboxLabel"
                           for="checkbox"
                           style={{ backgroundColor: color.colorProps }}
-                        ></label>
+                        />
                         <span className="productColor">{color.color_name}</span>
                       </li>
                     );
@@ -115,39 +116,9 @@ export class Main extends Component {
               </div>
               <div className="productsMapping">
                 {productsInfo &&
-                  productsInfo.map((productsInfo, idx) => {
-                    return (
-                      <div className="productsContainer" key={idx}>
-                        <div className="productLayout">
-                          <div className="productImage">
-                            <img
-                              alt="production"
-                              src={productsInfo.image}
-                            ></img>
-                          </div>
-                          <div className="productInfo">
-                            <div className="productInfoDisplay">
-                              <div className="productStatus">
-                                <span>{productsInfo.ecoFriendly}</span>
-                              </div>
-                              <div className="productName">
-                                <span>{productsInfo.title}</span>
-                              </div>
-                              <div className="productCategory">
-                                <span>{productsInfo.sub_title}</span>
-                              </div>
-                              <div className="productColorChoices">
-                                <span>{productsInfo.color_kind} 컬러</span>
-                              </div>
-                            </div>
-                            <div className="productPrice">
-                              <span>11,900 원</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  productsInfo.map((product, idx) => (
+                    <Products key={idx} productInfo={product} />
+                  ))}
               </div>
             </main>
           </div>
