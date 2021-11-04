@@ -8,7 +8,7 @@
 
     .sectionTitle {
       display: flex;
-      flex-direction: row;
+      // flex-direction: row;
       justify-content: space-between;
       .sectionTitleCategory {
         .categoryName {
@@ -18,6 +18,7 @@
           font-size: 25px;
         }
       }
+
       .sectionControl {
         button {
           margin-right: 70px;
@@ -28,8 +29,11 @@
       }
     }
   }
+
   .contentsWrapper {
     display: flex;
+    // flex-direction: row;
+
     width: 100%;
     height: 1000px;
     padding: 5px;
@@ -56,12 +60,12 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            width: 33%; // this will allow the color to span 1 third
+            width: 33%;
             height: 80px;
-            flex-shrink: 0; // this fill force the row to wrap every third element
-            align-items: center; // this will help center the content
-            justify-content: center; // this will also help center the content
-            label {
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            .checkboxLabel {
               background-color: beige;
               border: 1px solid #ccc;
               border-radius: 50%;
@@ -106,15 +110,19 @@
           }
         }
       }
+
       .sizes {
         .HorizontalLine {
           margin-top: 25px;
         }
+
         .span {
         }
+
         .sizeLists {
           margin-top: 20px;
           margin-bottom: 20px;
+
           button {
             margin: 5px;
             width: 44px;
@@ -131,6 +139,7 @@
       max-height: 100%;
       padding-right: 5px;
       padding-top: 5px;
+      // position: absolute;
 
       .contentsLink {
         display: flex;
@@ -149,6 +158,7 @@
           font-size: 20px;
         }
       }
+
       .productsMapping {
         display: grid;
         grid-template-columns: repeat(3, 33%);

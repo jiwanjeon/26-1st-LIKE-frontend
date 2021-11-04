@@ -11,8 +11,9 @@ export class Main extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/data/MainProducts.json', {
-      method: 'GET',
+    // query =>
+    fetch('/data/mainproducts.json', {
+      // method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
@@ -24,6 +25,7 @@ export class Main extends Component {
 
   render() {
     const { productsInfo } = this.state;
+
     return (
       <div>
         <div className="mainWrapper">
@@ -38,7 +40,7 @@ export class Main extends Component {
 
               <div className="sectionControl">
                 <button>필터</button>
-                <select name="dog-names" id="dog-names">
+                <select name="list" className="productsFilter">
                   <option value="newestOrdeer">신상품순</option>
                   <option value="hightCostoOder">높은가격순</option>
                   <option value="lowCostOrder">낮은가격순</option>
@@ -56,8 +58,9 @@ export class Main extends Component {
                   {COLOR_LISTS.map((color, idx) => {
                     return (
                       <li className="colorLayout" title="베이지" key={idx}>
-                        <input type="checkbox" id="checkbox" />
+                        <input type="checkbox" />
                         <label
+                          className="checkboxLabel"
                           for="checkbox"
                           style={{ backgroundColor: color.colorProps }}
                         ></label>
@@ -118,7 +121,7 @@ export class Main extends Component {
                         <div className="productLayout">
                           <div className="productImage">
                             <img
-                              alt="productImage"
+                              alt="production"
                               src={productsInfo.image}
                             ></img>
                           </div>
