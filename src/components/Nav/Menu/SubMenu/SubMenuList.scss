@@ -1,5 +1,4 @@
 .SubMenuList {
-  visibility: hidden;
   position: absolute;
   left: 50%;
   top: 60px;
@@ -7,10 +6,6 @@
   padding: 16px 40px 40px;
   background-color: white;
   transform: translateX(-200px);
-
-  &:hover {
-    height: auto;
-  }
 
   .subMenuItemWarp {
     line-height: 1.7;

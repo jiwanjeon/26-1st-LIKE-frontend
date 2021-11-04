@@ -11,7 +11,14 @@ export class MenuList extends Component {
         <ul className="menuInner">
           {categories.map(category => {
             const { id, name, sub_categories } = category;
-            return <MenuItem key={id} name={name} list={sub_categories} />;
+            return (
+              <MenuItem
+                key={id}
+                id={id}
+                name={name}
+                subMenuList={sub_categories}
+              />
+            );
           })}
         </ul>
       </div>

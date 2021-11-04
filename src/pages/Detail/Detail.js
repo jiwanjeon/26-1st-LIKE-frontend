@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
 import Nav from '../../components/Nav/Nav';
-import TCLogin from '../../components/TestComp/TCLogin';
 import './Detail.scss';
 
 export class Detail extends Component {
@@ -10,7 +9,6 @@ export class Detail extends Component {
     super(props);
     this.state = {
       detailData: [],
-      loginModal: false,
     };
   }
 
@@ -19,7 +17,7 @@ export class Detail extends Component {
   }
 
   detailData() {
-    fetch('/data/ysLim/detailData.json')
+    fetch('/data/detail/detailData.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -28,18 +26,9 @@ export class Detail extends Component {
       });
   }
 
-  toggleLogin = () => {
-    const { loginModal } = this.state;
-
-    this.setState({
-      loginModal: !loginModal,
-    });
-  };
-
   render() {
-    const { loginModal, detailData } = this.state;
+    const { detailData } = this.state;
     const {
-      id,
       serial,
       title,
       sub_title,
@@ -55,12 +44,10 @@ export class Detail extends Component {
     return (
       <>
         <Nav toggle={this.toggleLogin} />
-        {loginModal ? <TCLogin toggle={this.toggleLogin} /> : null}
         <div className="Detail">
           <main className="detailWrap">
             <DetailGallery image={images} />
             <DetailInfo
-              id={id}
               serial={serial}
               title={title}
               subTitle={sub_title}

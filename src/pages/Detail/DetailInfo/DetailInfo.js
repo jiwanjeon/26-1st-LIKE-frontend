@@ -46,7 +46,6 @@ export class DetailInfo extends Component {
   render() {
     const { quantity } = this.state;
     const {
-      id,
       serial,
       title,
       subTitle,
@@ -59,7 +58,7 @@ export class DetailInfo extends Component {
     } = this.props;
 
     return (
-      <div key={id} className="DetailInfo">
+      <div className="DetailInfo">
         <div className="detailInfoWrap">
           <div className="preInfo">
             <span className="subTitle">{subTitle}</span>

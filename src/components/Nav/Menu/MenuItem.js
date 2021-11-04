@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import SubMenuList from './SubMenu/SubMenuList';
+import { Link } from 'react-router-dom';
 import './MunuItem.scss';
 
 export class MenuItem extends Component {
   render() {
-    const { name, list } = this.props;
+    const { id, name, subMenuList } = this.props;
 
     return (
       <li className="MenuItem">
-        <span>{name}</span>
-        <SubMenuList list={list} />
+        <Link to={`./product/${id}`}>
+          <span>{name}</span>
+        </Link>
+        <div className="MenuItemInner">
+          <SubMenuList menuName={id} subMenulist={subMenuList} />
+        </div>
       </li>
     );
   }
