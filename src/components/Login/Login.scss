@@ -81,6 +81,11 @@ section{
       background-color: black;
       border: none;
       cursor: pointer;
+      
+      a{
+        color: white;
+        text-decoration: none;
+      }
   }
   button:hover{
     opacity: 0.2;
