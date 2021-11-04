@@ -1,0 +1,21 @@
+.DetailGallery {
+  width: calc(100% - 449px);
+  position: relative;
+  padding: 0 54px;
+
+  .detailGalleryInner {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      position: relative;
+      width: 50%;
+      padding-bottom: 10px;
+      padding-right: 10px;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
