@@ -16,7 +16,7 @@ export class Nav extends Component {
   }
 
   getCategoriesData() {
-    fetch('./data/nav/navCategories.json')
+    fetch('/data/nav/navCategories.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
