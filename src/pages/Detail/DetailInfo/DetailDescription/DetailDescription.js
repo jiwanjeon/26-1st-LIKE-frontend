@@ -5,7 +5,7 @@ export class DetailDescription extends Component {
   render() {
     const { descriptionHead, description, shown, serial } = this.props;
     return (
-      <div className="description">
+      <div className="DetailDescription">
         <p>{descriptionHead}</p>
         <br />
         <p>{description}</p>

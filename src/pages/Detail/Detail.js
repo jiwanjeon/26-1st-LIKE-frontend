@@ -46,7 +46,7 @@ export class Detail extends Component {
       <>
         <Nav toggle={this.toggleLogin} />
         <div className="Detail">
-          <main className="detailWrap">
+          <main className="detailInner">
             <DetailGallery image={images} />
             <DetailInfo
               serial={serial}

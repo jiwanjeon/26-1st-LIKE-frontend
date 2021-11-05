@@ -6,7 +6,7 @@ export class DetailColor extends Component {
     const { colors } = this.props;
     return (
       <div className="DetailColor">
-        <div className="DetailColorInner">
+        <div className="detailColorInner">
           {colors &&
             colors.map((colors, index) => (
               <ColorItem key={index + 1} color={colors} />
