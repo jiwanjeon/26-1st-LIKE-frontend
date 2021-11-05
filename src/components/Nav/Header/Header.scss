@@ -13,11 +13,11 @@
     background: #fff;
 
     .logo {
-      position: absolute;
-      top: 0;
-      left: 50px;
       display: flex;
       align-items: center;
+      position: absolute;
+      left: 50px;
+      top: 0;
       width: 60px;
       height: 60px;
 
@@ -30,8 +30,8 @@
       @include flexCenter;
 
       position: relative;
-      z-index: 29;
       font-size: 28px;
+      z-index: 29;
 
       form {
         position: relative;
@@ -53,8 +53,8 @@
       }
 
       .icon {
-        cursor: pointer;
         margin-left: 12px;
+        cursor: pointer;
       }
     }
   }
