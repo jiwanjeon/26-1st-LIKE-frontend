@@ -22,7 +22,6 @@ export class Header extends Component {
                 <img src="/images/LogoLIKE.svg" alt="라이키 로고" />
               </Link>
             </div>
-
             <div className="iconGroup">
               <form>
                 <div className="searchIcon">
