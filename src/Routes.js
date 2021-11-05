@@ -7,11 +7,13 @@ import Detail from './pages/Detail/Detail';
 import TestLogin from './components/TestLogin';
 import TestNav from './components/TestNav';
 import Filter from './pages/Main/Filter';
+import Nav from './components/Nav/Nav';
 
 export class Routes extends Component {
   render() {
     return (
       <Router>
+        <Nav />
         <Switch>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/products" component={Main} />
