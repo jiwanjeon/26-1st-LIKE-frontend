@@ -16,11 +16,11 @@ export class Nav extends Component {
   }
 
   getCategoriesData() {
-    fetch('/data/nav/navCategories.json')
+    fetch('http://10.58.6.96:8000/categories')
       .then(res => res.json())
       .then(data => {
         this.setState({
-          categories: data,
+          categories: data.results,
         });
       });
   }
