@@ -27,6 +27,10 @@ export class Main extends Component {
   render() {
     const { productsInfo } = this.state;
     // console.log(productsInfo);
+    // console.log('history', this.props.history);
+    console.log('match', this.props.match.id);
+    // console.log('location', this.props.location);
+
     return (
       <div>
         <div className="mainWrapper">

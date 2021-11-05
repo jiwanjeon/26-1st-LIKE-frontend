@@ -1,5 +1,6 @@
 [
   {
+    "main_category": "shoes",
     "product_id": 1,
     "image": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1530&q=80",
     "ecoFriendly": "친환경소재",
@@ -26,6 +27,7 @@
     ]
   },
   {
+    "main_category": "shoes",
     "product_id": 2,
     "image": "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2071&q=80",
     "ecoFriendly": "친환경소재",
@@ -52,6 +54,7 @@
     ]
   },
   {
+    "main_category": "shoes",
     "product_id": 3,
     "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=987&q=80https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1530&q=80",
     "ecoFriendly": "친환경소재",
@@ -78,6 +81,7 @@
     ]
   },
   {
+    "main_category": "clothing",
     "product_id": 4,
     "image": "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2340&q=80",
     "ecoFriendly": "친환경소재",
@@ -104,6 +108,7 @@
     ]
   },
   {
+    "main_category": "clothing",
     "product_id": 5,
     "image": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1530&q=80",
     "ecoFriendly": "친환경소재",
@@ -130,6 +135,7 @@
     ]
   },
   {
+    "main_category": "clothing",
     "product_id": 6,
     "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1925&q=80",
     "ecoFriendly": "친환경소재",
@@ -156,6 +162,7 @@
     ]
   },
   {
+    "main_category": "clothing",
     "product_id": 7,
     "image": "https://images.unsplash.com/photo-1626379625260-7111605463e8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
     "ecoFriendly": "친환경소재",
@@ -182,6 +189,7 @@
     ]
   },
   {
+    "main_category": "acc",
     "product_id": 8,
     "image": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1530&q=80",
     "ecoFriendly": "친환경소재",
@@ -208,6 +216,7 @@
     ]
   },
   {
+    "main_category": "acc",
     "product_id": 9,
     "image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
     "ecoFriendly": "친환경소재",
