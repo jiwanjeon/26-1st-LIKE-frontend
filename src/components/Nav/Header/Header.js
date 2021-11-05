@@ -13,31 +13,29 @@ export class Header extends Component {
     const { categories } = this.props;
 
     return (
-      <div>
-        <div className="Header">
-          <nav>
-            <MenuList categories={categories} />
-            <div className="logo">
-              <Link to="/main">
-                <img src="/images/LogoLIKE.svg" alt="라이키 로고" />
-              </Link>
-            </div>
-            <div className="iconGroup">
-              <form>
-                <div className="searchIcon">
-                  <MdSearch />
-                </div>
-                <input placeholder="검색" type="search" />
-              </form>
-              <div className="icon">
-                <MdOutlineFavoriteBorder />
+      <div className="Header">
+        <nav>
+          <MenuList categories={categories} />
+          <div className="logo">
+            <Link to="/main">
+              <img src="/images/LogoLIKE.svg" alt="라이키 로고" />
+            </Link>
+          </div>
+          <div className="iconGroup">
+            <form>
+              <div className="searchIcon">
+                <MdSearch />
               </div>
-              <div className="icon">
-                <MdOutlineShoppingBag />
-              </div>
+              <input placeholder="검색" type="search" />
+            </form>
+            <div className="icon">
+              <MdOutlineFavoriteBorder />
             </div>
-          </nav>
-        </div>
+            <div className="icon">
+              <MdOutlineShoppingBag />
+            </div>
+          </div>
+        </nav>
       </div>
     );
   }
