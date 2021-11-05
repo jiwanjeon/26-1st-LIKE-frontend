@@ -5,7 +5,6 @@ import SignUp from './pages/SignUp/SignUp';
 import Main from './pages/Main/Main';
 import Detail from './pages/Detail/Detail';
 import TestLogin from './components/TestLogin';
-import TestNav from './components/TestNav';
 import Filter from './pages/Main/Filter';
 import Nav from './components/Nav/Nav';
 
@@ -20,7 +19,6 @@ export class Routes extends Component {
           <Route exact path="/products/:category/:id" component={Filter} />
           <Route exact path="/detail/:id" component={Detail} />
           <Route exact path="/testLogin" component={TestLogin} />
-          <Route exact path="/testNav" component={TestNav} />
         </Switch>
       </Router>
     );
