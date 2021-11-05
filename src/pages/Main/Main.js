@@ -21,6 +21,8 @@ export class Main extends Component {
       });
   }
 
+  updateProducts() {}
+
   render() {
     const { productsInfo } = this.state;
 
@@ -90,22 +92,22 @@ export class Main extends Component {
           <main className="contentsBody">
             <div className="contentsLink">
               <div className="viewAll">
-                <button title="viewAll">
+                <button onClick={this.updateProducts} title="viewAll">
                   <span>전체보기</span>
                 </button>
               </div>
               <div className="Shoes">
-                <button title="viewAll">
+                <button onClick={this.updateProducts} title="viewAll">
                   <span>신발</span>
                 </button>
               </div>
               <div className="Clothes">
-                <button title="viewAll">
+                <button onClick={this.updateProducts} title="viewAll">
                   <span>의류</span>
                 </button>
               </div>
               <div className="Supplies">
-                <button title="viewAll">
+                <button onClick={this.updateProducts} title="viewAll">
                   <span>용품</span>
                 </button>
               </div>
