@@ -1,0 +1,30 @@
+@import '../../../styles/variables.scss';
+
+.PreHeader {
+  @include flexVerticalCenter();
+
+  justify-content: right;
+  height: 36px;
+  padding: 0 50px 0 36px;
+  background: #f0f0f0;
+  text-align: right;
+
+  ul {
+    font-size: 12px;
+
+    li {
+      display: inline-block;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    li + li::before {
+      content: '|';
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+  }
+}

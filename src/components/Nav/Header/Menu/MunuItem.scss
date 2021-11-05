@@ -13,11 +13,11 @@
     }
   }
 
-  .MenuItemInner {
+  .menuItemInner {
     visibility: hidden;
   }
 
-  &:hover .MenuItemInner {
+  &:hover .menuItemInner {
     visibility: visible;
   }
 }

@@ -9,10 +9,10 @@ export class MenuItem extends Component {
 
     return (
       <li className="MenuItem">
-        <Link to={`./product/${id}`}>
+        <Link to={`/product/${id}`}>
           <span>{name}</span>
         </Link>
-        <div className="MenuItemInner">
+        <div className="menuItemInner">
           <SubMenuList menuName={id} subMenulist={subMenuList} />
         </div>
       </li>
