@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './DetailEcoFriendly';
+import './DetailEcoFriendly.scss';
 
 export class DetailEcoFriendly extends Component {
   render() {

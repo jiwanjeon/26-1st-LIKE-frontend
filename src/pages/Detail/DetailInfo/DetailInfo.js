@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import DetailTitles from './DetailTitles/DetailTitles';
 import DetailEcoFriendly from './DetailEcoFriendly/DetailEcoFriendly';
-import DetailColor from './DetailColor/DetailColor';
 import DetailSize from './DetailSize/DetailSize';
 import DetailQuantity from './DetailQuantity/DetailQuantity';
 import DetailButtons from './DetailButtons/DetailButtons';
-import DetailDescription from './DetailButtons/DetailButtons';
+import DetailDescription from './DetailDescription/DetailDescription';
 import DetailAccordions from './DetailAccordions/DetailAccordions';
 import './DetailInfo.scss';
 
@@ -16,11 +15,11 @@ export class DetailInfo extends Component {
       title,
       subTitle,
       price,
-      colors,
       ecoFriendly,
       maxQuantity,
       descriptionHead,
       description,
+      shown,
     } = this.props;
 
     return (
@@ -28,7 +27,6 @@ export class DetailInfo extends Component {
         <div className="detailInfoWrap">
           <DetailTitles title={title} subTitle={subTitle} price={price} />
           <DetailEcoFriendly ecoFriendly={ecoFriendly} />
-          <DetailColor colors={colors} />
           <DetailSize />
           <DetailQuantity maxQuantity={maxQuantity} />
           <DetailButtons />
@@ -36,6 +34,7 @@ export class DetailInfo extends Component {
             descriptionHead={descriptionHead}
             description={description}
             serial={serial}
+            shown={shown}
           />
           <DetailAccordions />
         </div>

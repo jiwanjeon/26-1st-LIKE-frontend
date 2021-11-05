@@ -36,9 +36,10 @@ export class Detail extends Component {
       colors,
       eco_friendly,
       quantity,
-      description_head,
+      description_title,
       description,
       images,
+      current_color,
     } = detailData;
 
     return (
@@ -55,8 +56,9 @@ export class Detail extends Component {
               colors={colors}
               ecoFriendly={eco_friendly}
               maxQuantity={quantity}
-              descriptionHead={description_head}
+              descriptionHead={description_title}
               description={description}
+              shown={current_color}
             />
           </main>
         </div>
