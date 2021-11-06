@@ -36,6 +36,7 @@ export class MiniCart extends Component {
 
   render() {
     const { orderData, totalPrice } = this.state;
+    const { close } = this.props;
 
     return (
       <>
@@ -59,7 +60,7 @@ export class MiniCart extends Component {
             <button className="btn checkout">바로구매</button>
           </div>
         </div>
-        <div onClick={this.props.close} className="miniCartOverlay" />
+        <div onClick={close} className="miniCartOverlay" />
       </>
     );
   }
