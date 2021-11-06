@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
+import MiniCartModal from './MiniCartModal/MiniCartModal';
 import Nav from '../../components/Nav/Nav';
 import './Detail.scss';
 
@@ -44,6 +45,7 @@ export class Detail extends Component {
     return (
       <>
         <Nav toggle={this.toggleLogin} />
+        <MiniCartModal />
         <div className="Detail">
           <main className="detailWrap">
             <DetailGallery image={images} />

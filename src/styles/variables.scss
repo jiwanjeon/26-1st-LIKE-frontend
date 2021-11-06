@@ -1,6 +1,13 @@
 :root {
-  --color-navy-900: #0a0d1c;
+  --color-black: var(--color-navy-900);
   --color-white: #ffffff;
+  --color-gray-1: #e5e5e5;
+  --color-gray-4: #dedfda;
+  --color-gray-8: #888888;
+  --color-gray-9: #999999;
+  --color-navy-900: #0a0d1c;
+  --color-orange: #fb7634;
+  --color-point: var(--color-orange);
 }
 
 @mixin flexCenter {
