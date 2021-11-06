@@ -10,7 +10,6 @@
   background-color: var(--color-white);
   font-size: 0.9rem;
   line-height: 1.4;
-
   overflow-y: scroll;
   z-index: 202;
 
@@ -27,7 +26,6 @@
   .orderPrice {
     @include flexVerticalCenter();
     justify-content: space-between;
-
     margin-top: 35px;
     padding: 0 30px;
 
@@ -44,7 +42,6 @@
   .orderDeliveryinfo {
     margin-top: 15px;
     padding: 0 30px;
-
     color: var(--color-gray-9);
   }
 
