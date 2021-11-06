@@ -7,7 +7,7 @@ export class MiniCart extends Component {
     super(props);
     this.state = {
       orderData: [],
-      totalPrice: 1,
+      totalPrice: 0,
     };
   }
 
@@ -36,32 +36,28 @@ export class MiniCart extends Component {
 
   render() {
     const { orderData, totalPrice } = this.state;
-    const { close } = this.props;
 
     return (
-      <>
-        <div className="MiniCart">
-          <div className="miniCartTitle">
-            <h5>미니 장바구니</h5>
-          </div>
-          <div className="miniCartSubTitle">
-            <h5>사용가능한 쿠폰이있습니다.</h5>
-          </div>
-          <OrderList orderData={orderData} />
-          <div className="orderPrice">
-            <span className="text">총 상품금액</span>
-            <span className="totalPrice">{totalPrice}</span>
-          </div>
-          <div className="orderDeliveryinfo">
-            <span>배송비는 주문서에서 확인이 가능합니다.</span>
-          </div>
-          <div className="orderBuy">
-            <button className="btn viewCart">장바구니 가기</button>
-            <button className="btn checkout">바로구매</button>
-          </div>
+      <div className="MiniCart">
+        <div className="miniCartTitle">
+          <h5>미니 장바구니</h5>
         </div>
-        <div onClick={close} className="miniCartOverlay" />
-      </>
+        <div className="miniCartSubTitle">
+          <h5>사용가능한 쿠폰이있습니다.</h5>
+        </div>
+        <OrderList orderData={orderData} />
+        <div className="orderPrice">
+          <span className="text">총 상품금액</span>
+          <span className="totalPrice">{totalPrice}</span>
+        </div>
+        <div className="orderDeliveryinfo">
+          <span>배송비는 주문서에서 확인이 가능합니다.</span>
+        </div>
+        <div className="orderBuy">
+          <button className="btn viewCart">장바구니 가기</button>
+          <button className="btn checkout">바로구매</button>
+        </div>
+      </div>
     );
   }
 }

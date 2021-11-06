@@ -5,7 +5,7 @@ export class MiniCartModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      open: true,
     };
   }
 
@@ -31,7 +31,14 @@ export class MiniCartModal extends Component {
 
   render() {
     const { open } = this.state;
-    return open && <MiniCart close={this.close} />;
+    return (
+      open && (
+        <>
+          <MiniCart />
+          <div onClick={this.close} className="miniCartOverlay" />
+        </>
+      )
+    );
   }
 }
 
