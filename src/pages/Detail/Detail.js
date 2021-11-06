@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
-import MiniCartModal from './MiniCartModal/MiniCartModal';
 import Nav from '../../components/Nav/Nav';
 import './Detail.scss';
 
@@ -37,17 +36,17 @@ export class Detail extends Component {
       colors,
       eco_friendly,
       quantity,
-      description_head,
+      description_title,
       description,
       images,
+      current_color,
     } = detailData;
 
     return (
       <>
         <Nav toggle={this.toggleLogin} />
-        <MiniCartModal />
         <div className="Detail">
-          <main className="detailWrap">
+          <main className="detailInner">
             <DetailGallery image={images} />
             <DetailInfo
               serial={serial}
@@ -57,8 +56,9 @@ export class Detail extends Component {
               colors={colors}
               ecoFriendly={eco_friendly}
               maxQuantity={quantity}
-              descriptionHead={description_head}
+              descriptionHead={description_title}
               description={description}
+              shown={current_color}
             />
           </main>
         </div>
