@@ -1,25 +1,38 @@
-[
-  {
-    "id": 1,
-    "serial": "S100-100",
-    "title": "에어 포스 1",
-    "sub_title": "신발 라이프스타일",
-    "price": "199000",
-    "eco_friendly": true,
-    "quantity": 6,
-    "description_title": "계절에 어울리는 스타일.",
-    "description": "나이키 와플 트레이너 2는 나이키 러닝화의 오리지널 스타일에 계절의 변화에서 영감을 받은 디테일을 더해 제작되었습니다. 차분한 색상과 부드러운 액센트, 시원한 날씨에 알맞은 소재로 이루어진 전설적인 디자인이 운동화에 좋은 분위기를 불어넣어줍니다.",
-    "current_color": "세일/미드나이트 네이비/검 옐로우",
-    "color_kind": "2",
-    "categories_master": "신발",
-    "categories_detail": "라이프스타일",
-    "images": [
+{
+  "results": {
+    "product_id": 1,
+    "price": "139000.00",
+    "product_images": [
       "https://picsum.photos/300/300",
       "https://picsum.photos/150/150",
       "https://picsum.photos/250/250",
       "https://picsum.photos/350/350",
       "https://picsum.photos/200/200",
       "https://picsum.photos/100/100"
-    ]
+    ],
+    "sub_title": "성인공용 트레이닝화",
+    "title": "나이키 프리 메트콘 4 MFS",
+    "eco_friendly": false,
+    "size_qan": [
+      {
+        "sizeName": "255",
+        "quantity": 0
+      },
+      {
+        "sizeName": "260",
+        "quantity": 10
+      },
+      {
+        "sizeName": "265",
+        "quantity": 20
+      },
+      {
+        "sizeName": "270",
+        "quantity": 0
+      }
+    ],
+    "description_title": "유연성과 안정성을 더한 퍼포먼스.",
+    "description": "나이키 프리 메트콘 4로 트레이닝 프로그램의 효과를 최대한 이끌어보세요. 한층 새로워진 '체인 링크' 메쉬 소재는 민첩성 훈련을 하며 속도를 높이는 동안에도 시원하고 유연한 착화감을 전해주며",
+    "serial": "DH2726-091"
   }
-]
+}

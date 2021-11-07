@@ -1,27 +1,69 @@
 import React, { Component } from 'react';
+import DetailSizeItem from './DetailSizeItem/DetailSizeItem';
+import DetailQuantity from './DetailQuantity/DetailQuantity';
 import './DetailSize.scss';
 
 export class DetailSize extends Component {
+  constructor(props) {
+    super(props);
+    this.detailQuantity = React.createRef();
+    this.state = {
+      selectedSize: '',
+      maxQuantity: 1,
+    };
+  }
+  setSizeAndQuantity = quantity => {
+    this.setState({
+      maxQuantity: quantity,
+    });
+    this.resetQuantity();
+  };
+
+  selectSize = sizeName => {
+    const { selectSize } = this.props;
+    selectSize(sizeName);
+  };
+
+  clearSelected = () => {};
+
+  selectQuantity = quantity => {
+    const { selectQuantity } = this.props;
+    selectQuantity(quantity);
+  };
+
+  resetQuantity = () => {
+    this.detailQuantity.current.resetQuantity();
+  };
+
   render() {
+    const { sizeQan } = this.props;
+    const { maxQuantity, selectedSize } = this.state;
+
     return (
-      <div className="DetailSize">
-        <h2>사이즈 선택</h2>
-        <div className="sizeList">
-          <span className="input-ratio deactivated">250</span>
-          <span className="input-ratio">255</span>
-          <span className="input-ratio">260</span>
-          <span className="input-ratio">265</span>
-          <span className="input-ratio">270</span>
-          <span className="input-ratio">275</span>
-          <span className="input-ratio">280</span>
-          <span className="input-ratio deactivated">285</span>
-          <span className="input-ratio">290</span>
-          <span className="input-ratio deactivated">295</span>
-          <span className="input-ratio">300</span>
-          <span className="input-ratio">305</span>
-          <span className="input-ratio deactivated">310</span>
+      <>
+        <div className="DetailSize">
+          <h2>사이즈 선택</h2>
+          <div className="sizeList">
+            {sizeQan &&
+              sizeQan.map((el, index) => (
+                <DetailSizeItem
+                  key={index + 1}
+                  sizeName={el.sizeName}
+                  maxQuantity={el.quantity}
+                  selectedSize={selectedSize}
+                  setMaxQuantity={this.setSizeAndQuantity}
+                  selectSize={this.selectSize}
+                  clearSelected={this.clearSelected}
+                />
+              ))}
+          </div>
         </div>
-      </div>
+        <DetailQuantity
+          selectQuantity={this.selectQuantity}
+          maxQuantity={maxQuantity}
+          ref={this.detailQuantity}
+        />
+      </>
     );
   }
 }

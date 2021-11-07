@@ -12,30 +12,63 @@ export class DetailQuantity extends Component {
   handleInput = e => {
     const numberOnly = /^[0-9\b]+$/;
     const { value } = e.target;
+    const { maxQuantity, selectQuantity } = this.props;
 
     if (numberOnly.test(value)) {
-      this.setState({ quantity: Number(value) });
+      this.setState(
+        {
+          quantity: Number(value),
+        },
+        () => {
+          selectQuantity(Number(value));
+        }
+      );
     }
-    if (!value) {
-      this.setState({ quantity: Number(1) });
+
+    if (value === '' || value < maxQuantity || value > maxQuantity) {
+      this.setState(
+        {
+          quantity: Number(1),
+        },
+        () => {
+          selectQuantity(Number(1));
+        }
+      );
     }
   };
 
   increment = () => {
     const { quantity } = this.state;
     const { maxQuantity } = this.props;
+    const { selectQuantity } = this.props;
 
     if (quantity < maxQuantity) {
-      this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
+      this.setState(prevState => ({
+        quantity: prevState.quantity + 1,
+        // eslint-disable-next-line react/no-unused-state
+        update: selectQuantity(prevState.quantity + 1),
+      }));
     }
   };
 
   decrement = () => {
     const { quantity } = this.state;
+    const { selectQuantity } = this.props;
 
     if (quantity > 1) {
-      this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
+      this.setState(prevState => ({
+        quantity: prevState.quantity - 1,
+        // eslint-disable-next-line react/no-unused-state
+        update: selectQuantity(prevState.quantity - 1),
+      }));
     }
+  };
+
+  resetQuantity = () => {
+    const { selectQuantity } = this.props;
+
+    this.setState({ quantity: 1 });
+    selectQuantity(1);
   };
 
   render() {
@@ -46,12 +79,7 @@ export class DetailQuantity extends Component {
       <div className="DetailQuantity">
         <h2>수량</h2>
         <div className="quantitySelector">
-          <input
-            pattern="[0-9]*"
-            type="text"
-            value={quantity}
-            onChange={this.handleInput}
-          />
+          <input type="text" value={quantity} onChange={this.handleInput} />
           <button
             onClick={this.decrement}
             className={`btn decrement ${quantity === 1 && 'deactivate'}`}

@@ -20,7 +20,7 @@ export class Nav extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          categories: data.results,
+          categories: data,
         });
       });
   }
