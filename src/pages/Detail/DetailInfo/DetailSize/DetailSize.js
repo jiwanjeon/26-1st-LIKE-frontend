@@ -12,6 +12,7 @@ export class DetailSize extends Component {
       maxQuantity: 1,
     };
   }
+
   setSizeAndQuantity = quantity => {
     this.setState({
       maxQuantity: quantity,
@@ -36,7 +37,7 @@ export class DetailSize extends Component {
   };
 
   render() {
-    const { sizeQan } = this.props;
+    const { sizeNameAndQuantity } = this.props;
     const { maxQuantity, selectedSize } = this.state;
 
     return (
@@ -44,24 +45,24 @@ export class DetailSize extends Component {
         <div className="DetailSize">
           <h2>사이즈 선택</h2>
           <div className="sizeList">
-            {sizeQan &&
-              sizeQan.map((el, index) => (
+            {sizeNameAndQuantity &&
+              sizeNameAndQuantity.map((list, index) => (
                 <DetailSizeItem
                   key={index + 1}
-                  sizeName={el.sizeName}
-                  maxQuantity={el.quantity}
-                  selectedSize={selectedSize}
                   setMaxQuantity={this.setSizeAndQuantity}
-                  selectSize={this.selectSize}
+                  maxQuantity={list.quantity}
+                  sizeName={list.sizeName}
+                  selectedSize={selectedSize}
                   clearSelected={this.clearSelected}
+                  selectSize={this.selectSize}
                 />
               ))}
           </div>
         </div>
         <DetailQuantity
-          selectQuantity={this.selectQuantity}
-          maxQuantity={maxQuantity}
           ref={this.detailQuantity}
+          maxQuantity={maxQuantity}
+          selectQuantity={this.selectQuantity}
         />
       </>
     );

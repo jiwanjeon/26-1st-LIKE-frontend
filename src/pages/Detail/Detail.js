@@ -53,7 +53,7 @@ export class Detail extends Component {
               subTitle={sub_title}
               price={price}
               ecoFriendly={eco_friendly}
-              sizeQan={size_qan}
+              sizeNameAndQuantity={size_qan}
               descriptionTitle={description_title}
               description={description}
               shown={current_color}

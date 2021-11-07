@@ -56,7 +56,7 @@ export class DetailInfo extends Component {
       subTitle,
       price,
       ecoFriendly,
-      sizeQan,
+      sizeNameAndQuantity,
       descriptionTitle,
       description,
       shown,
@@ -70,7 +70,7 @@ export class DetailInfo extends Component {
           <DetailSize
             selectSize={this.selectSize}
             selectQuantity={this.selectQuantity}
-            sizeQan={sizeQan}
+            sizeNameAndQuantity={sizeNameAndQuantity}
           />
           <DetailButtons />
           <DetailDescription
