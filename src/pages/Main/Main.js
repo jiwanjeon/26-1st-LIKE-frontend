@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import './Main.scss';
 import COLOR_LISTS from './colorList';
 import Products from './ProductsInfo/Products';
+import { Link } from 'react-router-dom';
 
 export class Main extends Component {
   constructor() {
     super();
     this.state = {
       productsInfo: [],
+      selectedItems: [],
     };
+    this.handleChange = this.handleChange.bind(this);
   }
   // const API = "DASDDADDAD" => 컴포넌트 마다 다 적용할수x
   componentDidMount() {
@@ -21,7 +24,56 @@ export class Main extends Component {
       });
   }
 
-  updateProducts() {}
+  updateProducts = name => {
+    fetch(`/data/${name}.json`, {})
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          productsInfo: data,
+        });
+      });
+    // console.log current URL
+    console.log(this.props.history.location.pathname);
+  };
+
+  updateSize = name => {
+    const sizeString = `&size=${name}`;
+    const currentURL = this.props.history.location.pathname;
+    // this.props.history.replace({
+    //   pathname: currentURL + '?' + `${sizeString}`,
+    // });
+    // this.props.history.push(currentURL + `${sizeString}`);
+    window.history.replaceState(
+      null,
+      'New Page Title',
+      currentURL + `${sizeString}`
+    );
+    // https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
+  };
+  handleChange(e) {
+    let newSelected = [];
+    if (this.state.selectedItems.includes(e.target.value)) {
+      newSelected = this.state.selectedItems.filter(
+        item => item !== e.target.value
+      );
+    } else {
+      newSelected = [...this.state.selectedItems, e.target.value];
+    }
+    this.setState({ selectedItems: newSelected });
+  }
+
+  updateColor = e => {
+    const sizeColor = `&color=${e}`;
+
+    console.log(e);
+
+    const currentURL = this.props.history.location.pathname;
+    window.history.replaceState(
+      null,
+      'New Page Title',
+      currentURL + `${sizeColor}`
+    );
+  };
 
   render() {
     const { productsInfo } = this.state;
@@ -40,8 +92,8 @@ export class Main extends Component {
             <div className="sectionControl">
               <button>필터</button>
               <select name="list" className="productsFilter">
-                <option value="newestOrdeer">신상품순</option>
-                <option value="hightCostoOder">높은가격순</option>
+                <option value="newestOrder">신상품순</option>
+                <option value="hightCostOrder">높은가격순</option>
                 <option value="lowCostOrder">낮은가격순</option>
               </select>
             </div>
@@ -56,11 +108,19 @@ export class Main extends Component {
               <ul className="colorLists">
                 {COLOR_LISTS.map((color, idx) => {
                   return (
-                    <li className="colorLayout" title="베이지" key={idx}>
-                      <input type="checkbox" />
+                    <li className="colorLayout" key={idx}>
+                      <input
+                        onChange={this.handleChange}
+                        type="checkbox"
+                        id={idx}
+                        value={color.color_name}
+                        checked={this.state.selectedItems.includes(
+                          color.color_name
+                        )}
+                      />
                       <label
                         className="checkboxLabel"
-                        for="checkbox"
+                        htmlFor={idx}
                         style={{ backgroundColor: color.colorProps }}
                       />
                       <span className="productColor">{color.color_name}</span>
@@ -73,17 +133,17 @@ export class Main extends Component {
               <div className="HorizontalLine" />
               <span>사이즈</span>
               <div className="sizeLists">
-                <button title="230">230</button>
-                <button title="230">235</button>
-                <button title="230">240</button>
-                <button title="230">245</button>
-                <button title="230">250</button>
-                <button title="230">255</button>
-                <button title="230">260</button>
-                <button title="230">265</button>
-                <button title="230">270</button>
-                <button title="230">275</button>
-                <button title="230">280</button>
+                <button onClick={() => this.updateSize('230')}>230</button>
+                <button onClick={() => this.updateSize('235')}>235</button>
+                <button onClick={() => this.updateSize('240')}>240</button>
+                <button onClick={() => this.updateSize('245')}>245</button>
+                <button onClick={() => this.updateSize('250')}>250</button>
+                <button onClick={() => this.updateSize('255')}>255</button>
+                <button onClick={() => this.updateSize('260')}>260</button>
+                <button onClick={() => this.updateSize('265')}>265</button>
+                <button onClick={() => this.updateSize('270')}>270</button>
+                <button onClick={() => this.updateSize('275')}>275</button>
+                <button onClick={() => this.updateSize('280')}>280</button>
               </div>
               <div className="HorizontalLine" />
             </div>
@@ -92,24 +152,60 @@ export class Main extends Component {
           <main className="contentsBody">
             <div className="contentsLink">
               <div className="viewAll">
-                <button onClick={this.updateProducts} title="viewAll">
-                  <span>전체보기</span>
-                </button>
+                <Link
+                  to={{
+                    pathname: '/products',
+                    state: { message: 'hello, im a passed message!' },
+                  }}
+                >
+                  <button onClick={() => this.updateProducts('MainProducts')}>
+                    {/* <button onClick={this.updateProducts} value="acc"> 
+                    and then using e.currentTarget.value same as top one. */}
+                    <span>전체 보기</span>
+                  </button>
+                </Link>
               </div>
               <div className="Shoes">
-                <button onClick={this.updateProducts} title="viewAll">
-                  <span>신발</span>
-                </button>
+                <Link
+                  to={{
+                    pathname: '/products/shoes',
+                    state: { message: 'hello, im a passed message!' },
+                  }}
+                >
+                  <button
+                    onClick={() => this.updateProducts('MainProductsShoes')}
+                  >
+                    <span>신발</span>
+                  </button>
+                </Link>
               </div>
               <div className="Clothes">
-                <button onClick={this.updateProducts} title="viewAll">
-                  <span>의류</span>
-                </button>
+                <Link
+                  to={{
+                    pathname: '/products/clothing',
+                    state: { message: 'hello, im a passed message!' },
+                  }}
+                >
+                  <button
+                    onClick={() => this.updateProducts('MainProductsClothing')}
+                  >
+                    <span>옷</span>
+                  </button>
+                </Link>
               </div>
               <div className="Supplies">
-                <button onClick={this.updateProducts} title="viewAll">
-                  <span>용품</span>
-                </button>
+                <Link
+                  to={{
+                    pathname: '/products/acc',
+                    state: { message: 'hello, im a passed message!' },
+                  }}
+                >
+                  <button
+                    onClick={() => this.updateProducts('MainProductsAcc')}
+                  >
+                    <span>악세사리</span>
+                  </button>
+                </Link>
               </div>
             </div>
             <article className="productsMapping">

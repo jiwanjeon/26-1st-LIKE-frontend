@@ -8,7 +8,7 @@ export class Products extends Component {
     //  어떤 props를 parent에서 child로 전달할 수 있을지 생각해보세요!
     return (
       <Link
-        to={`/products/${productInfo.main_category}/${productInfo.product_id}`}
+        to={`/products/${productInfo.category_id}/${productInfo.product_id}`}
       >
         <div className="productsContainer">
           <div className="productLayout">

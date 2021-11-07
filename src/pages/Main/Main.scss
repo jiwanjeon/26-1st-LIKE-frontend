@@ -85,6 +85,7 @@
                 top: 8px;
                 transform: rotate(-45deg);
                 width: 12px;
+                // opacity: 0.2;
               }
             }
             input[type='checkbox'] {
@@ -137,7 +138,6 @@
       max-height: 100%;
       padding-right: 5px;
       padding-top: 5px;
-      // position: absolute;
 
       .contentsLink {
         display: flex;
@@ -151,6 +151,7 @@
           border-radius: 10%;
           border: none;
           background-color: silver;
+          // cursor: pointer;
         }
         span {
           font-size: 20px;
