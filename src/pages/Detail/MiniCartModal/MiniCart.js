@@ -15,7 +15,7 @@ export class MiniCart extends Component {
     this.orderData();
   }
 
-  orderData() {
+  orderData = () => {
     fetch('/data/order/orderData.json')
       .then(res => res.json())
       .then(data => {
@@ -24,7 +24,7 @@ export class MiniCart extends Component {
           totalPrice: this.calculateTotal(data),
         });
       });
-  }
+  };
 
   calculateTotal = list => {
     let total = list

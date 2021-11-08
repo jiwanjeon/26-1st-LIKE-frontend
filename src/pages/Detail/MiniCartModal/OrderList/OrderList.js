@@ -7,21 +7,10 @@ export class OrderList extends Component {
 
     return (
       <ul className="OrderList">
-        {orderData.map(order => {
-          const { id, title, serial, price, size, quantity, thumbnail } = order;
-
-          return (
-            <OrderItem
-              key={id}
-              title={title}
-              serial={serial}
-              price={price}
-              size={size}
-              quantity={quantity}
-              thumbnail={thumbnail}
-            />
-          );
-        })}
+        {orderData.map(order => (
+          <OrderItem key={order.id} {...order} />
+        ))}
+        }
       </ul>
     );
   }

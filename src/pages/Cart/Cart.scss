@@ -1,8 +1,148 @@
+@import '../../styles/variables.scss';
+
 .Cart {
   position: relative;
   top: 120px;
 
   .cartInner {
     margin-top: 40px;
+
+    .cartTitle {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .cartNumber {
+      margin-top: 15px;
+      font-size: 16px;
+      color: var(--color-gray-6);
+      text-align: center;
+    }
+    .cartContainer {
+      margin-top: 30px;
+
+      .info {
+        color: #fb5306;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.4;
+      }
+      .myCart {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 60px;
+        margin-top: 10px;
+
+        .myCartList {
+          .productSelectAll {
+            padding: 20px 0;
+            font-weight: 300;
+            border-top: 1px solid var(--color-gray-1);
+            border-bottom: 1px solid var(--color-gray-1);
+          }
+        }
+      }
+    }
+  }
+  .productCheckOut {
+    border: 1px solid var(--color-gray-1);
+    font-size: 14px;
+
+    .title {
+      padding: 20px;
+      background-color: var(--color-gray-1);
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .priceInfo {
+      padding: 10px 20px 20px 20px;
+      line-height: 1.6;
+
+      div {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        .label {
+          font-weight: 300;
+        }
+      }
+
+      .deliveryPrice .price,
+      .salePrice .price,
+      .totalPrice {
+        color: var(--color-orange);
+      }
+
+      .totalPrice {
+        font-size: 1.25rem;
+        font-weight: 400;
+      }
+
+      .checkout {
+        margin-top: 20px;
+        padding: 16px 0;
+        width: 100%;
+        background-color: var(--color-orange);
+        border: none;
+
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--color-white);
+      }
+    }
+  }
+}
+.productCard {
+  display: grid;
+  grid-template-columns: 180px 5fr 2fr 1fr 16px;
+
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-gray-1);
+
+  .imageWrap {
+    height: 110px;
+
+    .image {
+      height: 100%;
+    }
+  }
+
+  .productInfo {
+    line-height: 1.4;
+
+    .serial {
+      margin-top: 5px;
+    }
+
+    .serial,
+    .size,
+    .quantity {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
+  .optionWrap {
+    font-size: 14px;
+  }
+  .totalPrice {
+    color: var(--color-orange);
+    font-weight: 300;
+  }
+  .btn-box {
+    margin-top: 10px;
+
+    .btn {
+      border: none;
+      background-color: white;
+    }
+
+    .btn:nth-child(1) {
+      margin-right: 10px;
+    }
+  }
+  .deleteBtn {
+    text-align: right;
   }
 }
