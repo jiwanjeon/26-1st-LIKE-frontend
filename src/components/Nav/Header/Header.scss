@@ -2,25 +2,22 @@
 
 .Header {
   position: relative;
-  width: 100%;
   height: 60px;
 
   nav {
     display: flex;
-    width: 100%;
-    padding: 0 50px 0 36px;
-    background: #fff;
-    height: 60px;
-    box-sizing: border-box;
     justify-content: flex-end;
     align-items: center;
+    height: 60px;
+    padding: 0 50px 0 36px;
+    background: #fff;
 
     .logo {
-      position: absolute;
-      top: 0;
-      left: 50px;
       display: flex;
       align-items: center;
+      position: absolute;
+      left: 50px;
+      top: 0;
       width: 60px;
       height: 60px;
 
@@ -33,8 +30,8 @@
       @include flexCenter;
 
       position: relative;
-      z-index: 29;
       font-size: 28px;
+      z-index: 29;
 
       form {
         position: relative;
@@ -56,8 +53,8 @@
       }
 
       .icon {
-        cursor: pointer;
         margin-left: 12px;
+        cursor: pointer;
       }
     }
   }
