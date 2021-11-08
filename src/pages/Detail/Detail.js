@@ -29,6 +29,7 @@ export class Detail extends Component {
   render() {
     const { detailData } = this.state;
     const {
+      product_id,
       serial,
       title,
       sub_title,
@@ -48,6 +49,7 @@ export class Detail extends Component {
           <main className="detailInner">
             <DetailGallery image={product_images} />
             <DetailInfo
+              productId={product_id}
               serial={serial}
               title={title}
               subTitle={sub_title}
