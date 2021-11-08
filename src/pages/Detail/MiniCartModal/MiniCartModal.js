@@ -14,13 +14,13 @@ export class MiniCartModal extends Component {
     this.stopScrollBackground();
   }
 
+  scrollBackground = () => {
+    document.body.style.overflow = 'unset';
+  };
+
   stopScrollBackground = () => {
     const { open } = this.state;
     if (open) document.body.style.overflow = 'hidden';
-  };
-
-  scrollBackground = () => {
-    document.body.style.overflow = 'unset';
   };
 
   close = () => {
