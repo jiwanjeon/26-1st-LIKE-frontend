@@ -30,8 +30,8 @@ export class DetailInfo extends Component {
   };
 
   submitForms = () => {
-    const { selectedSize, selectedQuantity } = this.state;
     const { productId } = this.props;
+    const { selectedSize, selectedQuantity } = this.state;
 
     fetch(URL[0].signUp, {
       method: 'POST',

@@ -13,6 +13,13 @@ export class SizeAndQuantitySelector extends Component {
     };
   }
 
+  setSizeAndQuantity = quantity => {
+    this.setState({
+      maxQuantity: quantity,
+    });
+    this.resetQuantity();
+  };
+
   handleInput = e => {
     const numberOnly = /^[0-9\b]+$/;
     const { value } = e.target;
@@ -37,8 +44,8 @@ export class SizeAndQuantitySelector extends Component {
   };
 
   increment = () => {
-    const { maxQuantity, quantity } = this.state;
     const { selectQuantity } = this.props;
+    const { maxQuantity, quantity } = this.state;
 
     if (quantity < maxQuantity) {
       this.setState(prevState => {
@@ -49,8 +56,8 @@ export class SizeAndQuantitySelector extends Component {
   };
 
   decrement = () => {
-    const { maxQuantity, quantity } = this.state;
     const { selectQuantity } = this.props;
+    const { maxQuantity, quantity } = this.state;
 
     if (quantity < maxQuantity) {
       this.setState(prevState => {
@@ -64,13 +71,6 @@ export class SizeAndQuantitySelector extends Component {
     const { selectQuantity } = this.props;
     this.setState({ quantity: 1 });
     selectQuantity(1);
-  };
-
-  setSizeAndQuantity = quantity => {
-    this.setState({
-      maxQuantity: quantity,
-    });
-    this.resetQuantity();
   };
 
   selectSize = sizeName => {
