@@ -11,14 +11,11 @@ export class DetailSizeItem extends Component {
 
   isSelected = size => {
     const { sizeName } = this.props;
+    const { selected } = this.state;
 
     if (size === sizeName) {
       this.setState({
-        selected: true,
-      });
-    } else if (size !== sizeName) {
-      this.setState({
-        selected: false,
+        selected: !selected,
       });
     }
   };

@@ -39,8 +39,7 @@ export class DetailQuantity extends Component {
 
   increment = () => {
     const { quantity } = this.state;
-    const { maxQuantity } = this.props;
-    const { selectQuantity } = this.props;
+    const { maxQuantity, selectQuantity } = this.props;
 
     if (quantity < maxQuantity) {
       this.setState(prevState => ({

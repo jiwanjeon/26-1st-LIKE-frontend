@@ -5,6 +5,7 @@ import DetailSize from './DetailSize/DetailSize';
 import DetailButtons from './DetailButtons/DetailButtons';
 import DetailDescription from './DetailDescription/DetailDescription';
 import DetailAccordions from './DetailAccordions/DetailAccordions';
+import { URL } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
@@ -33,7 +34,8 @@ export class DetailInfo extends Component {
   submitForms = () => {
     const { selectedSize, selectedQuantity } = this.state;
     const { title, serial, price } = this.props;
-    fetch('http://10.58.1.234:8000/user/signup', {
+
+    fetch(URL[0].signUp, {
       method: 'POST',
       body: JSON.stringify({
         title: title,
