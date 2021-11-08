@@ -6,7 +6,6 @@ export class MiniCart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orderData: [],
       totalPrice: 0,
     };
   }
@@ -27,11 +26,11 @@ export class MiniCart extends Component {
   }
 
   calculateTotal = list => {
-    let total = list
+    const totalPrice = list
       .map(order => Number(order.price))
       .reduce((accumulator, price) => accumulator + price);
 
-    return total.toLocaleString('en-US');
+    return totalPrice.toLocaleString('en-US');
   };
 
   render() {
