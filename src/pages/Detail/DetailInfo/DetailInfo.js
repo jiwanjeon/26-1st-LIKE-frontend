@@ -30,11 +30,15 @@ export class DetailInfo extends Component {
     });
   };
 
-  addToMiniCart = () => {
+  addToCart = () => {
     const cartUrl = Config[0].carts;
     const token = Config[1].token;
     const { productId } = this.props;
     const { sizeName, quantity } = this.state;
+
+    if (sizeName === '') {
+      alert('사이즈를 선택해주세요!');
+    }
 
     fetch(cartUrl, {
       method: 'POST',
@@ -75,7 +79,7 @@ export class DetailInfo extends Component {
               selectQuantity={this.selectQuantity}
               sizeNameAndQuantity={sizeNameAndQuantity}
             />
-            <DetailButtons addToMiniCart={this.addToMiniCart} />
+            <DetailButtons addToCart={this.addToCart} />
             <DetailDescription
               descriptionTitle={descriptionTitle}
               description={description}
