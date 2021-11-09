@@ -27,15 +27,15 @@ export class Cart extends Component {
       });
   };
 
-  calculateTotal = list => {
-    let totalPrice = list
+  calculateTotal = orders => {
+    const totalPrice = orders
       .map(order => Number(order.price))
       .reduce((accumulator, price) => accumulator + price);
 
     return totalPrice.toLocaleString('en-US');
   };
 
-  deleteCartItem = (orderId, title) => {
+  deleteCartItem = (orderId, productName) => {
     fetch('http://', {
       method: 'DELETE',
       body: JSON.stringify({
@@ -45,7 +45,7 @@ export class Cart extends Component {
       .then(res => res.json())
       .then(result => {
         if (result.message === 'Success')
-          alert(`${title}를(을) 카트에서 삭제했습니다!`);
+          alert(`${productName}를(을) 카트에서 삭제했습니다!`);
       });
   };
 
