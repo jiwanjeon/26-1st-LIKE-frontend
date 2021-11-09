@@ -1,0 +1,58 @@
+.ProductCartItem {
+  display: grid;
+  grid-template-columns: 180px 5fr 2fr 1fr 16px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-gray-1);
+
+  .imageWrap {
+    height: 110px;
+
+    .image {
+      height: 100%;
+    }
+  }
+
+  .productInfo {
+    line-height: 1.4;
+
+    .serial {
+      margin-top: 5px;
+    }
+
+    .serial,
+    .size,
+    .quantity {
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
+
+  .optionWrap {
+    font-size: 14px;
+  }
+
+  .totalPrice {
+    color: var(--color-orange);
+    font-weight: 300;
+  }
+
+  .btnBox {
+    margin-top: 10px;
+
+    .btn {
+      border: none;
+      background-color: white;
+    }
+
+    .btn:nth-child(1) {
+      margin-right: 10px;
+    }
+  }
+
+  .deleteBtn {
+    font-weight: 700;
+    text-align: right;
+    cursor: pointer;
+  }
+}
