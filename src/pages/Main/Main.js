@@ -12,7 +12,7 @@ export class Main extends Component {
       selectedItems: [],
     };
   }
-  // const API = "DASDDADDAD" => 컴포넌트 마다 다 적용할수x
+  ㄴ;
   componentDidMount() {
     fetch('/data/MainProducts.json', {})
       .then(res => res.json())

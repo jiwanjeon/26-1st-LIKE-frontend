@@ -188,30 +188,56 @@
 
               .productInfoDisplay {
                 margin-top: 15px;
+
                 .productStatus {
                   margin-bottom: 7px;
 
-                  span {
+                  .test {
                     color: orange;
                     opacity: 0.8;
+                    display: inline-block;
+                    text-decoration: none;
                   }
                 }
+
                 .productName {
                   margin-bottom: 7px;
-                  text-decoration: none;
+
+                  .test {
+                    display: inline-block;
+                    text-decoration: none;
+                  }
                 }
+
                 .productCategory {
                   margin-bottom: 7px;
                   opacity: 0.5;
+
+                  .test {
+                    display: inline-block;
+                    text-decoration: none;
+                  }
                 }
+
                 .productColorChoices {
                   margin-bottom: 7px;
                   opacity: 0.5;
                 }
+
+                .test {
+                  display: inline-block;
+                  text-decoration: none;
+                }
               }
+
               .productPrice {
                 margin-top: 15px;
                 margin-left: 58.2%;
+
+                .test {
+                  display: inline-block;
+                  text-decoration: none;
+                }
               }
             }
           }

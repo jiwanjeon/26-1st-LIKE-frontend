@@ -18,20 +18,20 @@ export class Products extends Component {
             <div className="productInfo">
               <div className="productInfoDisplay">
                 <div className="productStatus">
-                  <span>{productInfo.ecoFriendly}</span>
+                  <span className="test">{productInfo.ecoFriendly}</span>
                 </div>
                 <div className="productName">
-                  <span>{productInfo.title}</span>
+                  <span className="test">{productInfo.title}</span>
                 </div>
                 <div className="productCategory">
-                  <span>{productInfo.sub_title}</span>
+                  <span className="test">{productInfo.sub_title}</span>
                 </div>
                 <div className="productColorChoices">
-                  <span>{productInfo.color_kind} 컬러</span>
+                  <span className="test">{productInfo.color_kind} 컬러</span>
                 </div>
               </div>
               <div className="productPrice">
-                <span>11,900 원</span>
+                <span className="test">11,900 원</span>
               </div>
             </div>
           </div>
