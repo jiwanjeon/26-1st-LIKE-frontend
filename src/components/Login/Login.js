@@ -6,37 +6,49 @@ export class Login extends Component {
   constructor() {
     super();
     this.state = {
-      idInputValue: '',
-      pwInputValue: '',
+      id: '',
+      password: '',
     };
   }
 
-  handleIdInput = event => {
+  handleIdInput = e => {
+    const { value } = e.target;
     this.setState({
-      idInputValue: event.target.value,
+      id: value,
     });
   };
 
-  handlePwInput = event => {
+  handlePwInput = e => {
+    const { value } = e.target;
     this.setState({
-      pwInputValue: event.target.value,
+      password: value,
     });
   };
-
-  // goToMain = () => {
-  //   this.props.history.push('./main');
-  // };
 
   isFormValid = () => {
     const { id, password } = this.state;
-    const isIdValid = id.indexOf('@') !== -1;
+    const isIdValid = id.indexOf('@' && '.') !== -1;
     const isPwValid = password.length >= 8 && password.length <= 16;
     return isIdValid && isPwValid;
   };
+  goToMain = () => {
+    const { history } = this.props;
+    history.push('./Main');
+    // fetch('http://10.58.3.76:8000/users/login', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     email: this.state.id,
+    //     password: this.state.password,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .then(res => console.log('결과: ', res));
+  };
 
   render() {
+    const { id, password } = this.state;
     return (
-      <section className="login">
+      <section className="Login">
         <img className="Logo" alt="LogoLike" src="/images/LogoLIKE.svg" />
         <h3 className="loginTitle">라이키 로그인</h3>
         <div className="inputContainer">
@@ -45,29 +57,43 @@ export class Login extends Component {
               className="id"
               type="text"
               placeholder="아이디"
+              value={id}
               onChange={this.handleIdInput}
             />
             <input
               className="password"
               type="password"
               placeholder="비밀번호"
+              maxLength="16"
+              value={password}
               onChange={this.handlePwInput}
             />
           </div>
           <div className="inputBox">
             <div className="checkboxWrap">
-              <input className="checkbox" type="checkbox" />
-              로그인 유지하기
+              <input
+                className="checkbox"
+                type="checkbox"
+                id="is-subscription"
+              />
+              <label for="is-subscription">로그인 유지하기 </label>
             </div>
             <div className="findAccount">
               <label>아이디/비밀번호 찾기</label>
             </div>
           </div>
           <button
-            // onClick={this.goToMain}
+            disabled={
+              this.state.id.includes('@' && '.') &&
+              this.state.password.length >= 8 &&
+              this.state.password.length <= 16
+                ? false
+                : true
+            }
             type="submit"
+            onClick={this.goToMain}
           >
-            <Link to="/main">로그인</Link>
+            <p>로그인</p>{' '}
           </button>
         </div>
         <div className="last">
