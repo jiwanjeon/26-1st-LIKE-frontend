@@ -34,15 +34,6 @@ export class Login extends Component {
   goToMain = () => {
     const { history } = this.props;
     history.push('./Main');
-    // fetch('http://10.58.3.76:8000/users/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     email: this.state.id,
-    //     password: this.state.password,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(res => console.log('결과: ', res));
   };
 
   render() {
