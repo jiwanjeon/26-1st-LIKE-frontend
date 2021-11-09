@@ -35,6 +35,34 @@ export class Cart extends Component {
     return totalPrice.toLocaleString('en-US');
   };
 
+  deleteCartItem = (orderId, title) => {
+    fetch('http://', {
+      method: 'DELETE',
+      body: JSON.stringify({
+        orderId: orderId,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'Success')
+          alert(`${title}를(을) 카트에서 삭제했습니다!`);
+      });
+  };
+
+  checkOutCart = () => {
+    fetch('http://', {
+      method: 'POST',
+      body: JSON.stringify({
+        approve: '임시로',
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'Success')
+          alert('라이키 팀 2주동안 여러분 고생하셨어요~~~~(^ㅇ^)/');
+      });
+  };
+
   render() {
     const { orderData, totalItemQuantity, totalPrice } = this.state;
 
@@ -56,7 +84,10 @@ export class Cart extends Component {
               <div className="myCart">
                 <div className="myCartList">
                   <div className="productSelectAll">전체삭제</div>
-                  <ProductCart orderData={orderData} />
+                  <ProductCart
+                    orderData={orderData}
+                    deleteCartItem={this.deleteCartItem}
+                  />
                 </div>
                 <div className="myCartCheckOut">
                   <div className="checkoutList">
@@ -83,7 +114,12 @@ export class Cart extends Component {
                           <span className="label">총 결제 예정 금액</span>
                           <span className="price">{totalPrice}원</span>
                         </div>
-                        <button className="btn checkout">주문하기</button>
+                        <button
+                          onClick={this.checkOutCart}
+                          className="btn checkout"
+                        >
+                          주문하기
+                        </button>
                       </div>
                     </div>
                   </div>

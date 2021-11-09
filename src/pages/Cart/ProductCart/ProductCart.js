@@ -6,9 +6,13 @@ export class ProductCart extends Component {
     const { orderData } = this.props;
 
     return (
-      <ul className="productCart">
+      <ul className="ProductCart">
         {orderData.map(order => (
-          <ProductItem key={order.id} {...order} />
+          <ProductItem
+            key={order.id}
+            {...order}
+            deleteCartItem={this.props.deleteCartItem}
+          />
         ))}
       </ul>
     );

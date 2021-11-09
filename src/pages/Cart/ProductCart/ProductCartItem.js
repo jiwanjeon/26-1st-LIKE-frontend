@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import './ProductCartItem.scss';
 
 export class ProductCartItem extends Component {
+  deleteCartItem = () => {
+    this.props.deleteCartItem(this.props.id, this.props.title);
+  };
+
   formatNumber = number => {
     return Number(number).toLocaleString('en-US');
   };
@@ -21,7 +26,9 @@ export class ProductCartItem extends Component {
         </div>
         <div className="optionWrap">옵션 변경</div>
         <div className="price">{this.formatNumber(price)}원</div>
-        <div className="deleteBtn">X</div>
+        <div onClick={this.deleteCartItem} className="deleteBtn">
+          X
+        </div>
         <div />
         <div className="btn-box">
           <button className="btn">위시리스트에 추가</button>
