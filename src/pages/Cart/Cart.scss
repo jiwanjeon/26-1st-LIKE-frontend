@@ -3,6 +3,7 @@
 .Cart {
   position: relative;
   top: 120px;
+  padding-bottom: 200px;
 
   .cartInner {
     margin-top: 40px;
@@ -36,7 +37,9 @@
         .myCartList {
           .productSelectAll {
             padding: 20px 0;
+            font-size: 13px;
             font-weight: 300;
+            text-decoration: underline;
             border-top: 1px solid var(--color-gray-1);
             border-bottom: 1px solid var(--color-gray-1);
           }
@@ -75,7 +78,7 @@
           color: var(--color-orange);
         }
 
-        .totalPrice {
+        .price {
           font-size: 1.25rem;
           font-weight: 400;
         }
@@ -114,7 +117,8 @@
     }
   }
 }
-.productCard {
+
+.ProductCartItem {
   display: grid;
   grid-template-columns: 180px 5fr 2fr 1fr 16px;
 

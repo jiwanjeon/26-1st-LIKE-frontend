@@ -1,9 +1,43 @@
 import React, { Component } from 'react';
 import Nav from '../../components/Nav/Nav';
+import ProductCart from './ProductCart/ProductCart';
 import './Cart.scss';
 
 export class Cart extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      orderData: [],
+    };
+  }
+
+  componentDidMount() {
+    this.orderData();
+  }
+
+  orderData = () => {
+    fetch('/data/order/orderData.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          orderData: data,
+          totalPrice: this.calculateTotal(data),
+          totalItemQuantity: data.length,
+        });
+      });
+  };
+
+  calculateTotal = list => {
+    let totalPrice = list
+      .map(order => Number(order.price))
+      .reduce((accumulator, price) => accumulator + price);
+
+    return totalPrice.toLocaleString('en-US');
+  };
+
   render() {
+    const { orderData, totalItemQuantity, totalPrice } = this.state;
+
     return (
       <div>
         <Nav />
@@ -11,7 +45,7 @@ export class Cart extends Component {
           <main className="cartInner">
             <h2 className="cartTitle">장바구니</h2>
             <div className="cartNumber">
-              <span>1개 상품</span>
+              <span>{totalItemQuantity}개 상품</span>
             </div>
             <div className="cartContainer">
               <div className="info">
@@ -22,33 +56,7 @@ export class Cart extends Component {
               <div className="myCart">
                 <div className="myCartList">
                   <div className="productSelectAll">전체삭제</div>
-                  <ul className="productCart">
-                    <li className="productCard">
-                      <div className="imageWrap">
-                        <img
-                          className="image"
-                          src="https://picsum.photos/150/150"
-                          alt="내가 선택한 상품"
-                        />
-                      </div>
-                      <div className="productInfo">
-                        <div className="title">
-                          라이키 스포츠웨어 스포츠 에션셀+
-                        </div>
-                        <div className="serial">스타일: DH1034-004</div>
-                        <div className="size">사이즈: 95(M)</div>
-                        <div className="quantity">수량: 1</div>
-                      </div>
-                      <div className="optionWrap">옵션 변경</div>
-                      <div className="totalPrice">89,000원</div>
-                      <div className="deleteBtn">X</div>
-                      <div />
-                      <div className="btn-box">
-                        <button className="btn">위시리스트에 추가</button>
-                        <button className="btn">나중에 추가</button>
-                      </div>
-                    </li>
-                  </ul>
+                  <ProductCart orderData={orderData} />
                 </div>
                 <div className="myCartCheckOut">
                   <div className="checkoutList">
@@ -57,7 +65,7 @@ export class Cart extends Component {
                       <div className="priceInfo">
                         <div className="itemPrice">
                           <span className="label">상품금액</span>
-                          <span className="price">89000 원</span>
+                          <span className="price">{totalPrice} 원</span>
                         </div>
                         <div className="deliveryPrice">
                           <span className="label">예상 배송비</span>
@@ -73,7 +81,7 @@ export class Cart extends Component {
                         </div>
                         <div className="totalPrice">
                           <span className="label">총 결제 예정 금액</span>
-                          <span className="price">89000 원</span>
+                          <span className="price">{totalPrice}원</span>
                         </div>
                         <button className="btn checkout">주문하기</button>
                       </div>
@@ -84,7 +92,7 @@ export class Cart extends Component {
                       <li className="offerItem">
                         <div className="marketingInfo">
                           *오퍼코드:
-                          <span className="code">welcome2like:)</span>
+                          <span className="code">welcome2like2021</span>
                         </div>
                         <div className="subeMarketingInfo">
                           *사용 가능한 신규가입 쿠폰이 있습니다. (1만원 할인

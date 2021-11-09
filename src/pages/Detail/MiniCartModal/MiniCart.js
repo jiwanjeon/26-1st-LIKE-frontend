@@ -7,7 +7,6 @@ export class MiniCart extends Component {
     super(props);
     this.state = {
       orderData: [],
-      totalPrice: 0,
     };
   }
 
@@ -27,11 +26,11 @@ export class MiniCart extends Component {
   };
 
   calculateTotal = list => {
-    let total = list
+    let totalPrice = list
       .map(order => Number(order.price))
       .reduce((accumulator, price) => accumulator + price);
 
-    return total.toLocaleString('en-US');
+    return totalPrice.toLocaleString('en-US');
   };
 
   render() {
@@ -48,7 +47,7 @@ export class MiniCart extends Component {
         <OrderList orderData={orderData} />
         <div className="orderPrice">
           <span className="text">총 상품금액</span>
-          <span className="totalPrice">{totalPrice}</span>
+          <span className="totalPrice">{totalPrice}원</span>
         </div>
         <div className="orderDeliveryinfo">
           <span>배송비는 주문서에서 확인이 가능합니다.</span>
