@@ -5,7 +5,7 @@ import SizeAndQuantitySelector from './SizeAndQuantitySelector/SizeAndQuantitySe
 import DetailButtons from './DetailButtons/DetailButtons';
 import DetailDescription from './DetailDescription/DetailDescription';
 import DetailAccordions from './DetailAccordions/DetailAccordions';
-import { URL } from '../../../config';
+import { CONFIG } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
@@ -30,15 +30,16 @@ export class DetailInfo extends Component {
   };
 
   submitForms = () => {
-    const { productId } = this.props;
-    const { selectedSize, selectedQuantity } = this.state;
+    const token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g';
 
-    fetch(URL[0].signUp, {
+    fetch(CONFIG[0].carts, {
       method: 'POST',
+      headers: { Authorization: token },
       body: JSON.stringify({
-        product_id: productId,
-        size: selectedSize,
-        quantity: selectedQuantity,
+        product_id: '7',
+        size: '240',
+        quantity: '1',
       }),
     })
       .then(res => res.json())
@@ -70,7 +71,7 @@ export class DetailInfo extends Component {
             selectQuantity={this.selectQuantity}
             sizeNameAndQuantity={sizeNameAndQuantity}
           />
-          <DetailButtons />
+          <DetailButtons submitForms={this.submitForms} />
           <DetailDescription
             descriptionHead={descriptionTitle}
             description={description}

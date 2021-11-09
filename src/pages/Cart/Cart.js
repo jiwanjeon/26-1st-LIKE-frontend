@@ -16,13 +16,18 @@ export class Cart extends Component {
   }
 
   orderData = () => {
-    fetch('/data/order/orderData.json')
+    const token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g';
+    fetch('http://10.58.6.96:8000/carts', {
+      headers: { Authorization: token },
+    })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState({
-          orderData: data,
-          totalPrice: this.calculateTotal(data),
-          totalItemQuantity: data.length,
+          orderData: data.results,
+          totalPrice: this.calculateTotal(data.results),
+          totalItemQuantity: data.results.length,
         });
       });
   };
@@ -36,15 +41,18 @@ export class Cart extends Component {
   };
 
   deleteCartItem = (orderId, title) => {
-    fetch('http://', {
+    const token =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g';
+    fetch('http://10.58.6.96:8000/carts', {
       method: 'DELETE',
+      headers: { Authorization: token },
       body: JSON.stringify({
-        orderId: orderId,
+        cart_id: orderId,
       }),
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'Success')
+        if (result.message === 'SUCCESS')
           alert(`${title}를(을) 카트에서 삭제했습니다!`);
       });
   };

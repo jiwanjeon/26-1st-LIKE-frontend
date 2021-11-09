@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
 import SignUp from './pages/SignUp/SignUp';
 import Main from './pages/Main/Main';
 import Detail from './pages/Detail/Detail';
 import TestLogin from './components/TestLogin';
 import Cart from './pages/Cart/Cart';
+import Nav from './components/Nav/Nav';
 
 export class Routes extends Component {
   render() {
     return (
       <Router>
+        <Nav />
         <Switch>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/main" component={Main} />

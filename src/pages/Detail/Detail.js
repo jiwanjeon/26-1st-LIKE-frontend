@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
-import Nav from '../../components/Nav/Nav';
 import MiniCartModal from './MiniCartModal/MiniCartModal';
+import { CONFIG } from '../../config';
 import './Detail.scss';
 
 export class Detail extends Component {
@@ -18,7 +18,7 @@ export class Detail extends Component {
   }
 
   detailData() {
-    fetch('/data/detail/detailData.json')
+    fetch(CONFIG[0].detailMockUp)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -45,7 +45,6 @@ export class Detail extends Component {
 
     return (
       <>
-        <Nav toggle={this.toggleLogin} />
         <MiniCartModal />
         <div className="Detail">
           <main className="detailInner">
