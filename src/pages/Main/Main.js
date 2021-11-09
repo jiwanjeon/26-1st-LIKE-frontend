@@ -1,17 +1,16 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import './Main.scss';
 import COLOR_LISTS from './colorList';
 import Products from './ProductsInfo/Products';
 import { Link } from 'react-router-dom';
 
 export class Main extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       productsInfo: [],
       selectedItems: [],
     };
-    this.handleChange = this.handleChange.bind(this);
   }
   // const API = "DASDDADDAD" => 컴포넌트 마다 다 적용할수x
   componentDidMount() {
@@ -33,41 +32,40 @@ export class Main extends Component {
         });
       });
     // console.log current URL
-    console.log(this.props.history.location.pathname);
+    // console.log(this.props.history.location.search);
   };
 
   updateSize = name => {
-    const sizeString = `&size=${name}`;
-    const currentURL = this.props.history.location.pathname;
+    const { history } = this.props;
+    const sizeString = `?size=${name}`;
+    const currentURL = history.location.pathname;
     // this.props.history.replace({
     //   pathname: currentURL + '?' + `${sizeString}`,
     // });
-    // this.props.history.push(currentURL + `${sizeString}`);
-    window.history.replaceState(
-      null,
-      'New Page Title',
-      currentURL + `${sizeString}`
-    );
-    // https://stackoverflow.com/questions/57101831/react-router-how-do-i-update-the-url-without-causing-a-navigation-reload
+    history.push(currentURL + `${sizeString}`);
   };
-  handleChange(e) {
+
+  // The value should be the same as the id from the input.
+  // Then you can add a value property for the input which is used for
+  // adding/removing the item in the list of selected items. For this purpose
+  // a handleChange function can be defined.
+  handleChange = e => {
+    const { selectedItems } = this.state;
     let newSelected = [];
-    if (this.state.selectedItems.includes(e.target.value)) {
-      newSelected = this.state.selectedItems.filter(
-        item => item !== e.target.value
-      );
+
+    if (selectedItems.includes(e.target.value)) {
+      newSelected = selectedItems.filter(item => item !== e.target.value);
     } else {
-      newSelected = [...this.state.selectedItems, e.target.value];
+      newSelected = [...selectedItems, e.target.value];
     }
     this.setState({ selectedItems: newSelected });
-  }
+  };
 
   updateColor = e => {
+    const { history } = this.props;
+
     const sizeColor = `&color=${e}`;
-
-    console.log(e);
-
-    const currentURL = this.props.history.location.pathname;
+    const currentURL = history.location.pathname;
     window.history.replaceState(
       null,
       'New Page Title',
@@ -76,7 +74,7 @@ export class Main extends Component {
   };
 
   render() {
-    const { productsInfo } = this.state;
+    const { productsInfo, selectedItems } = this.state;
 
     return (
       <div className="MainWrapper">
@@ -114,9 +112,7 @@ export class Main extends Component {
                         type="checkbox"
                         id={idx}
                         value={color.color_name}
-                        checked={this.state.selectedItems.includes(
-                          color.color_name
-                        )}
+                        checked={selectedItems.includes(color.color_name)}
                       />
                       <label
                         className="checkboxLabel"
@@ -197,7 +193,6 @@ export class Main extends Component {
                 <Link
                   to={{
                     pathname: '/products/acc',
-                    state: { message: 'hello, im a passed message!' },
                   }}
                 >
                   <button
@@ -209,10 +204,9 @@ export class Main extends Component {
               </div>
             </div>
             <article className="productsMapping">
-              {productsInfo &&
-                productsInfo.map((product, idx) => (
-                  <Products key={idx} productInfo={product} />
-                ))}
+              {productsInfo.map((product, idx) => (
+                <Products key={idx} productInfo={product} />
+              ))}
             </article>
           </main>
         </div>
