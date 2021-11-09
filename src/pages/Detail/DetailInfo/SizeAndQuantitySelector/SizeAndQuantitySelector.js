@@ -13,7 +13,7 @@ export class SizeAndQuantitySelector extends Component {
     };
   }
 
-  setSizeAndQuantity = quantity => {
+  pushSizeAndQuantity = quantity => {
     this.setState({
       maxQuantity: quantity,
     });
@@ -97,7 +97,7 @@ export class SizeAndQuantitySelector extends Component {
               sizeNameAndQuantity.map((list, index) => (
                 <SizeOption
                   key={index + 1}
-                  setMaxQuantity={this.setSizeAndQuantity}
+                  setMaxQuantity={this.pushSizeAndQuantity}
                   maxQuantity={list.quantity}
                   sizeName={list.sizeName}
                   selectedSize={selectedSize}

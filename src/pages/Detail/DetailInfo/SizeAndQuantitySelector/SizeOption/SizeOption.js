@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './SizeOption.scss';
 
 export class SizeOption extends Component {
-  getSizeAndQuantity = () => {
+  pushSizeAndQuantity = () => {
     const { setMaxQuantity, selectSize, maxQuantity, sizeName } = this.props;
     const available = maxQuantity !== 0;
 
@@ -19,7 +19,7 @@ export class SizeOption extends Component {
 
     return (
       <span
-        onClick={this.getSizeAndQuantity}
+        onClick={this.pushSizeAndQuantity}
         className={`SizeOption ${selected && 'selected'} ${
           available && 'activate'
         }`}
