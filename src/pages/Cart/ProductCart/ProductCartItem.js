@@ -3,7 +3,8 @@ import './ProductCartItem.scss';
 
 export class ProductCartItem extends Component {
   deleteCartItem = () => {
-    this.props.deleteCartItem(this.props.id, this.props.title);
+    const { deleteCartItem, id, title } = this.props;
+    deleteCartItem(id, title);
   };
 
   formatNumber = number => {
@@ -30,7 +31,7 @@ export class ProductCartItem extends Component {
           X
         </div>
         <div />
-        <div className="btn-box">
+        <div className="btnBox">
           <button className="btn">위시리스트에 추가</button>
           <button className="btn">나중에 추가</button>
         </div>

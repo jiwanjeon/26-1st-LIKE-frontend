@@ -3,7 +3,7 @@ import ProductItem from './ProductCartItem';
 
 export class ProductCart extends Component {
   render() {
-    const { orderData } = this.props;
+    const { orderData, deleteCartItem } = this.props;
 
     return (
       <ul className="ProductCart">
@@ -11,7 +11,7 @@ export class ProductCart extends Component {
           <ProductItem
             key={order.id}
             {...order}
-            deleteCartItem={this.props.deleteCartItem}
+            deleteCartItem={deleteCartItem}
           />
         ))}
       </ul>

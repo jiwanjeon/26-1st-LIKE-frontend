@@ -27,14 +27,17 @@
       font-weight: 300;
     }
   }
+
   .optionWrap {
     font-size: 14px;
   }
+
   .totalPrice {
     color: var(--color-orange);
     font-weight: 300;
   }
-  .btn-box {
+
+  .btnBox {
     margin-top: 10px;
 
     .btn {
@@ -46,6 +49,7 @@
       margin-right: 10px;
     }
   }
+
   .deleteBtn {
     font-weight: 700;
     text-align: right;
