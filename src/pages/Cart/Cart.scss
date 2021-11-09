@@ -44,51 +44,72 @@
       }
     }
   }
-  .productCheckOut {
-    border: 1px solid var(--color-gray-1);
-    font-size: 14px;
 
-    .title {
-      padding: 20px;
-      background-color: var(--color-gray-1);
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .priceInfo {
-      padding: 10px 20px 20px 20px;
-      line-height: 1.6;
+  .myCartCheckOut {
+    .checkoutList {
+      border: 1px solid var(--color-gray-1);
+      font-size: 14px;
 
-      div {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
+      .title {
+        padding: 20px;
+        background-color: var(--color-gray-1);
+        font-size: 16px;
+      }
+      .priceInfo {
+        padding: 10px 20px 20px 20px;
+        line-height: 1.6;
 
-        .label {
-          font-weight: 300;
+        div {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+
+          .label {
+            font-weight: 300;
+          }
+        }
+
+        .deliveryPrice .price,
+        .salePrice .price,
+        .totalPrice {
+          color: var(--color-orange);
+        }
+
+        .totalPrice {
+          font-size: 1.25rem;
+          font-weight: 400;
+        }
+
+        .checkout {
+          margin-top: 20px;
+          padding: 16px 0;
+          width: 100%;
+          background-color: var(--color-orange);
+          border: none;
+
+          font-size: 14px;
+          font-weight: 700;
+          color: var(--color-white);
         }
       }
-
-      .deliveryPrice .price,
-      .salePrice .price,
-      .totalPrice {
-        color: var(--color-orange);
+    }
+    .promoList {
+      margin-top: 20px;
+      .offerItem {
+        line-height: 1.4;
       }
 
-      .totalPrice {
-        font-size: 1.25rem;
-        font-weight: 400;
-      }
-
-      .checkout {
-        margin-top: 20px;
-        padding: 16px 0;
-        width: 100%;
-        background-color: var(--color-orange);
-        border: none;
-
+      .marketingInfo {
         font-size: 14px;
-        font-weight: 700;
-        color: var(--color-white);
+
+        .code {
+          color: var(--color-orange);
+          text-decoration: underline;
+        }
+      }
+      .subeMarketingInfo {
+        margin: 3px 10px 0 10px;
+        font-size: 11px;
       }
     }
   }
@@ -143,6 +164,7 @@
     }
   }
   .deleteBtn {
+    font-weight: 700;
     text-align: right;
   }
 }

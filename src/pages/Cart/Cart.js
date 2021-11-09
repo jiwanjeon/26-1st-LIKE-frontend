@@ -50,32 +50,49 @@ export class Cart extends Component {
                     </li>
                   </ul>
                 </div>
-                <div className="productCheckOut">
-                  <div className="title">주문예정금액</div>
-                  <div className="productInBox">
-                    <div className="priceInfo">
-                      <div className="itemPrice">
-                        <span className="label">상품금액</span>
-                        <span className="price">89000 원</span>
+                <div className="myCartCheckOut">
+                  <div className="checkoutList">
+                    <div className="title">주문예정금액</div>
+                    <div className="productInBox">
+                      <div className="priceInfo">
+                        <div className="itemPrice">
+                          <span className="label">상품금액</span>
+                          <span className="price">89000 원</span>
+                        </div>
+                        <div className="deliveryPrice">
+                          <span className="label">예상 배송비</span>
+                          <span className="price">0 원</span>
+                        </div>
+                        <div className="salePrice">
+                          <span className="label">상품 할인 금액</span>
+                          <span className="price">0 원</span>
+                        </div>
+                        <div className="salePrice">
+                          <span className="label">주문 할인 금액</span>
+                          <span className="price">0 원</span>
+                        </div>
+                        <div className="totalPrice">
+                          <span className="label">총 결제 예정 금액</span>
+                          <span className="price">89000 원</span>
+                        </div>
+                        <button className="btn checkout">주문하기</button>
                       </div>
-                      <div className="deliveryPrice">
-                        <span className="label">예상 배송비</span>
-                        <span className="price">0 원</span>
-                      </div>
-                      <div className="salePrice">
-                        <span className="label">상품 할인 금액</span>
-                        <span className="price">0 원</span>
-                      </div>
-                      <div className="salePrice">
-                        <span className="label">주문 할인 금액</span>
-                        <span className="price">0 원</span>
-                      </div>
-                      <div className="totalPrice">
-                        <span className="label">총 결제 예정 금액</span>
-                        <span className="price">89000 원</span>
-                      </div>
-                      <button className="btn checkout">주문하기</button>
                     </div>
+                  </div>
+                  <div className="promoList">
+                    <ul className="offerList">
+                      <li className="offerItem">
+                        <div className="marketingInfo">
+                          *오퍼코드:
+                          <span className="code">welcome2like:)</span>
+                        </div>
+                        <div className="subeMarketingInfo">
+                          *사용 가능한 신규가입 쿠폰이 있습니다. (1만원 할인
+                          적용되어 장바구니 전체에 5만원 이상 구매 시
+                          적용됩니다.)
+                        </div>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

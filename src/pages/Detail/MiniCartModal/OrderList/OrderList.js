@@ -10,7 +10,6 @@ export class OrderList extends Component {
         {orderData.map(order => (
           <OrderItem key={order.id} {...order} />
         ))}
-        }
       </ul>
     );
   }
