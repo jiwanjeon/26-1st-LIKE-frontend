@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import OrderList from './OrderList/OrderList';
+import { Config } from '../../../config';
 import './MiniCart.scss';
 
 export class MiniCart extends Component {
@@ -15,12 +17,16 @@ export class MiniCart extends Component {
   }
 
   orderData = () => {
-    fetch('/data/order/orderData.json')
+    const cartUrl = Config[0].cart;
+    const token = Config[1].token;
+    fetch(cartUrl, {
+      headers: { Authorization: token },
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({
-          orderData: data,
-          totalPrice: this.calculateTotal(data),
+          orderData: data.results,
+          totalPrice: this.calculateTotal(data.results),
         });
       });
   };
@@ -53,7 +59,9 @@ export class MiniCart extends Component {
           <span>배송비는 주문서에서 확인이 가능합니다.</span>
         </div>
         <div className="orderBuy">
-          <button className="btn viewCart">장바구니 가기</button>
+          <Link to="/cart">
+            <button className="btn viewCart">장바구니 가기</button>
+          </Link>
           <button className="btn checkout">바로구매</button>
         </div>
       </div>

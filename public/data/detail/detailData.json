@@ -29,6 +29,18 @@
       {
         "sizeName": "270",
         "quantity": 0
+      },
+      {
+        "sizeName": "275",
+        "quantity": 10
+      },
+      {
+        "sizeName": "280",
+        "quantity": 20
+      },
+      {
+        "sizeName": "285",
+        "quantity": 0
       }
     ],
     "description_title": "유연성과 안정성을 더한 퍼포먼스.",

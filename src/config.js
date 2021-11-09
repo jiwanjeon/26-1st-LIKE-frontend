@@ -1,5 +1,13 @@
-export const CONFIG = [
-  { signUp: 'http://10.58.1.234:8000/user/signup' },
-  { carts: 'http://10.58.6.96:8000/carts' },
-  { detailMockUp: '/data/detail/detailData.json' },
+export const Config = [
+  {
+    signUp: 'http://10.58.1.234:8000/user/signup',
+    cart: '/data/order/orderData.json',
+    categories: '/data/nav/navCategories.json',
+    checkOut: '',
+    detail: '/data/detail/detailData.json',
+  },
+  {
+    token:
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g',
+  },
 ];

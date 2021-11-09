@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from '../../components/Nav/Nav';
 import ProductCart from './ProductCart/ProductCart';
+import { Config } from '../../config';
 import './Cart.scss';
 
 export class Cart extends Component {
@@ -12,18 +13,18 @@ export class Cart extends Component {
   }
 
   componentDidMount() {
-    this.orderData();
+    this.cartData();
   }
 
-  orderData = () => {
-    const token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g';
-    fetch('http://10.58.6.96:8000/carts', {
+  cartData = () => {
+    const cartUrl = Config[0].cart;
+    const token = Config[1].token;
+
+    fetch(cartUrl, {
       headers: { Authorization: token },
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({
           orderData: data.results,
           totalPrice: this.calculateTotal(data.results),
@@ -32,18 +33,19 @@ export class Cart extends Component {
       });
   };
 
-  calculateTotal = list => {
-    let totalPrice = list
+  calculateTotal = orders => {
+    const totalPrice = orders
       .map(order => Number(order.price))
       .reduce((accumulator, price) => accumulator + price);
 
     return totalPrice.toLocaleString('en-US');
   };
 
-  deleteCartItem = (orderId, title) => {
-    const token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g';
-    fetch('http://10.58.6.96:8000/carts', {
+  deleteCartItem = (orderId, orderItem) => {
+    const cartUrl = Config[0].cart;
+    const token = Config[1].token;
+
+    fetch(cartUrl, {
       method: 'DELETE',
       headers: { Authorization: token },
       body: JSON.stringify({
@@ -53,15 +55,19 @@ export class Cart extends Component {
       .then(res => res.json())
       .then(result => {
         if (result.message === 'SUCCESS')
-          alert(`${title}를(을) 카트에서 삭제했습니다!`);
+          alert(`${orderItem}를(을) 카트에서 삭제했습니다!`);
       });
   };
 
   checkOutCart = () => {
-    fetch('http://', {
+    const checkOutUrl = Config[0].checkOut;
+    const token = Config[1].token;
+
+    fetch(checkOutUrl, {
       method: 'POST',
+      headers: { Authorization: token },
       body: JSON.stringify({
-        approve: '임시로',
+        approve: '임시',
       }),
     })
       .then(res => res.json())

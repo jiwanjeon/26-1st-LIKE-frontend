@@ -6,40 +6,42 @@ export class MiniCartModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      isOpen: false,
     };
   }
 
   componentDidMount() {
-    this.stopScrollBackground();
+    this.stopScroll();
   }
 
-  scrollBackground = () => {
+  componentWillUnmount() {
+    this.scrollBack();
+  }
+
+  closeModal = () => {
+    this.setState({
+      isOpen: false,
+    });
+    this.scrollBack();
+  };
+
+  stopScroll = () => {
+    const { isOpen } = this.state;
+    if (isOpen) document.body.style.overflow = 'hidden';
+  };
+
+  scrollBack = () => {
     document.body.style.overflow = 'unset';
   };
 
-  stopScrollBackground = () => {
-    const { open } = this.state;
-    if (open) document.body.style.overflow = 'hidden';
-  };
-
-  close = () => {
-    this.setState({
-      open: false,
-    });
-    this.scrollBackground();
-  };
-
   render() {
-    const { open } = this.state;
-    return (
-      open && (
-        <div className="MiniCartModal">
-          <MiniCart />
-          <div onClick={this.close} className="miniCartOverlay" />
-        </div>
-      )
-    );
+    const { isOpen } = this.state;
+    return isOpen ? (
+      <div className="MiniCartModal">
+        <MiniCart />
+        <div onClick={this.closeModal} className="miniCartOverlay" />
+      </div>
+    ) : null;
   }
 }
 

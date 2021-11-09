@@ -5,41 +5,44 @@ import SizeAndQuantitySelector from './SizeAndQuantitySelector/SizeAndQuantitySe
 import DetailButtons from './DetailButtons/DetailButtons';
 import DetailDescription from './DetailDescription/DetailDescription';
 import DetailAccordions from './DetailAccordions/DetailAccordions';
-import { CONFIG } from '../../../config';
+import MiniCartModal from '../MiniCartModal/MiniCartModal';
+import { Config } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSize: '',
-      selectedQuantity: 1,
+      sizeName: '',
+      quantity: 1,
     };
   }
 
   selectSize = sizeName => {
     this.setState({
-      selectedSize: sizeName,
+      sizeName: sizeName,
     });
   };
 
   selectQuantity = quantity => {
     this.setState({
-      selectedQuantity: quantity,
+      quantity: quantity,
     });
   };
 
-  submitForms = () => {
-    const token =
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g';
+  addToMiniCart = () => {
+    const cartUrl = Config[0].carts;
+    const token = Config[1].token;
+    const { productId } = this.props;
+    const { sizeName, quantity } = this.state;
 
-    fetch(CONFIG[0].carts, {
+    fetch(cartUrl, {
       method: 'POST',
       headers: { Authorization: token },
       body: JSON.stringify({
-        product_id: '7',
-        size: '240',
-        quantity: '1',
+        product_id: productId,
+        size: sizeName,
+        quantity: quantity,
       }),
     })
       .then(res => res.json())
@@ -62,25 +65,28 @@ export class DetailInfo extends Component {
     } = this.props;
 
     return (
-      <div className="DetailInfo">
-        <div className="detailInfoWrap">
-          <DetailTitles title={title} subTitle={subTitle} price={price} />
-          <DetailEcoFriendly ecoFriendly={ecoFriendly} />
-          <SizeAndQuantitySelector
-            selectSize={this.selectSize}
-            selectQuantity={this.selectQuantity}
-            sizeNameAndQuantity={sizeNameAndQuantity}
-          />
-          <DetailButtons submitForms={this.submitForms} />
-          <DetailDescription
-            descriptionHead={descriptionTitle}
-            description={description}
-            serial={serial}
-            shown={shown}
-          />
-          <DetailAccordions />
+      <>
+        <div className="DetailInfo">
+          <div className="detailInfoWrap">
+            <DetailTitles title={title} subTitle={subTitle} price={price} />
+            <DetailEcoFriendly ecoFriendly={ecoFriendly} />
+            <SizeAndQuantitySelector
+              selectSize={this.selectSize}
+              selectQuantity={this.selectQuantity}
+              sizeNameAndQuantity={sizeNameAndQuantity}
+            />
+            <DetailButtons addToMiniCart={this.addToMiniCart} />
+            <DetailDescription
+              descriptionTitle={descriptionTitle}
+              description={description}
+              serial={serial}
+              shown={shown}
+            />
+            <DetailAccordions />
+          </div>
         </div>
-      </div>
+        <MiniCartModal />
+      </>
     );
   }
 }

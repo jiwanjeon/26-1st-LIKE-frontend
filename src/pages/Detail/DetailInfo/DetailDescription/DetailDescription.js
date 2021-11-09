@@ -3,10 +3,10 @@ import './DetailDescription.scss';
 
 export class DetailDescription extends Component {
   render() {
-    const { descriptionHead, description, shown, serial } = this.props;
+    const { descriptionTitle, description, shown, serial } = this.props;
     return (
       <div className="DetailDescription">
-        <p>{descriptionHead}</p>
+        <p>{descriptionTitle}</p>
         <br />
         <p>{description}</p>
         <br />
