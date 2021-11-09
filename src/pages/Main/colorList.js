@@ -41,8 +41,8 @@ const COLOR_LISTS = [
   },
   {
     id: 9,
-    color_name: 'deep blue',
-    colorProps: 'deep blue',
+    color_name: 'deepBlue',
+    colorProps: 'deepBlue',
   },
   {
     id: 10,

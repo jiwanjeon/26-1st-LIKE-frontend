@@ -78,6 +78,20 @@
               position: absolute;
               top: 40;
               width: 28px;
+
+              input[type='checkbox'] {
+                visibility: hidden;
+              }
+
+              &.checked {
+                background-color: beige;
+                border-color: beige;
+
+                &:after {
+                  opacity: 1;
+                }
+              }
+
               &:after {
                 border: 2px solid #fff;
                 border-top: none;
@@ -90,21 +104,6 @@
                 top: 8px;
                 transform: rotate(-45deg);
                 width: 12px;
-                // opacity: 0.2;
-              }
-            }
-
-            input[type='checkbox'] {
-              visibility: hidden;
-            }
-
-            input[type='checkbox']:checked {
-              & + label {
-                background-color: beige;
-                border-color: beige;
-                &:after {
-                  opacity: 1;
-                }
               }
             }
 
@@ -133,6 +132,11 @@
             background-color: white;
             border: 1px solid silver;
             border-radius: 15%;
+
+            &:active,
+            &:focus {
+              border: 1px solid black;
+            }
           }
         }
       }
