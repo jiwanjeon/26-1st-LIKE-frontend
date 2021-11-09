@@ -1,0 +1,29 @@
+[
+  {
+    "category_id": "sports",
+    "product_id": 1,
+    "image": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1530&q=80",
+    "ecoFriendly": "테스트",
+    "title": "테스트",
+    "sub_title": "테스트",
+    "color_kind": "1",
+    "colors": [
+      "beige",
+      "black",
+      "blue",
+      "brown",
+      "gold",
+      "grey",
+      "green",
+      "mugwort",
+      "deep blue",
+      "orange",
+      "pink",
+      "purple",
+      "red",
+      "silver",
+      "white",
+      "yellow"
+    ]
+  }
+]

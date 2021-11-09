@@ -9,10 +9,11 @@ export class Main extends Component {
     super(props);
     this.state = {
       productsInfo: [],
-      selectedItems: [],
+      selectedItemColor: [],
+      selectedItemSize: [],
     };
   }
-  ㄴ;
+
   componentDidMount() {
     fetch('/data/MainProducts.json', {})
       .then(res => res.json())
@@ -36,46 +37,56 @@ export class Main extends Component {
   };
 
   updateSize = name => {
+    console.log(name.currentTarget.value);
+    const { selectedItemSize } = this.state;
     const { history } = this.props;
+    let newSelectedSize = [];
+
+    if (selectedItemSize.includes(name.currentTarget.value)) {
+      newSelectedSize = selectedItemSize.filter(
+        item => item !== name.currentTarget.value
+      );
+    } else {
+      newSelectedSize = [...selectedItemSize, name.currentTarget.value];
+    }
+    this.setState({ selectedItemSize: newSelectedSize });
+
     const sizeString = `?size=${name}`;
     const currentURL = history.location.pathname;
-    // this.props.history.replace({
-    //   pathname: currentURL + '?' + `${sizeString}`,
-    // });
-    history.push(currentURL + `${sizeString}`);
-  };
 
+    const queryUrl = history.location.search;
+    const paramas = new URLSearchParams(queryUrl);
+    history.push(currentURL + `${sizeString}`);
+    // console.log(paramas.search);
+  };
   // The value should be the same as the id from the input.
   // Then you can add a value property for the input which is used for
   // adding/removing the item in the list of selected items. For this purpose
-  // a handleChange function can be defined.
-  handleChange = e => {
-    const { selectedItems } = this.state;
-    let newSelected = [];
-
-    if (selectedItems.includes(e.target.value)) {
-      newSelected = selectedItems.filter(item => item !== e.target.value);
-    } else {
-      newSelected = [...selectedItems, e.target.value];
-    }
-    this.setState({ selectedItems: newSelected });
-  };
-
-  updateColor = e => {
+  // a updateColor function can be defined.
+  updateColor = name => {
+    const { selectedItemColor } = this.state;
     const { history } = this.props;
+    let newSelectedColor = [];
 
-    const sizeColor = `&color=${e}`;
-    const currentURL = history.location.pathname;
-    window.history.replaceState(
-      null,
-      'New Page Title',
-      currentURL + `${sizeColor}`
-    );
+    if (selectedItemColor.includes(name.target.value)) {
+      newSelectedColor = selectedItemColor.filter(
+        item => item !== name.target.value
+      );
+    } else {
+      newSelectedColor = [...selectedItemColor, name.target.value];
+    }
+    this.setState({ selectedItemColor: newSelectedColor });
+
+    const sizeColor = `?color=${name.target.value}`;
+    const queryUrl = history.location.search;
+    const paramas = new URLSearchParams(queryUrl);
+    history.push(queryUrl + `${sizeColor}`);
+
+    // console.log(name.target.value);
   };
 
   render() {
-    const { productsInfo, selectedItems } = this.state;
-
+    const { productsInfo, selectedItemColor } = this.state;
     return (
       <div className="MainWrapper">
         <div className="sectionHeader">
@@ -108,14 +119,16 @@ export class Main extends Component {
                   return (
                     <li className="colorLayout" key={idx}>
                       <input
-                        onChange={this.handleChange}
+                        onChange={this.updateColor}
+                        // () => this.updateColor('color.color_name')
                         type="checkbox"
                         id={idx}
                         value={color.color_name}
-                        checked={selectedItems.includes(color.color_name)}
+                        checked={selectedItemColor.includes(color.color_name)}
                       />
                       <label
                         className="checkboxLabel"
+                        // The htmlFor property sets or returns the value of the for attribute of a label.
                         htmlFor={idx}
                         style={{ backgroundColor: color.colorProps }}
                       />
@@ -129,17 +142,39 @@ export class Main extends Component {
               <div className="HorizontalLine" />
               <span>사이즈</span>
               <div className="sizeLists">
-                <button onClick={() => this.updateSize('230')}>230</button>
-                <button onClick={() => this.updateSize('235')}>235</button>
-                <button onClick={() => this.updateSize('240')}>240</button>
-                <button onClick={() => this.updateSize('245')}>245</button>
-                <button onClick={() => this.updateSize('250')}>250</button>
-                <button onClick={() => this.updateSize('255')}>255</button>
-                <button onClick={() => this.updateSize('260')}>260</button>
-                <button onClick={() => this.updateSize('265')}>265</button>
-                <button onClick={() => this.updateSize('270')}>270</button>
-                <button onClick={() => this.updateSize('275')}>275</button>
-                <button onClick={() => this.updateSize('280')}>280</button>
+                <button onClick={this.updateSize} value="230">
+                  230
+                </button>
+                <button onClick={this.updateSize} value="235">
+                  235
+                </button>
+                <button onClick={this.updateSize} value="240">
+                  240
+                </button>
+                <button onClick={this.updateSize} value="245">
+                  245
+                </button>
+                <button onClick={this.updateSize} value="250">
+                  250
+                </button>
+                <button onClick={this.updateSize} value="255">
+                  255
+                </button>
+                <button onClick={this.updateSize} value="260">
+                  260
+                </button>
+                <button onClick={this.updateSize} value="265">
+                  265
+                </button>
+                <button onClick={this.updateSize} value="270">
+                  270
+                </button>
+                <button onClick={this.updateSize} value="275">
+                  275
+                </button>
+                <button onClick={this.updateSize} value="280">
+                  280
+                </button>
               </div>
               <div className="HorizontalLine" />
             </div>
@@ -198,11 +233,25 @@ export class Main extends Component {
                   <button
                     onClick={() => this.updateProducts('MainProductsAcc')}
                   >
-                    <span>악세사리</span>
+                    <span>용품</span>
+                  </button>
+                </Link>
+              </div>
+              <div className="Sports">
+                <Link
+                  to={{
+                    pathname: '/products/sports',
+                  }}
+                >
+                  <button
+                    onClick={() => this.updateProducts('MainProductsSports')}
+                  >
+                    <span>스포츠</span>
                   </button>
                 </Link>
               </div>
             </div>
+
             <article className="productsMapping">
               {productsInfo.map((product, idx) => (
                 <Products key={idx} productInfo={product} />
