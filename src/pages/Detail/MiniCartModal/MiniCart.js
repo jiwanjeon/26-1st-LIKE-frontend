@@ -25,8 +25,8 @@ export class MiniCart extends Component {
       });
   };
 
-  calculateTotal = list => {
-    const totalPrice = list
+  calculateTotal = orders => {
+    const totalPrice = orders
       .map(order => Number(order.price))
       .reduce((accumulator, price) => accumulator + price);
 
