@@ -10,12 +10,12 @@ export class MenuList extends Component {
       <div className="MenuList">
         <ul className="menuInner">
           {categories.map(category => {
-            const { id, name, sub_categories } = category;
+            const { id, name, category_id, sub_categories } = category;
             return (
               <MenuItem
                 key={id}
-                id={id}
                 name={name}
+                categoryId={category_id}
                 subMenuList={sub_categories}
               />
             );

@@ -4,11 +4,11 @@ import './SubMenuItem.scss';
 
 export class SubMenuItem extends Component {
   render() {
-    const { id, name, menuName } = this.props;
+    const { id, name, categoryId } = this.props;
 
     return (
       <li className="SubMenuItem">
-        <Link to={`/product/${menuName}/${id}`}>{name}</Link>
+        <Link to={`/products/${categoryId}/${id}`}>{name}</Link>
       </li>
     );
   }

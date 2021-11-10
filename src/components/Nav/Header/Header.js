@@ -17,7 +17,7 @@ export class Header extends Component {
         <nav className="headerInner">
           <MenuList categories={categories} />
           <div className="logo">
-            <Link to="/main">
+            <Link to="/products">
               <img src="/images/LogoLIKE.svg" alt="라이키 로고" />
             </Link>
           </div>

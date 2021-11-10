@@ -10,6 +10,7 @@ export class Main extends Component {
     this.state = {
       productsInfo: [],
       selectedItemColor: [],
+      selectedItemSize: [],
     };
   }
 
@@ -41,14 +42,11 @@ export class Main extends Component {
     const url = new URLSearchParams(currentQueryString);
 
     const isSizeExist = url.getAll('size').includes(name);
-
-    if (isSizeExist) {
-      filterSizeExist();
-    } else {
-      filterSizeNotExist();
-    }
+    isSizeExist ? filterSizeExist() : filterSizeNotExist();
 
     applyQueryStringToURL();
+    this.setState({ selectedItemSize: url.getAll('size') });
+
     function filterSizeExist() {
       const sizes = url.getAll('size');
       const isCertainSizeExist = sizes.includes(name);
@@ -66,12 +64,9 @@ export class Main extends Component {
     }
 
     function applyQueryStringToURL() {
-      const qs = url.toString();
-      const query = `${url.toString() ? '?' : ''}` + qs;
-
+      const query = `${url.toString() ? '?' : ''}qs`;
       history.push('/products' + query);
     }
-    this.setState({ selectedItemSize: url.getAll('size') });
   };
 
   updateColor = e => {
@@ -81,27 +76,53 @@ export class Main extends Component {
     const currentQueryString = location.search;
     const url = new URLSearchParams(currentQueryString);
 
-    const isSizeExist = url.getAll('color').includes(name);
+    // const isSizeExist = url.getAll('color').includes(name);
+    const isColorExist = url.getAll('size').includes(name);
+    isColorExist ? filterSizeExist() : filterSizeNotExist();
 
-    if (isSizeExist) {
-      const colors = url.getAll('color');
-      const isCertainSizeExist = colors.includes(name);
+    applyQueryStringToURL();
+    this.setState({ selectedItemColor: url.getAll('color') });
+
+    function filterSizeExist() {
+      const Colors = url.getAll('color');
+      const isCertainSizeExist = Colors.includes(name);
 
       if (isCertainSizeExist) {
-        const filteredColors = colors.filter(color => color !== name);
+        const filteredSizes = Colors.filter(color => color !== name);
 
         url.delete('color');
-        filteredColors.forEach(color => url.append('color', color));
+        filteredSizes.forEach(color => url.append('color', color));
       }
-    } else {
+    }
+
+    function filterSizeNotExist() {
       url.append('color', name);
     }
 
-    const query = url.toString() ? '?' + url.toString() : '';
+    function applyQueryStringToURL() {
+      const query = `${url.toString() ? '?' : ''}qs`;
+      history.push('/products' + query);
+    }
 
-    history.push('/products' + query);
+    // if (isSizeExist) {
+    //   const colors = url.getAll('color');
+    //   const isCertainSizeExist = colors.includes(name);
 
-    this.setState({ selectedItemColor: url.getAll('color') });
+    //   if (isCertainSizeExist) {
+    //     const filteredColors = colors.filter(color => color !== name);
+
+    //     url.delete('color');
+    //     filteredColors.forEach(color => url.append('color', color));
+    //   }
+    // } else {
+    //   url.append('color', name);
+    // }
+
+    // const query = url.toString() ? '?' + url.toString() : '';
+
+    // history.push('/products' + query);
+
+    // this.setState({ selectedItemColor: url.getAll('color') });
   };
 
   render() {
@@ -161,44 +182,37 @@ export class Main extends Component {
               <div className="HorizontalLine" />
               <span>사이즈</span>
               <div className="sizeLists">
-                <label>
-                  <button
-                    className="active"
-                    onClick={this.updateSize}
-                    value="230"
-                    key="1"
-                  >
-                    230
-                  </button>
-                </label>
-                <button onClick={this.updateSize} value="235" key="2">
+                <button onClick={this.updateSize} value="230">
+                  230
+                </button>
+                <button onClick={this.updateSize} value="235">
                   235
                 </button>
-                <button onClick={this.updateSize} value="240" key="3">
+                <button onClick={this.updateSize} value="240">
                   240
                 </button>
-                <button onClick={this.updateSize} value="245" key="4">
+                <button onClick={this.updateSize} value="245">
                   245
                 </button>
-                <button onClick={this.updateSize} value="250" key="5">
+                <button onClick={this.updateSize} value="250">
                   250
                 </button>
-                <button onClick={this.updateSize} value="255" key="6">
+                <button onClick={this.updateSize} value="255">
                   255
                 </button>
-                <button onClick={this.updateSize} value="260" key="7">
+                <button onClick={this.updateSize} value="260">
                   260
                 </button>
-                <button onClick={this.updateSize} value="265" key="8">
+                <button onClick={this.updateSize} value="265">
                   265
                 </button>
-                <button onClick={this.updateSize} value="270" key="9">
+                <button onClick={this.updateSize} value="270">
                   270
                 </button>
-                <button onClick={this.updateSize} value="275" key="10">
+                <button onClick={this.updateSize} value="275">
                   275
                 </button>
-                <button onClick={this.updateSize} value="280" key="11">
+                <button onClick={this.updateSize} value="280">
                   280
                 </button>
               </div>
@@ -226,6 +240,7 @@ export class Main extends Component {
                 <Link
                   to={{
                     pathname: '/products/shoes',
+                    state: { message: 'hello, im a passed message!' },
                   }}
                 >
                   <button
@@ -239,6 +254,7 @@ export class Main extends Component {
                 <Link
                   to={{
                     pathname: '/products/clothing',
+                    state: { message: 'hello, im a passed message!' },
                   }}
                 >
                   <button

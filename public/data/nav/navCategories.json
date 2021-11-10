@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "name": "New & Featured",
+    "name": "신발",
+    "category_id": "shoes",
     "sub_categories": [
       { "id": 100, "name": "Member Days" },
       { "id": 101, "name": "Nike Live" },
@@ -20,7 +21,8 @@
   },
   {
     "id": 2,
-    "name": "신발",
+    "name": "의류",
+    "category_id": "clothing",
     "sub_categories": [
       { "id": 200, "name": "신발 전체" },
       { "id": 201, "name": "라이프스타일" },
@@ -37,7 +39,8 @@
   },
   {
     "id": 3,
-    "name": "의류",
+    "category_id": "acc",
+    "name": "용품",
     "sub_categories": [
       { "id": 300, "name": "의류 전체" },
       { "id": 301, "name": "후디 & 크루" },
@@ -52,6 +55,7 @@
   },
   {
     "id": 4,
+    "category_id": "sports",
     "name": "스포츠",
     "sub_categories": [
       { "id": 400, "name": "스포츠 전체" },
