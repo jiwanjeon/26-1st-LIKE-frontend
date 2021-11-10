@@ -8,6 +8,8 @@ export class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cateoriesUrl: Config[0].categories,
+      token: Config[1].token,
       categories: [],
     };
   }
@@ -17,8 +19,7 @@ export class Nav extends Component {
   }
 
   getCategoriesData() {
-    const cateoriesUrl = Config[0].categories;
-    const token = Config[1].token;
+    const { cateoriesUrl, token } = this.state;
 
     fetch(cateoriesUrl, {
       headers: { Authorization: token },

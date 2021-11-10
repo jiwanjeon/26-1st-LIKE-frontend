@@ -4,18 +4,18 @@ import './SubMenuList.scss';
 
 export class SubMenuList extends Component {
   render() {
-    const { menuName, subMenulist } = this.props;
+    const { categoryId, subMenuList } = this.props;
 
     return (
       <div className="SubMenuList">
         <div className="subMenuInner">
           <ul className="subMenuItemWarp">
-            {subMenulist.map(submenu => (
+            {subMenuList.map(subMenu => (
               <SubMenuItem
-                key={submenu.id}
-                id={submenu.id}
-                name={submenu.name}
-                menuName={menuName}
+                key={subMenu.id}
+                id={subMenu.id}
+                categoryId={categoryId}
+                name={subMenu.name}
               />
             ))}
           </ul>
