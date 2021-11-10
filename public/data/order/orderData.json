@@ -1,31 +1,37 @@
 {
   "results": [
     {
-      "id": 1,
-      "serial": "S100-100",
-      "title": "에어 포스 1",
-      "price": "199000",
-      "size": 265,
-      "quantity": 1,
-      "thumbnail": "https://picsum.photos/300/300"
+      "cart_id": 6,
+      "product_id": 7,
+      "user_id": 5,
+      "product_title": "나이키 프리 메트콘 4 MFS",
+      "serial": "DH2726-091",
+      "size": "240",
+      "quantity": 3,
+      "price": 417000.0,
+      "thumbnail_image_url": "https://picsum.photos/280/280"
     },
     {
-      "id": 2,
-      "serial": "S100-102",
-      "title": "에어 포스 3",
-      "price": "210000",
-      "size": 265,
+      "cart_id": 7,
+      "product_id": 11,
+      "user_id": 5,
+      "product_title": "나이키 SB 줌 블레이저 미드 프리미엄",
+      "serial": "DA8854-700",
+      "size": "255",
       "quantity": 1,
-      "thumbnail": "https://picsum.photos/200/200"
+      "price": 129000.0,
+      "thumbnail_image_url": "https://picsum.photos/210/210"
     },
     {
-      "id": 3,
-      "serial": "S100-102",
-      "title": "에어 포스 3",
-      "price": "218000",
-      "size": 265,
+      "cart_id": 8,
+      "product_id": 7,
+      "user_id": 5,
+      "product_title": "나이키 프리 메트콘 4 MFS",
+      "serial": "DH2726-091",
+      "size": "240",
       "quantity": 1,
-      "thumbnail": "https://picsum.photos/210/210"
+      "price": 139000.0,
+      "thumbnail_image_url": "https://picsum.photos/240/240"
     }
   ]
 }

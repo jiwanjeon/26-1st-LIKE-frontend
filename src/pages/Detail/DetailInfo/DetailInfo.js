@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import DetailTitles from './DetailTitles/DetailTitles';
-import DetailEcoFriendly from './DetailEcoFriendly/DetailEcoFriendly';
 import SizeAndQuantitySelector from './SizeAndQuantitySelector/SizeAndQuantitySelector';
 import DetailButtons from './DetailButtons/DetailButtons';
-import DetailDescription from './DetailDescription/DetailDescription';
 import DetailAccordions from './DetailAccordions/DetailAccordions';
-import MiniCartModal from '../MiniCartModal/MiniCartModal';
+import MiniCartModal from './MiniCartModal/MiniCartModal';
+import DetailTitles from './DetailInfos/DetailTitles/DetailTitles';
+import DetailEcoFriendly from './DetailInfos/DetailEcoFriendly/DetailEcoFriendly';
+import DetailDescription from './DetailInfos/DetailDescription/DetailDescription';
 import { Config } from '../../../config';
 import './DetailInfo.scss';
 
@@ -13,8 +13,11 @@ export class DetailInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartUrl: Config[0].carts,
+      token: Config[1].token,
       sizeName: '',
       quantity: 1,
+      isMiniCart: false,
     };
   }
 
@@ -31,8 +34,7 @@ export class DetailInfo extends Component {
   };
 
   addToCart = () => {
-    const cartUrl = Config[0].carts;
-    const token = Config[1].token;
+    const { cartUrl, token } = this.state;
     const { productId } = this.props;
     const { sizeName, quantity } = this.state;
 
@@ -51,8 +53,13 @@ export class DetailInfo extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'GOOD') this.openMiniCartModal();
+        if (result.message === 'SUCCESS') this.toggleMiniCart();
       });
+  };
+
+  toggleMiniCart = () => {
+    const { isMiniCart } = this.state;
+    this.setState({ isMiniCart: !isMiniCart });
   };
 
   render() {
@@ -62,11 +69,12 @@ export class DetailInfo extends Component {
       subTitle,
       price,
       ecoFriendly,
-      sizeNameAndQuantity,
+      sizeAndQuan,
       descriptionTitle,
       description,
       shown,
     } = this.props;
+    const { isMiniCart } = this.state;
 
     return (
       <>
@@ -77,7 +85,7 @@ export class DetailInfo extends Component {
             <SizeAndQuantitySelector
               selectSize={this.selectSize}
               selectQuantity={this.selectQuantity}
-              sizeNameAndQuantity={sizeNameAndQuantity}
+              sizeAndQuan={sizeAndQuan}
             />
             <DetailButtons addToCart={this.addToCart} />
             <DetailDescription
@@ -89,7 +97,10 @@ export class DetailInfo extends Component {
             <DetailAccordions />
           </div>
         </div>
-        <MiniCartModal />
+        <MiniCartModal
+          isMiniCart={isMiniCart}
+          toggleMiniCart={this.toggleMiniCart}
+        />
       </>
     );
   }

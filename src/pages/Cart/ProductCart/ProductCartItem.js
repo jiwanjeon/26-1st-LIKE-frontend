@@ -12,13 +12,23 @@ export class ProductCartItem extends Component {
   };
 
   render() {
-    const { product_title, serial, price, size, quantity, thumbnail } =
-      this.props;
+    const {
+      product_title,
+      serial,
+      price,
+      size,
+      quantity,
+      thumbnail_image_url,
+    } = this.props;
 
     return (
       <li className="ProductCartItem">
         <div className="imageWrap">
-          <img className="image" src={thumbnail} alt="내가 선택한 상품" />
+          <img
+            className="image"
+            src={thumbnail_image_url}
+            alt="내가 선택한 상품"
+          />
         </div>
         <div className="productInfo">
           <div className="title">{product_title}</div>

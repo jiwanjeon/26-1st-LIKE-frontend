@@ -85,7 +85,7 @@ export class SizeAndQuantitySelector extends Component {
   };
 
   render() {
-    const { sizeNameAndQuantity } = this.props;
+    const { sizeAndQuan } = this.props;
     const { maxQuantity, selectedSize, quantity } = this.state;
 
     return (
@@ -93,8 +93,8 @@ export class SizeAndQuantitySelector extends Component {
         <div className="SizeAndQuantitySelector">
           <h2>사이즈 선택</h2>
           <div className="sizeList">
-            {sizeNameAndQuantity &&
-              sizeNameAndQuantity.map((list, index) => (
+            {sizeAndQuan &&
+              sizeAndQuan.map((list, index) => (
                 <SizeOption
                   key={index + 1}
                   setMaxQuantity={this.setSizeAndQuantity}

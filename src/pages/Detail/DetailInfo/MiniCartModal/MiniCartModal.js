@@ -3,13 +3,6 @@ import MiniCart from './MiniCart';
 import './MiniCartModal.scss';
 
 export class MiniCartModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-    };
-  }
-
   componentDidMount() {
     this.stopScroll();
   }
@@ -18,16 +11,16 @@ export class MiniCartModal extends Component {
     this.scrollBack();
   }
 
-  closeModal = () => {
-    this.setState({
-      isOpen: false,
-    });
+  toggleModal = () => {
+    const { toggleMiniCart } = this.props;
+
+    toggleMiniCart();
     this.scrollBack();
   };
 
   stopScroll = () => {
-    const { isOpen } = this.state;
-    if (isOpen) document.body.style.overflow = 'hidden';
+    const { isMiniCart } = this.props;
+    if (isMiniCart) document.body.style.overflow = 'hidden';
   };
 
   scrollBack = () => {
@@ -35,11 +28,12 @@ export class MiniCartModal extends Component {
   };
 
   render() {
-    const { isOpen } = this.state;
-    return isOpen ? (
+    const { isMiniCart } = this.props;
+
+    return isMiniCart ? (
       <div className="MiniCartModal">
         <MiniCart />
-        <div onClick={this.closeModal} className="miniCartOverlay" />
+        <div onClick={this.toggleModal} className="miniCartOverlay" />
       </div>
     ) : null;
   }

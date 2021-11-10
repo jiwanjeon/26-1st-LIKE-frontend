@@ -15,7 +15,7 @@ export class Routes extends Component {
         <Switch>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/main" component={Main} />
-          <Route exact path="/detail" component={Detail} />
+          <Route exact path="/details/:id" component={Detail} />
           <Route exact path="/testLogin" component={TestLogin} />
           <Route exact path="/cart" component={Cart} />
         </Switch>

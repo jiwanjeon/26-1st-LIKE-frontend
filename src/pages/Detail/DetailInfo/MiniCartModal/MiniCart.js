@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import OrderList from './OrderList/OrderList';
-import { Config } from '../../../config';
+import { Config } from '../../../../config';
 import './MiniCart.scss';
 
 export class MiniCart extends Component {
@@ -17,7 +17,7 @@ export class MiniCart extends Component {
   }
 
   orderData = () => {
-    const cartUrl = Config[0].cart;
+    const cartUrl = Config[0].carts;
     const token = Config[1].token;
     fetch(cartUrl, {
       headers: { Authorization: token },
@@ -31,9 +31,9 @@ export class MiniCart extends Component {
       });
   };
 
-  calculateTotal = list => {
-    const totalPrice = list
-      .map(order => Number(order.price))
+  calculateTotal = orders => {
+    const totalPrice = orders
+      .map(order => Number(order.price) * Number(order.quantity))
       .reduce((accumulator, price) => accumulator + price);
 
     return totalPrice.toLocaleString('en-US');

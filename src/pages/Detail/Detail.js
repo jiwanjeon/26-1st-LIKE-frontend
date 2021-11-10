@@ -17,8 +17,25 @@ export class Detail extends Component {
     this.detailData();
   }
 
-  detailData() {
+  detailMockUp() {
     const detailUrl = Config[0].detail;
+    const token = Config[1].token;
+
+    fetch(detailUrl, {
+      headers: { Authorization: token },
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          detailData: data.results,
+        });
+      });
+  }
+
+  detailData() {
+    const { match } = this.props;
+    const product_id = match.params.id;
+    const detailUrl = `http://10.58.6.96:8000/products/details/${product_id}`;
     const token = Config[1].token;
 
     fetch(detailUrl, {
@@ -41,7 +58,7 @@ export class Detail extends Component {
       sub_title,
       price,
       eco_friendly,
-      size_qan,
+      size_quan,
       description_title,
       description,
       product_images,
@@ -59,7 +76,7 @@ export class Detail extends Component {
             subTitle={sub_title}
             price={price}
             ecoFriendly={eco_friendly}
-            sizeNameAndQuantity={size_qan}
+            sizeAndQuan={size_quan}
             descriptionTitle={description_title}
             description={description}
             shown={current_color}
