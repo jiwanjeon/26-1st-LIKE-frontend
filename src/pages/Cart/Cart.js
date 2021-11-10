@@ -66,9 +66,27 @@ export class Cart extends Component {
       });
   };
 
+  emptyCartItems = () => {
+    const { cartUrl, token, orderData } = this.state;
+
+    fetch(cartUrl, {
+      method: 'DELETE',
+      headers: { Authorization: token },
+      body: JSON.stringify({
+        order: orderData,
+      }),
+    });
+  };
+
+  goToOrders = () => {
+    const { history } = this.props;
+    history.push('/orders');
+  };
+
   checkOutCart = () => {
     const { checkOutUrl, orderData, token } = this.state;
 
+    this.emptyCartItems();
     fetch(checkOutUrl, {
       method: 'POST',
       headers: { Authorization: token },
@@ -78,8 +96,7 @@ export class Cart extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'Success')
-          alert('라이키 팀 2주동안 여러분 고생하셨어요~~~~(^ㅇ^)/');
+        if (result.message === 'SUCCESS') this.goToOrders();
       });
   };
 
@@ -113,23 +130,23 @@ export class Cart extends Component {
                     <div className="title">주문예정금액</div>
                     <div className="productInBox">
                       <div className="priceInfo">
-                        <div className="itemPrice">
+                        <div className="itemPrice pricing">
                           <span className="label">상품금액</span>
                           <span className="price">{totalPrice} 원</span>
                         </div>
-                        <div className="deliveryPrice">
+                        <div className="deliveryPrice pricing">
                           <span className="label">예상 배송비</span>
                           <span className="price">0 원</span>
                         </div>
-                        <div className="salePrice">
+                        <div className="salePrice pricing">
                           <span className="label">상품 할인 금액</span>
                           <span className="price">0 원</span>
                         </div>
-                        <div className="salePrice">
+                        <div className="salePrice pricing">
                           <span className="label">주문 할인 금액</span>
                           <span className="price">0 원</span>
                         </div>
-                        <div className="totalPrice">
+                        <div className="totalPrice pricing">
                           <span className="label">총 결제 예정 금액</span>
                           <span className="price">{totalPrice}원</span>
                         </div>
