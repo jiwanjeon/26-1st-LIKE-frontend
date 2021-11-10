@@ -1,43 +1,62 @@
 .signUp {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.head {
   width: 100%;
-  height: 300px;
-  text-align: center;
-}
-.signpBox {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-.signpBox input {
-  width: 300px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  font-size: 18px;
-  margin-bottom: 40px;
-  padding: 20px 12px;
-  border: 1px solid rgb(206, 206, 206);
-  background-color: white;
-}
-.checkboxWrap {
-  display: flex;
-  justify-content: center;
-}
 
-button {
-  width: 500px;
-  padding: 16px 12px;
-  margin: 2.5rem auto;
-  font-size: 22px;
-  color: white;
-  font-weight: bolder;
-  background-color: black;
-  border: none;
-  cursor: pointer;
+  .head {
+    height: 200px;
+    text-align: center;
+    margin-top: 100px;
+
+    h2 {
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 25px;
+      color: rgb(206, 206, 206);
+    }
+  }
+  .signupBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signupBox input {
+    width: 500px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+    padding: 20px 12px;
+    border: 1px solid rgb(206, 206, 206);
+    background-color: white;
+
+    &:focus {
+      outline: 1px solid black;
+    }
+  }
+  .checkboxWrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  button {
+    width: 500px;
+    padding: 16px 12px;
+    margin: 2.5rem auto;
+    font-size: 22px;
+    color: white;
+    font-weight: bolder;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: 0.5;
+  }
 }

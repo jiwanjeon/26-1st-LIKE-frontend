@@ -77,22 +77,22 @@ export class SignUp extends Component {
     return (
       <section className="signUp">
         <div className="head">
-          <h2>라이키로그인</h2>
+          <h2>라이키 멤버 가입</h2>
           <p>멤버가 되어 라이키가 제공하는 </p>
           <p>최고의 제품과 혜택을 만나보세요.</p>
         </div>
         <div className="inputSign">
-          <div className="signpBox">
+          <div className="signupBox">
             <input
               className="email"
-              placeholder="email"
+              placeholder="사용하실 ID를 입력해주세요. (수신 가능 E-mail)"
               type="text"
               value={email}
               onChange={this.handleIdInput}
             />
             <input
               className="password"
-              placeholder="password"
+              placeholder="영문 대 소문+숫자+특수문자 8~16자리(괄호(),<>사용불가>"
               type="password"
               maxLength="16"
               value={password}
@@ -100,42 +100,46 @@ export class SignUp extends Component {
             />
             <input
               className="confirmPw"
-              placeholder="confirmPw"
+              placeholder="패스워드를 다시 입력해 주세요."
               type="password"
               maxLength="16"
               value={confirmPw}
-              onChange={this.handleConfirmPwdInput}
+              onChange={this.handleConfirmPwInput}
             />
             <input
               className="name"
-              placeholder="name"
+              placeholder="이름을 입력해 주세요."
               type="text"
               value={name}
               onChange={this.handleNameInput}
             />
             <input
               className="phone_number"
-              placeholder="phone"
-              type="text"
+              placeholder="휴대폰 번호 '-'표 없이 입력해 주세요."
+              type="tel"
               value={phone_number}
               onChange={this.handlePhoneInput}
             />
           </div>
           <div className="checkboxWrap">
-            <input
-              className="option1"
-              type="checkbox"
-              name="terms"
-              onClick={!this.state.option1}
-            />
-            약관동의
-            <input
-              className="option2"
-              type="checkbox"
-              name="condition"
-              onClick={!this.state.option2}
-            />
-            개인정보 수집.이용동의
+            <div className="checkboxTitle">
+              <input
+                className="option1"
+                type="checkbox"
+                name="terms"
+                onClick={!this.state.option1}
+              />
+              약관동의
+            </div>
+            <div className="checkboxInfo">
+              <input
+                className="option2"
+                type="checkbox"
+                name="condition"
+                onClick={!this.state.option2}
+              />
+              개인정보 수집.이용동의
+            </div>
           </div>
           <button
             disabled={

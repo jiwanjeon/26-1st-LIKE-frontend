@@ -4,9 +4,7 @@ import Login from './Login/Login';
 export class TestLogin extends Component {
   constructor() {
     super();
-    this.state = {
-      popup: false,
-    };
+    this.state = {};
   }
 
   render() {
