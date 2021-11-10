@@ -5,6 +5,7 @@ import Main from './pages/Main/Main';
 import Detail from './pages/Detail/Detail';
 import TestLogin from './components/TestLogin';
 import Cart from './pages/Cart/Cart';
+import Orders from './pages/Orders/Orders';
 import Filter from './pages/Main/Filter';
 import Nav from './components/Nav/Nav';
 import createHistory from 'history/createBrowserHistory';
@@ -23,6 +24,7 @@ export class Routes extends Component {
           <Route exact path="/details/:id" component={Detail} />
           <Route exact path="/testLogin" component={TestLogin} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/orders" component={Orders} />
         </Switch>
       </Router>
     );
