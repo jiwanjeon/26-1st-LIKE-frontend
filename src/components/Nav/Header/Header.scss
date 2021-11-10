@@ -1,0 +1,61 @@
+@import '../../../styles/variables.scss';
+
+.Header {
+  position: relative;
+  height: 60px;
+
+  .headerInner {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 60px;
+    padding: 0 50px 0 36px;
+    background: #fff;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 50px;
+      top: 0;
+      width: 60px;
+      height: 60px;
+
+      img {
+        height: 23px;
+      }
+    }
+
+    .iconGroup {
+      @include flexCenter;
+
+      position: relative;
+      font-size: 28px;
+      z-index: 29;
+
+      form {
+        position: relative;
+
+        .searchIcon {
+          position: absolute;
+          left: 13px;
+          top: 8px;
+        }
+
+        input {
+          width: 160px;
+          height: 40px;
+          padding-left: 45px;
+          background-color: #f0f0f0;
+          border: none;
+          border-radius: 20px;
+        }
+      }
+
+      .icon {
+        margin-left: 12px;
+        cursor: pointer;
+      }
+    }
+  }
+}

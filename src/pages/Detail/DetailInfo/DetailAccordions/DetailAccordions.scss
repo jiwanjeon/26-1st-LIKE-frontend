@@ -1,0 +1,8 @@
+@import '../../../../styles/variables.scss';
+
+.DetailAccordions {
+  .uk-accordion {
+    padding-bottom: 40px;
+    @include sectionDivider();
+  }
+}

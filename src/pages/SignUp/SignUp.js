@@ -12,6 +12,11 @@ export class SignUp extends Component {
       phone_number: '',
       option1: false,
       option2: false,
+      checkmail: false,
+      checkpw: false,
+      samepw: false,
+      checkname: false,
+      checkPhone: false,
     };
   }
 
@@ -90,6 +95,11 @@ export class SignUp extends Component {
               value={email}
               onChange={this.handleIdInput}
             />
+            {this.state.checkmail ? null : (
+              <div className="checking">
+                <span>필수 입력 항목입니다.</span>
+              </div>
+            )}
             <input
               className="password"
               placeholder="영문 대 소문+숫자+특수문자 8~16자리(괄호(),<>사용불가>"
@@ -98,6 +108,11 @@ export class SignUp extends Component {
               value={password}
               onChange={this.handlePwInput}
             />
+            {this.state.checkpw ? null : (
+              <div className="checking">
+                <span>필수 입력 항목입니다.</span>
+              </div>
+            )}
             <input
               className="confirmPw"
               placeholder="패스워드를 다시 입력해 주세요."
@@ -106,6 +121,11 @@ export class SignUp extends Component {
               value={confirmPw}
               onChange={this.handleConfirmPwInput}
             />
+            {this.state.samepw ? null : (
+              <div className="checking">
+                <span>필수 입력 항목입니다.</span>
+              </div>
+            )}
             <input
               className="name"
               placeholder="이름을 입력해 주세요."
@@ -113,6 +133,11 @@ export class SignUp extends Component {
               value={name}
               onChange={this.handleNameInput}
             />
+            {this.state.checkname ? null : (
+              <div className="checking">
+                <span>필수 입력 항목입니다.</span>
+              </div>
+            )}
             <input
               className="phone_number"
               placeholder="휴대폰 번호 '-'표 없이 입력해 주세요."
@@ -120,6 +145,11 @@ export class SignUp extends Component {
               value={phone_number}
               onChange={this.handlePhoneInput}
             />
+            {this.state.checkPhone ? null : (
+              <div className="checking">
+                <span>필수 입력 항목입니다.</span>
+              </div>
+            )}
           </div>
           <div className="checkboxWrap">
             <div className="checkboxTitle">
@@ -142,6 +172,7 @@ export class SignUp extends Component {
             </div>
           </div>
           <button
+            className="signupBtn"
             disabled={
               this.state.email.includes('@' && '.') &&
               this.state.password.length >= 8 &&

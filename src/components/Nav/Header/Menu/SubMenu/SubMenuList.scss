@@ -1,0 +1,13 @@
+.SubMenuList {
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  width: 400px;
+  padding: 16px 40px 40px;
+  background-color: white;
+  transform: translateX(-200px);
+
+  .subMenuItemWarp {
+    line-height: 1.7;
+  }
+}

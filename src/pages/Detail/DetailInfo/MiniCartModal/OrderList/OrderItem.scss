@@ -1,0 +1,32 @@
+.OrderItem {
+  display: grid;
+  grid-template-columns: auto 6fr 1fr;
+  grid-gap: 20px;
+  padding: 30px 0 30px 30px;
+  border-bottom: 1px var(--color-gray-4) solid;
+  font-weight: 300;
+
+  .imageWrap {
+    flex: 2;
+
+    .image {
+      width: 70px;
+      height: 70px;
+      margin-top: 4px;
+    }
+  }
+  .orderInfo {
+    flex: 4;
+
+    .title {
+      font-weight: 700;
+    }
+    .price {
+      color: var(--color-point);
+    }
+  }
+  .orderDelete {
+    flex: 1;
+    cursor: pointer;
+  }
+}
