@@ -33,7 +33,6 @@ export class OrderItem extends Component {
           <div className="quantity">수량: {quantity}</div>
           <div className="price">{this.formatNumber(price)}원</div>
         </div>
-
         {status === '주문완료' ? (
           ''
         ) : (
