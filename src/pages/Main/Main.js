@@ -3,6 +3,7 @@ import './Main.scss';
 import COLOR_LISTS from './colorList';
 import Products from './ProductsInfo/Products';
 import { Link } from 'react-router-dom';
+import { API } from '../../config';
 
 export class Main extends Component {
   constructor(props) {
@@ -12,26 +13,182 @@ export class Main extends Component {
       selectedItemColor: [],
     };
   }
+  componentDidUpdate(prevProps) {
+    console.log('com did up');
+    // =======================================
+
+    // eslint-disable-next-line react/destructuring-assignment
+    const { search, pathname } = this.props.location;
+    const { search: prevSearch, pathname: prevPathname } = prevProps.location;
+    let mainCategoryNameToNumber = 0;
+    if (search !== prevSearch && pathname !== prevPathname) {
+      if (pathname.split('/')[2] === 'shoes') {
+        mainCategoryNameToNumber += 2;
+        fetch(
+          API +
+            '/products' +
+            '?main_category=' +
+            mainCategoryNameToNumber +
+            search
+        )
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              productsInfo: data.results,
+            });
+          });
+      } else if (pathname.split('/')[2] === 'clothing') {
+        mainCategoryNameToNumber += 3;
+        fetch(
+          API +
+            '/products' +
+            '?main_category=' +
+            mainCategoryNameToNumber +
+            search
+        )
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              productsInfo: data.results,
+            });
+          });
+      } else if (pathname.split('/')[2] === 'supplies') {
+        mainCategoryNameToNumber += 5;
+        fetch(
+          API +
+            '/products' +
+            '?main_category=' +
+            mainCategoryNameToNumber +
+            search
+        )
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              productsInfo: data.results,
+            });
+          });
+      } else if (pathname.split('/')[2] === 'sports') {
+        mainCategoryNameToNumber += 4;
+        fetch(
+          API +
+            '/products' +
+            '?main_category=' +
+            mainCategoryNameToNumber +
+            search
+        )
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              productsInfo: data.results,
+            });
+          });
+      } else {
+        fetch(API + pathname)
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              productsInfo: data.results,
+            });
+          });
+      }
+    }
+
+    // if (search !== prevSearch && pathname !== prevPathname) {
+    // fetch(`${API}${search}`)
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     this.setState({
+    //       productsInfo: data,
+    //     });
+    //   });
+    // }
+
+    // ================================디도스 공격=====================
+    // if (
+    //   search !== prevSearch &&
+    //   pathname !== prevPathname &&
+    //   'localhost:3000/' + pathname === 'localhost:3000/products'
+    // ) {
+    // fetch('http://10.58.6.96:8000/products')
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     this.setState({
+    //       productsInfo: data.results,
+    //     });
+    //   });
+    // ================================디도스 공격=====================
+    // }
+
+    // componentDidUpdate(prevProps) {
+    //   console.log('com did up');
+    //   // eslint-disable-next-line react/destructuring-assignment
+    //   const { search, pathname } = this.props.location;
+    //   const { search: prevSearch, pathname: prevPathname } = prevProps.location;
+
+    //   if (search !== prevSearch && pathname !== prevPathname) {
+    //     fetch(`/data/${this.props.match.params.category || 'MainProducts'}.json`,
+    //       .then(res => res.json())
+    //       .then(data => {
+    //         console.log(data);
+    //         this.setState({
+    //           productsInfo: data,
+    //         });
+    //       });
+    //   }
+  }
+
+  // componentDidMount() {
+  //   fetch(
+  //     `/data/${this.props.match.params.category || 'MainProducts'}.json`,
+  //     {}
+  //   )
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       this.setState({
+  //         productsInfo: data,
+  //       });
+  //     });
+  // }
 
   componentDidMount() {
-    fetch('/data/MainProducts.json', {})
+    fetch(API + this.props.location.pathname)
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState({
-          productsInfo: data,
+          productsInfo: data.results,
         });
       });
+    // console.log('메롱', API);
   }
 
   updateProducts = name => {
-    fetch(`/data/${name}.json`, {})
+    fetch(`/data/${name}.json`)
       .then(res => res.json())
       .then(data => {
         this.setState({
           productsInfo: data,
         });
+        console.log(data);
       });
   };
+
+  // updateProducts = name => {
+  //   fetch(`/data/${name}.json`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       this.setState({
+  //         productsInfo: data,
+  //       });
+  //     });
+  // };
 
   updateSize = e => {
     const { history, location } = this.props;
@@ -105,7 +262,13 @@ export class Main extends Component {
   };
 
   render() {
+    // console.log(API);
+    // console.log(this.props.location.pathname);
+    // console.log('cccccc', `${API}${this.props.location.pathname}`);
     const { productsInfo, selectedItemColor } = this.state;
+
+    console.log('1232131231231231', productsInfo);
+
     return (
       <div className="MainWrapper">
         <div className="sectionHeader">
@@ -134,9 +297,9 @@ export class Main extends Component {
             <div className="colors">
               <span>색상</span>
               <ul className="colorLists">
-                {COLOR_LISTS.map((color, idx) => {
+                {COLOR_LISTS.map(color => {
                   return (
-                    <li className="colorLayout" key={idx}>
+                    <li className="colorLayout" key={color.id}>
                       <label
                         className={`checkboxLabel ${
                           selectedItemColor.includes(color.color_name)
@@ -171,35 +334,56 @@ export class Main extends Component {
                     230
                   </button>
                 </label>
-                <button onClick={this.updateSize} value="235" key="2">
+                <button onClick={this.updateSize} value="235">
                   235
                 </button>
-                <button onClick={this.updateSize} value="240" key="3">
+                <button onClick={this.updateSize} value="240">
                   240
                 </button>
-                <button onClick={this.updateSize} value="245" key="4">
+                <button onClick={this.updateSize} value="245">
                   245
                 </button>
-                <button onClick={this.updateSize} value="250" key="5">
+                <button onClick={this.updateSize} value="250">
                   250
                 </button>
-                <button onClick={this.updateSize} value="255" key="6">
+                <button onClick={this.updateSize} value="255">
                   255
                 </button>
-                <button onClick={this.updateSize} value="260" key="7">
+                <button onClick={this.updateSize} value="260">
                   260
                 </button>
-                <button onClick={this.updateSize} value="265" key="8">
+                <button onClick={this.updateSize} value="265">
                   265
                 </button>
-                <button onClick={this.updateSize} value="270" key="9">
+                <button onClick={this.updateSize} value="270">
                   270
                 </button>
-                <button onClick={this.updateSize} value="275" key="10">
+                <button onClick={this.updateSize} value="275">
                   275
                 </button>
-                <button onClick={this.updateSize} value="280" key="11">
+                <button onClick={this.updateSize} value="280">
                   280
+                </button>
+                <button onClick={this.updateSize} value="xs">
+                  XS
+                </button>
+                <button onClick={this.updateSize} value="s">
+                  S
+                </button>
+                <button onClick={this.updateSize} value="m">
+                  M
+                </button>
+                <button onClick={this.updateSize} value="l">
+                  L
+                </button>
+                <button onClick={this.updateSize} value="xl">
+                  XL
+                </button>
+                <button onClick={this.updateSize} value="xxl">
+                  XXL
+                </button>
+                <button onClick={this.updateSize} value="xxxl">
+                  XXXL
                 </button>
               </div>
               <div className="HorizontalLine" />
@@ -212,7 +396,6 @@ export class Main extends Component {
                 <Link
                   to={{
                     pathname: '/products',
-                    state: { message: 'hello, im a passed message!' },
                   }}
                 >
                   <button onClick={() => this.updateProducts('MainProducts')}>
@@ -228,9 +411,7 @@ export class Main extends Component {
                     pathname: '/products/shoes',
                   }}
                 >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsShoes')}
-                  >
+                  <button onClick={() => this.updateProducts('shoes')}>
                     <span>신발</span>
                   </button>
                 </Link>
@@ -241,9 +422,7 @@ export class Main extends Component {
                     pathname: '/products/clothing',
                   }}
                 >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsClothing')}
-                  >
+                  <button onClick={() => this.updateProducts('clothing')}>
                     <span>옷</span>
                   </button>
                 </Link>
@@ -251,12 +430,10 @@ export class Main extends Component {
               <div className="Supplies">
                 <Link
                   to={{
-                    pathname: '/products/acc',
+                    pathname: '/products/supply',
                   }}
                 >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsAcc')}
-                  >
+                  <button onClick={() => this.updateProducts('acc')}>
                     <span>용품</span>
                   </button>
                 </Link>
@@ -267,9 +444,7 @@ export class Main extends Component {
                     pathname: '/products/sports',
                   }}
                 >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsSports')}
-                  >
+                  <button onClick={() => this.updateProducts('sports')}>
                     <span>스포츠</span>
                   </button>
                 </Link>
@@ -277,9 +452,11 @@ export class Main extends Component {
             </div>
 
             <article className="productsMapping">
-              {productsInfo.map((product, idx) => (
-                <Products key={idx} productInfo={product} />
-              ))}
+              {productsInfo &&
+                productsInfo.map(product => {
+                  console.log('123123123123123123123', product);
+                  return <Products key={product.id} productInfo={product} />;
+                })}
             </article>
           </main>
         </div>

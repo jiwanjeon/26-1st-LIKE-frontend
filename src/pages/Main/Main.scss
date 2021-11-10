@@ -199,11 +199,13 @@
 
               .productInfoDisplay {
                 margin-top: 15px;
+                // flex-basis: 70%;
+                // flex-grow: 1;
 
                 .productStatus {
                   margin-bottom: 7px;
-
-                  .test {
+                  // flex: 0, 70%;
+                  s .test {
                     color: orange;
                     opacity: 0.8;
                     display: inline-block;
