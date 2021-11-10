@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import MenuList from './Menu/MenuList';
 import { Link } from 'react-router-dom';
 import {
   MdSearch,
   MdOutlineFavoriteBorder,
   MdOutlineShoppingBag,
 } from 'react-icons/md';
+import MenuList from './Menu/MenuList';
 import './Header.scss';
 
 export class Header extends Component {
@@ -14,7 +14,7 @@ export class Header extends Component {
 
     return (
       <div className="Header">
-        <nav>
+        <nav className="headerInner">
           <MenuList categories={categories} />
           <div className="logo">
             <Link to="/main">

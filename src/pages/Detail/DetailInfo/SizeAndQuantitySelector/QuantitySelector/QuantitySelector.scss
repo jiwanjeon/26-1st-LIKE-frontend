@@ -1,0 +1,44 @@
+@import '../../../../../styles/variables.scss';
+
+.QuantitySelector {
+  @include flexVerticalCenter;
+
+  height: 50px;
+  padding-bottom: 20px;
+
+  h2 {
+    display: inline-block;
+    font-size: 1.2em;
+    margin-right: 10px;
+  }
+
+  .quantitySelector {
+    display: inline-block;
+    margin: 0;
+
+    input {
+      font-size: 1.2em;
+      width: 50px;
+      font-weight: 300;
+      background-color: white;
+      border: none;
+      text-align: center;
+      margin-right: 16px;
+    }
+
+    .btn {
+      font-size: 1.5em;
+      background-color: white;
+      border: none;
+      margin-right: 16px;
+      cursor: pointer;
+    }
+
+    .deactivate {
+      color: lightgray;
+      cursor: default;
+    }
+  }
+
+  @include sectionDivider();
+}
