@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "신발",
+    "category_id": "shoes",
     "sub_categories": [
       { "id": 100, "name": "신발 전체" },
       { "id": 101, "name": "라이프스타일" },
@@ -19,6 +20,7 @@
   {
     "id": 2,
     "name": "의류",
+    "category_id": "clothing",
     "sub_categories": [
       { "id": 200, "name": "의류 전체" },
       { "id": 201, "name": "후디 & 크루" },
@@ -33,6 +35,7 @@
   },
   {
     "id": 3,
+    "category_id": "acc",
     "name": "용품",
     "sub_categories": [
       { "id": 301, "name": "모자 & 헤드밴드" },
@@ -42,6 +45,7 @@
   },
   {
     "id": 4,
+    "category_id": "sports",
     "name": "스포츠",
     "sub_categories": [
       { "id": 401, "name": "러닝" },
