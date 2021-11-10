@@ -12,7 +12,7 @@ export class OrderItem extends Component {
     return (
       <li className="OrderItem">
         <div className="imageWrap">
-          <img className="image" src={thumbnail} alt="temp" />
+          <img className="image" src={thumbnail} alt="내가 선택한 상품" />
         </div>
         <div className="orderInfo">
           <div className="title">{title}</div>

@@ -14,7 +14,7 @@ export class MiniCart extends Component {
     this.orderData();
   }
 
-  orderData() {
+  orderData = () => {
     fetch('/data/order/orderData.json')
       .then(res => res.json())
       .then(data => {
@@ -23,7 +23,7 @@ export class MiniCart extends Component {
           totalPrice: this.calculateTotal(data),
         });
       });
-  }
+  };
 
   calculateTotal = list => {
     const totalPrice = list
@@ -47,7 +47,7 @@ export class MiniCart extends Component {
         <OrderList orderData={orderData} />
         <div className="orderPrice">
           <span className="text">총 상품금액</span>
-          <span className="totalPrice">{totalPrice}</span>
+          <span className="totalPrice">{totalPrice}원</span>
         </div>
         <div className="orderDeliveryinfo">
           <span>배송비는 주문서에서 확인이 가능합니다.</span>

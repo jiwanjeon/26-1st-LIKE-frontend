@@ -22,7 +22,7 @@ export class Detail extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          detailData: data[0],
+          detailData: data.results,
         });
       });
   }
@@ -30,16 +30,16 @@ export class Detail extends Component {
   render() {
     const { detailData } = this.state;
     const {
+      product_id,
       serial,
       title,
       sub_title,
       price,
-      colors,
       eco_friendly,
-      quantity,
+      size_qan,
       description_title,
       description,
-      images,
+      product_images,
       current_color,
     } = detailData;
 
@@ -49,16 +49,16 @@ export class Detail extends Component {
         <MiniCartModal />
         <div className="Detail">
           <main className="detailInner">
-            <DetailGallery image={images} />
+            <DetailGallery image={product_images} />
             <DetailInfo
+              productId={product_id}
               serial={serial}
               title={title}
               subTitle={sub_title}
               price={price}
-              colors={colors}
               ecoFriendly={eco_friendly}
-              maxQuantity={quantity}
-              descriptionHead={description_title}
+              sizeNameAndQuantity={size_qan}
+              descriptionTitle={description_title}
               description={description}
               shown={current_color}
             />

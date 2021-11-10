@@ -1,0 +1,12 @@
+@import '../../../../styles/variables.scss';
+
+.DetailDescription {
+  line-height: 1.7;
+  font-weight: 300;
+
+  p:nth-child(1) {
+    font-weight: 700;
+  }
+
+  @include sectionDivider();
+}
