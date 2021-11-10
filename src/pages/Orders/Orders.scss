@@ -24,14 +24,37 @@
           background-color: var(--color-black);
           color: var(--color-white);
 
+          .projectEndingCredit {
+            padding-bottom: 50px;
+            font-size: 1.6rem;
+            border-bottom: 1px var(--color-gray-4) solid;
+            line-height: 1.4;
+            text-align: center;
+
+            .wholeTeamShot {
+              width: 800px;
+            }
+
+            .congrates {
+              font-weight: 300;
+            }
+
+            .andThankYou {
+              color: var(--color-gray-6);
+              font-weight: 300;
+            }
+          }
+
           .completeMesseage {
+            display: inline-block;
+            padding-top: 50px;
             font-size: 20px;
             font-weight: 700;
           }
 
           .deliveryMesseage {
-            margin-top: 20px;
             display: inline-block;
+            margin-top: 20px;
             font-weight: 300;
             font-size: 14px;
             line-height: 1.2;
@@ -96,9 +119,10 @@
             padding: 10px 20px 20px 20px;
             line-height: 1.6;
 
-            div {
+            .priceList {
               display: flex;
               justify-content: space-between;
+              align-items: center;
               margin-top: 10px;
 
               .label {

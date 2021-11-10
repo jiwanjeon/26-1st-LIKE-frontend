@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Nav from '../../components/Nav/Nav';
 import ProductCart from './ProductCart/ProductCart';
 import { Config } from '../../config';
 import './Cart.scss';
@@ -12,6 +11,8 @@ export class Cart extends Component {
       checkOutUrl: Config[0].orders,
       cartUrl: Config[0].carts,
       token: Config[1].token,
+      totalPrice: 0,
+      totalItemQuantity: 0,
     };
   }
 
@@ -65,13 +66,27 @@ export class Cart extends Component {
       });
   };
 
+  emptyCartItems = () => {
+    const { cartUrl, token, orderData } = this.state;
+
+    fetch(cartUrl, {
+      method: 'DELETE',
+      headers: { Authorization: token },
+      body: JSON.stringify({
+        order: orderData,
+      }),
+    });
+  };
+
   goToOrders = () => {
-    this.props.history.push('/orders');
+    const { history } = this.props;
+    history.push('/orders');
   };
 
   checkOutCart = () => {
     const { checkOutUrl, orderData, token } = this.state;
 
+    this.emptyCartItems();
     fetch(checkOutUrl, {
       method: 'POST',
       headers: { Authorization: token },
@@ -84,17 +99,17 @@ export class Cart extends Component {
         if (result.message === 'SUCCESS') this.goToOrders();
       });
   };
+
   render() {
     const { orderData, totalItemQuantity, totalPrice } = this.state;
 
     return (
       <div>
-        <Nav />
         <div className="Cart">
           <main className="cartInner">
             <h2 className="cartTitle">장바구니</h2>
             <div className="cartNumber">
-              <span>{totalItemQuantity ? totalItemQuantity : 0}개 상품</span>
+              <span>{totalItemQuantity}개 상품</span>
             </div>
             <div className="cartContainer">
               <div className="info">
@@ -115,29 +130,25 @@ export class Cart extends Component {
                     <div className="title">주문예정금액</div>
                     <div className="productInBox">
                       <div className="priceInfo">
-                        <div className="itemPrice">
+                        <div className="itemPrice pricing">
                           <span className="label">상품금액</span>
-                          <span className="price">
-                            {totalPrice ? totalPrice : 0} 원
-                          </span>
+                          <span className="price">{totalPrice} 원</span>
                         </div>
-                        <div className="deliveryPrice">
+                        <div className="deliveryPrice pricing">
                           <span className="label">예상 배송비</span>
                           <span className="price">0 원</span>
                         </div>
-                        <div className="salePrice">
+                        <div className="salePrice pricing">
                           <span className="label">상품 할인 금액</span>
                           <span className="price">0 원</span>
                         </div>
-                        <div className="salePrice">
+                        <div className="salePrice pricing">
                           <span className="label">주문 할인 금액</span>
                           <span className="price">0 원</span>
                         </div>
-                        <div className="totalPrice">
+                        <div className="totalPrice pricing">
                           <span className="label">총 결제 예정 금액</span>
-                          <span className="price">
-                            {totalPrice ? totalPrice : 0}원
-                          </span>
+                          <span className="price">{totalPrice}원</span>
                         </div>
                         <button
                           onClick={this.checkOutCart}

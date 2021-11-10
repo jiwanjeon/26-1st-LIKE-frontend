@@ -20,7 +20,7 @@ export class Orders extends Component {
   getCartData = () => {
     const { checkOutUrl, token } = this.state;
 
-    fetch('/data/checkout/checkout.json', {
+    fetch(checkOutUrl, {
       headers: { Authorization: token },
     })
       .then(res => res.json())
@@ -41,7 +41,7 @@ export class Orders extends Component {
   };
 
   render() {
-    const { orderData, totalItemQuantity, totalPrice } = this.state;
+    const { orderData, totalPrice } = this.state;
 
     return (
       <div>
@@ -51,6 +51,25 @@ export class Orders extends Component {
             <div className="orderContainer">
               <div className="orderInfos">
                 <div className="messeageBox">
+                  <div className="projectEndingCredit">
+                    <div className="congrates">
+                      ❤️지은, 지완, 유진, 봉철, 연수님 라이키팀 2주 동안 고생
+                      많으셨습니다❤️ <br />
+                    </div>
+                    <div className="andThankYou">
+                      도와주신 여러 친구, 멘토님들께 감사드립니다
+                      <br />
+                      🙇
+                    </div>
+                    <br />
+                    <div className="teamLike">
+                      <img
+                        className="wholeTeamShot"
+                        src="/images/teamLike2021.jpg"
+                        alt="2021년 11월 1일 ~ 12일 위코드 26기 4팀 라이키 | 나이키 클로닝프로젝트"
+                      />
+                    </div>
+                  </div>
                   <span className="completeMesseage">
                     주문이 완료되었습니다! 감사합니다.
                   </span>
@@ -87,29 +106,26 @@ export class Orders extends Component {
               <div className="myOrdersCheckOut">
                 <div className="checkOutList">
                   <h5 className="title">주문내역</h5>
-                  <OrderList
-                    type="orderPage"
-                    orderData={this.state.orderData}
-                  />
+                  <OrderList type="orderPage" orderData={orderData} />
                   <div className="productInBox">
                     <div className="priceInfo">
-                      <div className="itemPrice">
+                      <div className="itemPrice priceList">
                         <span className="label">상품금액</span>
                         <span className="price">{totalPrice} 원</span>
                       </div>
-                      <div className="deliveryPrice">
+                      <div className="deliveryPrice priceList">
                         <span className="label">배송비</span>
                         <span className="price">0 원</span>
                       </div>
-                      <div className="salePrice">
+                      <div className="salePrice priceList">
                         <span className="label">상품 할인 금액</span>
                         <span className="price">0 원</span>
                       </div>
-                      <div className="salePrice">
+                      <div className="salePrice priceList">
                         <span className="label">주문 할인 금액</span>
                         <span className="price">0 원</span>
                       </div>
-                      <div className="totalPrice">
+                      <div className="totalPrice priceList">
                         <span className="label">총 결제 금액</span>
                         <span className="price">{totalPrice}원</span>
                       </div>
