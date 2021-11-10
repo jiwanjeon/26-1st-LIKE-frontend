@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Nav from '../../components/Nav/Nav';
 import ProductCart from './ProductCart/ProductCart';
+import { Config } from '../../config';
 import './Cart.scss';
 
 export class Cart extends Component {
@@ -8,52 +8,72 @@ export class Cart extends Component {
     super(props);
     this.state = {
       orderData: [],
+      checkOutUrl: Config[0].orders,
+      cartUrl: Config[0].carts,
+      token: Config[1].token,
+      totalPrice: 0,
+      totalItemQuantity: 0,
     };
   }
 
   componentDidMount() {
-    this.orderData();
+    this.getCartData();
   }
 
-  orderData = () => {
-    fetch('/data/order/orderData.json')
+  getCartData = () => {
+    const { cartUrl, token } = this.state;
+    fetch(cartUrl, {
+      headers: { Authorization: token },
+    })
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          orderData: data,
-          totalPrice: this.calculateTotal(data),
-          totalItemQuantity: data.length,
-        });
+        if (data.results) {
+          this.setState({
+            orderData: data.results,
+            totalPrice: this.calculateTotal(data.results),
+            totalItemQuantity: data.results.length,
+          });
+        } else {
+          alert('장바구니가 비었습니다!');
+        }
       });
   };
 
   calculateTotal = orders => {
     const totalPrice = orders
-      .map(order => Number(order.price))
+      .map(order => Number(order.price) * Number(order.quantity))
       .reduce((accumulator, price) => accumulator + price);
 
     return totalPrice.toLocaleString('en-US');
   };
 
-  deleteCartItem = (orderId, productName) => {
-    fetch('http://', {
+  deleteCartItem = (orderId, orderItem) => {
+    const { cartUrl, token } = this.state;
+
+    fetch(cartUrl, {
       method: 'DELETE',
+      headers: { Authorization: token },
       body: JSON.stringify({
-        orderId: orderId,
+        cart_id: orderId,
       }),
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'Success')
-          alert(`${productName}를(을) 카트에서 삭제했습니다!`);
+        if (result.message === 'SUCCESS') {
+          alert(`${orderItem}를(을) 카트에서 삭제했습니다!`);
+          this.getCartData();
+        }
       });
   };
 
   checkOutCart = () => {
-    fetch('http://', {
+    const { checkOutUrl, orderData, token } = this.state;
+
+    fetch(checkOutUrl, {
       method: 'POST',
+      headers: { Authorization: token },
       body: JSON.stringify({
-        approve: '임시로',
+        order: orderData,
       }),
     })
       .then(res => res.json())
@@ -68,7 +88,6 @@ export class Cart extends Component {
 
     return (
       <div>
-        <Nav />
         <div className="Cart">
           <main className="cartInner">
             <h2 className="cartTitle">장바구니</h2>

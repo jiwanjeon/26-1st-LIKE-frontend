@@ -1,50 +1,65 @@
 import React, { Component } from 'react';
-import DetailTitles from './DetailTitles/DetailTitles';
-import DetailEcoFriendly from './DetailEcoFriendly/DetailEcoFriendly';
 import SizeAndQuantitySelector from './SizeAndQuantitySelector/SizeAndQuantitySelector';
 import DetailButtons from './DetailButtons/DetailButtons';
-import DetailDescription from './DetailDescription/DetailDescription';
 import DetailAccordions from './DetailAccordions/DetailAccordions';
-import { URL } from '../../../config';
+import MiniCartModal from './MiniCartModal/MiniCartModal';
+import DetailTitles from './DetailInfos/DetailTitles/DetailTitles';
+import DetailEcoFriendly from './DetailInfos/DetailEcoFriendly/DetailEcoFriendly';
+import DetailDescription from './DetailInfos/DetailDescription/DetailDescription';
+import { Config } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSize: '',
-      selectedQuantity: 1,
+      cartUrl: Config[0].carts,
+      token: Config[1].token,
+      sizeName: '',
+      quantity: 1,
+      isMiniCart: false,
     };
   }
 
   selectSize = sizeName => {
     this.setState({
-      selectedSize: sizeName,
+      sizeName: sizeName,
     });
   };
 
   selectQuantity = quantity => {
     this.setState({
-      selectedQuantity: quantity,
+      quantity: quantity,
     });
   };
 
-  submitForms = () => {
+  addToCart = () => {
+    const { cartUrl, token } = this.state;
     const { productId } = this.props;
-    const { selectedSize, selectedQuantity } = this.state;
+    const { sizeName, quantity } = this.state;
 
-    fetch(URL[0].signUp, {
+    if (sizeName === '') {
+      alert('사이즈를 선택해주세요!');
+    }
+
+    fetch(cartUrl, {
       method: 'POST',
+      headers: { Authorization: token },
       body: JSON.stringify({
         product_id: productId,
-        size: selectedSize,
-        quantity: selectedQuantity,
+        size: sizeName,
+        quantity: quantity,
       }),
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'GOOD') this.openMiniCartModal();
+        if (result.message === 'SUCCESS') this.toggleMiniCart();
       });
+  };
+
+  toggleMiniCart = () => {
+    const { isMiniCart } = this.state;
+    this.setState({ isMiniCart: !isMiniCart });
   };
 
   render() {
@@ -54,32 +69,39 @@ export class DetailInfo extends Component {
       subTitle,
       price,
       ecoFriendly,
-      sizeNameAndQuantity,
+      sizeAndQuan,
       descriptionTitle,
       description,
       shown,
     } = this.props;
+    const { isMiniCart } = this.state;
 
     return (
-      <div className="DetailInfo">
-        <div className="detailInfoWrap">
-          <DetailTitles title={title} subTitle={subTitle} price={price} />
-          <DetailEcoFriendly ecoFriendly={ecoFriendly} />
-          <SizeAndQuantitySelector
-            selectSize={this.selectSize}
-            selectQuantity={this.selectQuantity}
-            sizeNameAndQuantity={sizeNameAndQuantity}
-          />
-          <DetailButtons />
-          <DetailDescription
-            descriptionHead={descriptionTitle}
-            description={description}
-            serial={serial}
-            shown={shown}
-          />
-          <DetailAccordions />
+      <>
+        <div className="DetailInfo">
+          <div className="detailInfoWrap">
+            <DetailTitles title={title} subTitle={subTitle} price={price} />
+            <DetailEcoFriendly ecoFriendly={ecoFriendly} />
+            <SizeAndQuantitySelector
+              selectSize={this.selectSize}
+              selectQuantity={this.selectQuantity}
+              sizeAndQuan={sizeAndQuan}
+            />
+            <DetailButtons addToCart={this.addToCart} />
+            <DetailDescription
+              descriptionTitle={descriptionTitle}
+              description={description}
+              serial={serial}
+              shown={shown}
+            />
+            <DetailAccordions />
+          </div>
         </div>
-      </div>
+        <MiniCartModal
+          isMiniCart={isMiniCart}
+          toggleMiniCart={this.toggleMiniCart}
+        />
+      </>
     );
   }
 }

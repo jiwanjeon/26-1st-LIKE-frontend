@@ -13,7 +13,7 @@
     "sub_title": "성인공용 트레이닝화",
     "title": "나이키 프리 메트콘 4 MFS",
     "eco_friendly": false,
-    "size_qan": [
+    "size_quan": [
       {
         "sizeName": "255",
         "quantity": 0
@@ -28,6 +28,18 @@
       },
       {
         "sizeName": "270",
+        "quantity": 0
+      },
+      {
+        "sizeName": "275",
+        "quantity": 10
+      },
+      {
+        "sizeName": "280",
+        "quantity": 20
+      },
+      {
+        "sizeName": "285",
         "quantity": 0
       }
     ],

@@ -13,7 +13,7 @@ export class SizeAndQuantitySelector extends Component {
     };
   }
 
-  pushSizeAndQuantity = quantity => {
+  setSizeAndQuantity = quantity => {
     this.setState({
       maxQuantity: quantity,
     });
@@ -57,12 +57,12 @@ export class SizeAndQuantitySelector extends Component {
 
   decrement = () => {
     const { selectQuantity } = this.props;
-    const { maxQuantity, quantity } = this.state;
+    const { quantity } = this.state;
 
-    if (quantity < maxQuantity) {
+    if (quantity > 1) {
       this.setState(prevState => {
-        selectQuantity(prevState.quantity + 1);
-        return { quantity: prevState.quantity + 1 };
+        selectQuantity(prevState.quantity - 1);
+        return { quantity: prevState.quantity - 1 };
       });
     }
   };
@@ -85,7 +85,7 @@ export class SizeAndQuantitySelector extends Component {
   };
 
   render() {
-    const { sizeNameAndQuantity } = this.props;
+    const { sizeAndQuan } = this.props;
     const { maxQuantity, selectedSize, quantity } = this.state;
 
     return (
@@ -93,11 +93,11 @@ export class SizeAndQuantitySelector extends Component {
         <div className="SizeAndQuantitySelector">
           <h2>사이즈 선택</h2>
           <div className="sizeList">
-            {sizeNameAndQuantity &&
-              sizeNameAndQuantity.map((list, index) => (
+            {sizeAndQuan &&
+              sizeAndQuan.map((list, index) => (
                 <SizeOption
                   key={index + 1}
-                  setMaxQuantity={this.pushSizeAndQuantity}
+                  setMaxQuantity={this.setSizeAndQuantity}
                   maxQuantity={list.quantity}
                   sizeName={list.sizeName}
                   selectedSize={selectedSize}
