@@ -71,6 +71,7 @@ export class Main extends Component {
 
       history.push('/products' + query);
     }
+    // eslint-disable-next-line react/no-unused-state
     this.setState({ selectedItemSize: url.getAll('size') });
   };
 
