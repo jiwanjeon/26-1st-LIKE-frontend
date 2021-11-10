@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Nav from '../../components/Nav/Nav';
 import ProductCart from './ProductCart/ProductCart';
 import { Config } from '../../config';
 import './Cart.scss';
@@ -12,6 +11,8 @@ export class Cart extends Component {
       checkOutUrl: Config[0].orders,
       cartUrl: Config[0].carts,
       token: Config[1].token,
+      totalPrice: 0,
+      totalItemQuantity: 0,
     };
   }
 
@@ -87,12 +88,11 @@ export class Cart extends Component {
 
     return (
       <div>
-        <Nav />
         <div className="Cart">
           <main className="cartInner">
             <h2 className="cartTitle">장바구니</h2>
             <div className="cartNumber">
-              <span>{totalItemQuantity ? totalItemQuantity : 0}개 상품</span>
+              <span>{totalItemQuantity}개 상품</span>
             </div>
             <div className="cartContainer">
               <div className="info">
@@ -115,9 +115,7 @@ export class Cart extends Component {
                       <div className="priceInfo">
                         <div className="itemPrice">
                           <span className="label">상품금액</span>
-                          <span className="price">
-                            {totalPrice ? totalPrice : 0} 원
-                          </span>
+                          <span className="price">{totalPrice} 원</span>
                         </div>
                         <div className="deliveryPrice">
                           <span className="label">예상 배송비</span>
@@ -133,9 +131,7 @@ export class Cart extends Component {
                         </div>
                         <div className="totalPrice">
                           <span className="label">총 결제 예정 금액</span>
-                          <span className="price">
-                            {totalPrice ? totalPrice : 0}원
-                          </span>
+                          <span className="price">{totalPrice}원</span>
                         </div>
                         <button
                           onClick={this.checkOutCart}
