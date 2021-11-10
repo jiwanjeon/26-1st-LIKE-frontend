@@ -65,6 +65,10 @@ export class Cart extends Component {
       });
   };
 
+  goToOrders = () => {
+    this.props.history.push('/orders');
+  };
+
   checkOutCart = () => {
     const { checkOutUrl, orderData, token } = this.state;
 
@@ -77,11 +81,9 @@ export class Cart extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.message === 'Success')
-          alert('라이키 팀 2주동안 여러분 고생하셨어요~~~~(^ㅇ^)/');
+        if (result.message === 'SUCCESS') this.goToOrders();
       });
   };
-
   render() {
     const { orderData, totalItemQuantity, totalPrice } = this.state;
 

@@ -9,6 +9,7 @@ export class MiniCart extends Component {
     super(props);
     this.state = {
       orderData: [],
+      totalPrice: 0,
     };
   }
 
