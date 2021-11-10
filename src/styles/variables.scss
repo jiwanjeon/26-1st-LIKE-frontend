@@ -21,3 +21,14 @@
   display: flex;
   align-items: center;
 }
+
+@mixin sectionDivider {
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    border-bottom: 1px solid #ddd;
+  }
+}
