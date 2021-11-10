@@ -1,13 +1,12 @@
-section {
+.Login {
+  width: 700px;
+  height: 900px;
+  margin: 2rem auto;
+  padding: 5rem 0;
+  border: 1px solid rgb(206, 206, 206);
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-.Login {
-  width: 700px;
-  margin: 10rem auto;
-  padding: 5rem 0;
-  border: 1px solid rgb(206, 206, 206);
 
   .loginTitle {
     font-size: 2.5rem;
@@ -18,18 +17,16 @@ section {
   .Logo {
     width: 300px;
     height: 50px;
-    margin: 3rem auto;
+    margin: 1rem auto;
   }
 
-  /* input */
   .inputContainer {
     width: 500px;
-    margin: 3rem auto;
 
     .inputWrap input {
       width: 100%;
       font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       padding: 20px 12px;
       border: 1px solid rgb(206, 206, 206);
       background-color: white;
@@ -46,7 +43,6 @@ section {
       }
     }
 
-    // 기본 체크박스 없애기
     .checkboxWrap input[type='checkbox'] {
       position: absolute;
       width: 1px;
@@ -56,7 +52,6 @@ section {
       border: 0;
     }
 
-    //원하는 디자인 체크박스 만들기
     .checkboxWrap input[type='checkbox'] + label:before {
       content: ' ';
       display: inline-block;
@@ -77,16 +72,17 @@ section {
       border-color: black;
     }
   }
+
   .inputBox {
     color: rgb(206, 206, 206);
     display: flex;
     justify-content: space-between;
   }
 
-  button {
+  .loginButton {
     width: 500px;
     padding: 16px 12px;
-    margin: 2.5rem auto;
+    margin: 6rem auto;
     font-size: 22px;
     color: white;
     font-weight: bolder;
@@ -94,21 +90,30 @@ section {
     border: none;
     cursor: pointer;
   }
+
   button:hover {
-    opacity: 0.2;
+    opacity: 0.5;
   }
 }
 
 .last {
+  height: 80px;
   font-size: 20px;
-  margin-top: 8rem;
 
   p {
     color: rgb(206, 206, 206);
-  }
 
-  p a {
-    color: black;
-    font-weight: bolder;
+    a {
+      color: black;
+      font-weight: bolder;
+    }
   }
+}
+.checkingEmail {
+  margin-bottom: 30px;
+  color: red;
+}
+.checkingPwd {
+  margin-bottom: 30px;
+  color: red;
 }
