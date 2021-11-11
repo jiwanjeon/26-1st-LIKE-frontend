@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './PreHeader.scss';
 import Login from '../../Login/Login';
+import LoginModal from '../../Login/LoginModal';
 import { Link } from 'react-router-dom';
 //목적어를 찾아주세요
 export class PreHeader extends Component {
@@ -15,11 +16,8 @@ export class PreHeader extends Component {
     this.setState({
       modal: !this.state.modal,
     });
-
-    //뭔가를 해서 모달이 보이게 해야합니다.
-    //보이게하는 상태로 만들어 주세요.
   };
-  closeingLoginModal = () => {
+  closeLoginModal = () => {
     this.setState({
       modal: false,
     });
@@ -35,14 +33,18 @@ export class PreHeader extends Component {
           </li>
           <li onClick={this.openLoginModal}>로그인</li>
         </ul>
-        {this.state.modal && (
+        <LoginModal
+          isModal={this.state.modal}
+          closeLoginModal={this.closeLoginModal}
+        />
+        {/* {this.state.modal && (
           <div className="modalBackground">
             <div className="loginWrapper">
               <button onClick={this.closeingLoginModal}>x</button>
               <Login />
             </div>
           </div>
-        )}
+        )} */}
       </div>
     );
   }

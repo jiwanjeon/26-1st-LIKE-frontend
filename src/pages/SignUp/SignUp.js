@@ -7,34 +7,15 @@ export class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
-      confirmPw: '',
+      confrimPassword: '',
       name: '',
-      phone_number: '',
-      option1: false,
-      option2: false,
-      checkmail: false,
-      checkpw: false,
-      samepw: false,
-      checkname: false,
-      checkPhone: false,
+      phoneNumber: '',
+      termsCondi: false,
+      agreedInfo: false,
     };
   }
 
-  checkmail = e => {
-    const emailRegex = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-_]+$/;
-    this.setState({
-      checkmail: emailRegex.test(e.target.value),
-    });
-  };
-
-  checkingpassword = e => {
-    const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
-    this.setState({
-      checkpw: pwdRegex.test(e.target.value),
-    });
-  };
-
-  handleIdInput = e => {
+  handleEmailInput = e => {
     const { value } = e.target;
     this.setState({
       email: value,
@@ -48,25 +29,12 @@ export class SignUp extends Component {
     });
   };
 
-  confirmPw = () => {
-    let timer;
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      if (this.state.password === this.state.passwordCheck) {
-        this.setState({ isMatchPassword: true });
-      } else {
-        this.setState({ isMatchPassword: false });
-      }
-    }, 500);
+  handleConfirmPwInput = e => {
+    const { value } = e.target;
+    this.setState({
+      confrimPassword: value,
+    });
   };
-  // handleConfirmPwInput = e => {
-  //   const { value } = e.target;
-  //   this.setState({
-  //     confirmPw: value,
-  //   });
-  // };
 
   handleNameInput = e => {
     const { value } = e.target;
@@ -78,34 +46,54 @@ export class SignUp extends Component {
   handlePhoneInput = e => {
     const { value } = e.target;
     this.setState({
-      phone_number: value,
+      phoneNumber: value,
     });
   };
 
-  isFormValid = () => {
-    const { email, password } = this.state;
-    const isIdValid = email.indexOf('@') !== -1;
-    const isPwValid = password.length >= 8 && password.length <= 16;
-
-    return isIdValid && isPwValid;
+  toggleTermsCondi = () => {
+    this.setState({
+      termsCondi: !this.state.termsCondi,
+    });
   };
+
+  toggleAgreed = () => {
+    this.setState({
+      agreedInfo: !this.state.agreedInfo,
+    });
+  };
+
   goToMain = () => {
     const { history } = this.props;
-    history.push('./Main');
+    history.push('./products');
     // fetch('http://10.58.7.7:8000/users/signup', {
     //   method: 'POST',
     //   body: JSON.stringify({
     //     email: this.state.email,
     //     password: this.state.password,
     //     name: this.state.name,
-    //     phone_number: this.state.phone_number,
+    //     phone_number: this.state.phoneNumber,
     //   }),
     // })
     //   .then(res => res.json())
     //   .then(res => console.log('결과: ', res));
   };
+
   render() {
-    const { email, password, confirmPw, name, phone_number } = this.state;
+    const { email, password, confrimPassword, name, phoneNumber } = this.state;
+    const isEmailValid = this.state.email.includes('@' && '.');
+    const isPasswordValid = this.state.password.length > 7;
+    const isPasswordConfirmed =
+      this.state.password === this.state.confrimPassword;
+    const isNameValid = this.state.name !== '';
+    const isPhoneValid = this.state.phoneNumber.length === 11;
+    const isSubmitActivated =
+      isEmailValid &&
+      isPasswordValid &&
+      isNameValid &&
+      isPhoneValid &&
+      isPasswordConfirmed &&
+      this.state.termsCondi &&
+      this.state.agreedInfo;
     return (
       <section className="signUp">
         <div className="head">
@@ -120,14 +108,13 @@ export class SignUp extends Component {
               placeholder="사용하실 ID를 입력해주세요. (수신 가능 E-mail)"
               type="text"
               value={email}
-              onChange={this.handleIdInput}
-              onKeyUp={this.checkmail}
+              onChange={this.handleEmailInput}
             />
-            {this.state.checkmail ? null : (
+            {!isEmailValid ? (
               <div className="checking">
                 <span>필수 입력 항목입니다.</span>
               </div>
-            )}
+            ) : null}
             <input
               className="password"
               placeholder="영문 대 소문+숫자+특수문자 8~16자리(괄호(),<>사용불가>"
@@ -135,9 +122,8 @@ export class SignUp extends Component {
               maxLength="16"
               value={password}
               onChange={this.handlePwInput}
-              onKeyUp={this.checkpw}
             />
-            {this.state.checkpw ? null : (
+            {isPasswordValid ? null : (
               <div className="checking">
                 <span>필수 입력 항목입니다.</span>
               </div>
@@ -148,45 +134,30 @@ export class SignUp extends Component {
                 placeholder="패스워드를 다시 입력해 주세요."
                 type="password"
                 maxLength="16"
-                value={confirmPw}
-                onChange={e => this.repeatPassword(e)}
+                value={confrimPassword}
+                onChange={this.handleConfirmPwInput}
               />
-              {this.state.passwordCheck ? (
-                this.state.isMatchPassword ? (
-                  <span style={{ color: 'blue' }}>비밀번호 확인완료</span>
-                ) : (
-                  <span style={{ color: 'red' }}>
-                    비밀번호가 일치하지 않습니다.
-                  </span>
-                )
+              {!isPasswordConfirmed ? (
+                <span className="checking">비밀번호가 일치하지 않습니다.</span>
               ) : null}
             </div>
+
             <input
               className="name"
               placeholder="이름을 입력해 주세요."
               type="text"
               value={name}
               onChange={this.handleNameInput}
-              onKeyUp={this.checkname}
             />
-            {this.state.checkname ? null : (
-              <div className="checking">
-                <span>한글과 영문만 입력 가능합니다.</span>
-              </div>
-            )}
+
             <input
               className="phone_number"
               placeholder="휴대폰 번호 '-'표 없이 입력해 주세요."
-              type="tel"
-              value={phone_number}
+              type="text"
+              maxLength="11"
+              value={phoneNumber}
               onChange={this.handlePhoneInput}
-              onKeyUp={this.checkPhone}
             />
-            {this.state.checkPhone ? null : (
-              <div className="checking">
-                <span>숫자만 입력 가능합니다.</span>
-              </div>
-            )}
           </div>
           <div className="checkboxWrap">
             <div className="checkboxTitle">
@@ -194,7 +165,7 @@ export class SignUp extends Component {
                 className="option1"
                 type="checkbox"
                 name="terms"
-                onClick={!this.state.option1}
+                onClick={this.toggleTermsCondi}
               />
               약관동의
             </div>
@@ -203,20 +174,14 @@ export class SignUp extends Component {
                 className="option2"
                 type="checkbox"
                 name="condition"
-                onClick={!this.state.option2}
+                onClick={this.toggleAgreed}
               />
               개인정보 수집.이용동의
             </div>
           </div>
           <button
             className="signupBtn"
-            disabled={
-              this.state.email.includes('@' && '.') &&
-              this.state.password.length >= 8 &&
-              this.state.password.length <= 16
-                ? false
-                : true
-            }
+            disabled={!isSubmitActivated}
             type="submit"
             onClick={this.goToMain}
           >
