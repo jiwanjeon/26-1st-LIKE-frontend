@@ -14,23 +14,29 @@ export class Main extends Component {
     };
   }
   componentDidUpdate(prevProps) {
-    console.log('com did up');
     // =======================================
 
     // eslint-disable-next-line react/destructuring-assignment
     const { search, pathname } = this.props.location;
     const { search: prevSearch, pathname: prevPathname } = prevProps.location;
+    console.log('com did up');
+    console.log('search', search);
+    console.log('pathname', pathname);
+    console.log('prevSearch', prevSearch);
+    console.log('prevPathname', prevPathname);
+    console.log('API + pathname', API + pathname);
+    console.log(pathname);
     let mainCategoryNameToNumber = 0;
-    if (search !== prevSearch && pathname !== prevPathname) {
-      if (pathname.split('/')[2] === 'shoes') {
-        mainCategoryNameToNumber += 2;
-        fetch(
-          API +
-            '/products' +
-            '?main_category=' +
-            mainCategoryNameToNumber +
-            search
-        )
+
+    if (!search) {
+      if (
+        (pathname === prevPathname) &
+        !pathname.includes('shoes') &
+        !pathname.includes('clothing') &
+        !pathname.includes('supplies') &
+        !pathname.includes('sports')
+      ) {
+        fetch(API + pathname)
           .then(res => res.json())
           .then(data => {
             console.log(data);
@@ -38,15 +44,8 @@ export class Main extends Component {
               productsInfo: data.results,
             });
           });
-      } else if (pathname.split('/')[2] === 'clothing') {
-        mainCategoryNameToNumber += 3;
-        fetch(
-          API +
-            '/products' +
-            '?main_category=' +
-            mainCategoryNameToNumber +
-            search
-        )
+      } else if ((pathname === prevPathname) & pathname.includes('shoes')) {
+        fetch(API + '/' + pathname.split('/')[1] + '?main_category=2')
           .then(res => res.json())
           .then(data => {
             console.log(data);
@@ -54,15 +53,8 @@ export class Main extends Component {
               productsInfo: data.results,
             });
           });
-      } else if (pathname.split('/')[2] === 'supplies') {
-        mainCategoryNameToNumber += 5;
-        fetch(
-          API +
-            '/products' +
-            '?main_category=' +
-            mainCategoryNameToNumber +
-            search
-        )
+      } else if ((pathname === prevPathname) & pathname.includes('clothing')) {
+        fetch(API + '/' + pathname.split('/')[1] + '?main_category=3')
           .then(res => res.json())
           .then(data => {
             console.log(data);
@@ -70,15 +62,17 @@ export class Main extends Component {
               productsInfo: data.results,
             });
           });
-      } else if (pathname.split('/')[2] === 'sports') {
-        mainCategoryNameToNumber += 4;
-        fetch(
-          API +
-            '/products' +
-            '?main_category=' +
-            mainCategoryNameToNumber +
-            search
-        )
+      } else if ((pathname === prevPathname) & pathname.includes('supplies')) {
+        fetch(API + '/' + pathname.split('/')[1] + '?main_category=4')
+          .then(res => res.json())
+          .then(data => {
+            console.log(data);
+            this.setState({
+              productsInfo: data.results,
+            });
+          });
+      } else if ((pathname === prevPathname) & pathname.includes('sports')) {
+        fetch(API + '/' + pathname.split('/')[1] + '?main_category=5')
           .then(res => res.json())
           .then(data => {
             console.log(data);
@@ -97,52 +91,41 @@ export class Main extends Component {
           });
       }
     }
-
-    // if (search !== prevSearch && pathname !== prevPathname) {
-    // fetch(`${API}${search}`)
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     this.setState({
-    //       productsInfo: data,
-    //     });
-    //   });
-    // }
-
-    // ================================디도스 공격=====================
-    // if (
-    //   search !== prevSearch &&
-    //   pathname !== prevPathname &&
-    //   'localhost:3000/' + pathname === 'localhost:3000/products'
-    // ) {
-    // fetch('http://10.58.6.96:8000/products')
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     this.setState({
-    //       productsInfo: data.results,
-    //     });
-    //   });
-    // ================================디도스 공격=====================
-    // }
-
-    // componentDidUpdate(prevProps) {
-    //   console.log('com did up');
-    //   // eslint-disable-next-line react/destructuring-assignment
-    //   const { search, pathname } = this.props.location;
-    //   const { search: prevSearch, pathname: prevPathname } = prevProps.location;
-
-    //   if (search !== prevSearch && pathname !== prevPathname) {
-    //     fetch(`/data/${this.props.match.params.category || 'MainProducts'}.json`,
-    //       .then(res => res.json())
-    //       .then(data => {
-    //         console.log(data);
-    //         this.setState({
-    //           productsInfo: data,
-    //         });
-    //       });
-    //   }
   }
+
+  // ================================디도스 공격=====================
+  // if (
+  //   search !== prevSearch &&
+  //   pathname !== prevPathname &&
+  //   'localhost:3000/' + pathname === 'localhost:3000/products'
+  // ) {
+  // fetch('http://10.58.6.96:8000/products')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     console.log(data);
+  //     this.setState({
+  //       productsInfo: data.results,
+  //     });
+  //   });
+  // ================================디도스 공격=====================
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   console.log('com did up');
+  //   // eslint-disable-next-line react/destructuring-assignment
+  //   const { search, pathname } = this.props.location;
+  //   const { search: prevSearch, pathname: prevPathname } = prevProps.location;
+
+  //   if (search !== prevSearch && pathname !== prevPathname) {
+  //     fetch(`/data/${this.props.match.params.category || 'MainProducts'}.json`,
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         console.log(data);
+  //         this.setState({
+  //           productsInfo: data,
+  //         });
+  //       });
+  //   }
 
   // componentDidMount() {
   //   fetch(
@@ -430,10 +413,10 @@ export class Main extends Component {
               <div className="Supplies">
                 <Link
                   to={{
-                    pathname: '/products/supply',
+                    pathname: '/products/supplies',
                   }}
                 >
-                  <button onClick={() => this.updateProducts('acc')}>
+                  <button onClick={() => this.updateProducts('supplies')}>
                     <span>용품</span>
                   </button>
                 </Link>
