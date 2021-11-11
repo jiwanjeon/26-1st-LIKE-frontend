@@ -9,16 +9,19 @@ export class Detail extends Component {
     super(props);
     this.state = {
       detailData: [],
+      token: Config[1].token,
     };
   }
 
   componentDidMount() {
-    this.detailData();
+    this.getDetailData();
   }
 
-  detailMockUp() {
-    const detailUrl = Config[0].detail;
-    const token = Config[1].token;
+  getDetailData = () => {
+    const { match } = this.props;
+    const { token } = this.state;
+    const product_id = match.params.id;
+    const detailUrl = `http://10.58.6.96:8000/products/details/${product_id}`;
 
     fetch(detailUrl, {
       headers: { Authorization: token },
@@ -29,24 +32,7 @@ export class Detail extends Component {
           detailData: data.results,
         });
       });
-  }
-
-  detailData() {
-    const { match } = this.props;
-    const product_id = match.params.id;
-    const detailUrl = `http://10.58.6.96:8000/products/details/${product_id}`;
-    const token = Config[1].token;
-
-    fetch('/data/details/detailsData.json', {
-      headers: { Authorization: token },
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          detailData: data.results,
-        });
-      });
-  }
+  };
 
   render() {
     const { detailData } = this.state;
