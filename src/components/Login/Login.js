@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Login.scss';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { Config } from '../../config';
 
 export class Login extends Component {
   constructor() {
@@ -27,27 +28,36 @@ export class Login extends Component {
   };
 
   goToMain = () => {
-    const { history } = this.props;
-    this.props.history.push('/prducts');
-    this.props.closeLoginModal();
-    // fetch('http://10.58.7.7:8000/users/signup', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     email: this.state.email,
-    //     password: this.state.password,
-    //     name: this.state.name,
-    //     phone_number: this.state.phoneNumber,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(res => console.log('결과: ', res));
+    const { history, closeLoginModal } = this.props;
+    const { email, password, name, phoneNumber } = this.state;
+
+    fetch(`${Config[0].API}/users/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        phone_number: phoneNumber,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'SUCCESS') {
+          alert('로그인에 성공하였습니다!');
+          history.push('/products');
+          closeLoginModal();
+        } else {
+          alert('아이디와 비밀번호를 확인해주세요!');
+        }
+      });
   };
 
   render() {
+    const { closeLoginModal } = this.props;
     const { email, password } = this.state;
-    const isEmailValid = this.state.email.includes('@' && '.');
-    const isPasswordValid = this.state.password.length > 7;
-    const isSuubmitActivated = isEmailValid && isPasswordValid;
+    const isEmailValid = email.includes('@' && '.');
+    const isPasswordValid = password.length > 7;
+    const isSubmitActivated = isEmailValid && isPasswordValid;
 
     return (
       <section className="Login">
@@ -64,7 +74,7 @@ export class Login extends Component {
             />
             {!isEmailValid ? (
               <div className="checking">
-                <span className="errorMesseage">필수 입력 항목입니다.</span>
+                <span className="Message">필수 입력 항목입니다.</span>
               </div>
             ) : null}
             <input
@@ -77,7 +87,7 @@ export class Login extends Component {
             />
             {isPasswordValid ? null : (
               <div className="checking">
-                <span className="errorMesseage">필수 입력 항목입니다.</span>
+                <span className="Message">필수 입력 항목입니다.</span>
               </div>
             )}
             <div className="inputBox">
@@ -95,7 +105,7 @@ export class Login extends Component {
             </div>
             <button
               className="loginButton"
-              disabled={!isSuubmitActivated}
+              disabled={!isSubmitActivated}
               type="submit"
               onClick={this.goToMain}
             >
@@ -104,10 +114,13 @@ export class Login extends Component {
           </div>
           <div className="last">
             <p>
-              아직 회원이 아니신가요? <Link to="/SignUp">회원가입</Link>
+              아직 회원이 아니신가요?{' '}
+              <Link onClick={closeLoginModal} to="/SignUp">
+                회원가입
+              </Link>
             </p>
           </div>
-          <button className="closeModal" onClick={this.props.closeLoginModal}>
+          <button className="closeModal" onClick={closeLoginModal}>
             x
           </button>
         </div>

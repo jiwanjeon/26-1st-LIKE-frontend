@@ -13,9 +13,12 @@ export class Products extends Component {
             </div>
             <div className="productInfo">
               <div className="productInfoDisplay">
-                <div className="productStatus">
-                  <span className="test">{productInfo.ecoFriendly}</span>
-                </div>
+                {productInfo.ecoFriendly && (
+                  <div className="productStatus">
+                    <span className="test">{productInfo.ecoFriendly}</span>
+                  </div>
+                )}
+
                 <div className="productName">
                   <span className="test">{productInfo.title}</span>
                 </div>

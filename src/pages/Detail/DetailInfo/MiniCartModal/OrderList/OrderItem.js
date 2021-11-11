@@ -33,7 +33,7 @@ export class OrderItem extends Component {
           <div className="quantity">수량: {quantity}</div>
           <div className="price">{this.formatNumber(price)}원</div>
         </div>
-        {order_number && (
+        {!order_number && (
           <div className="orderDelete">
             <div className="delete">X</div>
           </div>
