@@ -283,7 +283,7 @@ export class Main extends Component {
               </div>
               <div className="Sports">
                 <Link to="/products/sports">
-                  <button>
+                  <button className="btn">
                     <span>스포츠</span>
                   </button>
                 </Link>
