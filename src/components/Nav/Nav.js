@@ -28,6 +28,7 @@ export class Nav extends Component {
       .then(data => {
         this.setState({
           categories: data,
+          //data.results로 받아야하는데 data로 해야지 데이타가 받아짐.
         });
       });
   }

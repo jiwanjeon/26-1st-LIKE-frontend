@@ -36,13 +36,13 @@ const COLOR_LISTS = [
   },
   {
     id: 8,
-    color_name: 'mugwort',
-    colorProps: 'mugwort',
+    color_name: 'khaki',
+    colorProps: 'khaki',
   },
   {
     id: 9,
-    color_name: 'deepBlue',
-    colorProps: 'deepBlue',
+    color_name: 'navy',
+    colorProps: 'navy',
   },
   {
     id: 10,
