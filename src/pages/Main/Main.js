@@ -91,6 +91,16 @@ export class Main extends Component {
           });
       }
     }
+    // if (search) {
+    //   const qs = search;
+    //   const url = new URLSearchParams(qs);
+    //   const sizes = url.getAll('size');
+    //   const colors = url.getAll('color');
+    //   if (search.includes('main_category')) {
+    //     api + ?main_category= + search.split("&")[0].split("?")[1].split("=")[1] +
+    //   } else {
+    //   }
+    // }
   }
 
   // ================================디도스 공격=====================
