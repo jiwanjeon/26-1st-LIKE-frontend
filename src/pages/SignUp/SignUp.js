@@ -64,7 +64,7 @@ export class SignUp extends Component {
 
   goToMain = () => {
     const { history } = this.props;
-    history.push('./products');
+    history.push('/products');
     // fetch('http://10.58.7.7:8000/users/signup', {
     //   method: 'POST',
     //   body: JSON.stringify({

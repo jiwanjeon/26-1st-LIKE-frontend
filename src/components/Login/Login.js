@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Login.scss';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 export class Login extends Component {
   constructor() {
@@ -27,7 +28,8 @@ export class Login extends Component {
 
   goToMain = () => {
     const { history } = this.props;
-    history.push('./prduct');
+    this.props.history.push('/prducts');
+    this.props.closeLoginModal();
     // fetch('http://10.58.7.7:8000/users/signup', {
     //   method: 'POST',
     //   body: JSON.stringify({
@@ -62,7 +64,7 @@ export class Login extends Component {
             />
             {!isEmailValid ? (
               <div className="checking">
-                <span>필수 입력 항목입니다.</span>
+                <span className="errorMesseage">필수 입력 항목입니다.</span>
               </div>
             ) : null}
             <input
@@ -75,7 +77,7 @@ export class Login extends Component {
             />
             {isPasswordValid ? null : (
               <div className="checking">
-                <span>필수 입력 항목입니다.</span>
+                <span className="errorMesseage">필수 입력 항목입니다.</span>
               </div>
             )}
             <div className="inputBox">
@@ -114,4 +116,4 @@ export class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

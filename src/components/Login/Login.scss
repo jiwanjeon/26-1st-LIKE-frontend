@@ -26,13 +26,15 @@
 
   .inputContainer {
     text-align: left;
+
     .inputWrap input {
       width: 100%;
+      margin-top: 10px;
       font-size: 18px;
-      margin-bottom: 10px;
       padding: 10px 12px;
       border: 1px solid rgb(206, 206, 206);
       background-color: white;
+      margin-top: 10px;
 
       &:focus {
         outline: 1px solid black;
@@ -44,6 +46,9 @@
       .password {
         margin-bottom: 10px;
       }
+    }
+    .checking {
+      margin-bottom: 10px;
     }
 
     .checkboxWrap input[type='checkbox'] {
@@ -78,12 +83,13 @@
     color: rgb(206, 206, 206);
     display: flex;
     justify-content: space-between;
+    margin-top: 40px;
   }
 
   .loginButton {
     width: 500px;
     padding: 12px 12px;
-    margin: 3rem auto 2rem auto;
+    margin: 5rem auto 2rem auto;
     font-size: 22px;
     color: white;
     font-weight: bolder;
@@ -99,6 +105,7 @@
   .last {
     height: 60px;
     font-size: 14px;
+    text-align: center;
 
     p {
       color: rgb(206, 206, 206);
@@ -118,6 +125,7 @@
 
   .closeModal {
     position: absolute;
+    top: 10px;
     right: 30px;
     font-size: 28px;
     background-color: white;
