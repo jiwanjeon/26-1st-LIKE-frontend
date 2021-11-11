@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
-
 import { Config } from '../../config';
 import './Detail.scss';
 
@@ -38,7 +37,7 @@ export class Detail extends Component {
     const detailUrl = `http://10.58.6.96:8000/products/details/${product_id}`;
     const token = Config[1].token;
 
-    fetch(detailUrl, {
+    fetch('/data/details/detailsData.json', {
       headers: { Authorization: token },
     })
       .then(res => res.json())
