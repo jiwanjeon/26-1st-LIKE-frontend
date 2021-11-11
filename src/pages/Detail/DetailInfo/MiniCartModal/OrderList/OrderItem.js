@@ -14,7 +14,7 @@ export class OrderItem extends Component {
       size,
       quantity,
       thumbnail_image_url,
-      status,
+      order_number,
     } = this.props;
 
     return (
@@ -33,9 +33,7 @@ export class OrderItem extends Component {
           <div className="quantity">수량: {quantity}</div>
           <div className="price">{this.formatNumber(price)}원</div>
         </div>
-        {status === '주문완료' ? (
-          ''
-        ) : (
+        {order_number && (
           <div className="orderDelete">
             <div className="delete">X</div>
           </div>

@@ -1,8 +1,24 @@
 @import '../../../../styles/variables.scss';
 
 .DetailAccordions {
-  .uk-accordion {
-    padding-bottom: 40px;
+  margin: 40px 0;
+  position: relative;
+
+  .ukAccordion {
     @include sectionDivider();
+    position: relative;
+    margin: 40px 0;
+    padding-bottom: 40px;
+
+    .popTitle {
+      @include flexVerticalCenter();
+      justify-content: space-between;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .toggleArrow {
+      @include flexVerticalCenter();
+    }
   }
 }

@@ -1,0 +1,40 @@
+{
+  "results": [
+    {
+      "total_review": 3,
+      "Avg_rating": 4,
+      "title": "정말 푹신해요",
+      "rating": 3,
+      "name": "유저3",
+      "date": "2021.11.10",
+      "serial": "DH2726-091",
+      "size": "240",
+      "text": "쿠션감이 끝내주는 게 이 제품의 장점입니다.",
+      "image": "https://picsum.photos/300/200"
+    },
+    {
+      "total_review": 3,
+      "Avg_rating": 4,
+      "title": "이 상품 구림",
+      "rating": 4,
+      "name": "유저2",
+      "date": "2021.11.10",
+      "serial": "DH2726-091",
+      "size": "245",
+      "text": "이딴 걸 돈 받고 파냐?",
+      "image": "https://picsum.photos/150/100"
+    },
+    {
+      "total_review": 3,
+      "Avg_rating": 4,
+      "title": "또 샀어요",
+      "rating": 4.5,
+      "name": "유저1",
+      "date": "2021.11.10",
+      "serial": "DH2726-091",
+      "size": "270",
+      "text": "맘에 들어 색상만 변경해서 또 구입했어요.",
+      "image": "https://picsum.photos/280/280"
+    }
+  ]
+}
