@@ -8,7 +8,7 @@ export class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cateoriesUrl: Config[0].categories,
+      categoriesUrl: Config[0].categories,
       token: Config[1].token,
       categories: [],
     };
@@ -19,15 +19,15 @@ export class Nav extends Component {
   }
 
   getCategoriesData() {
-    const { cateoriesUrl, token } = this.state;
+    const { categoriesUrl, token } = this.state;
 
-    fetch(cateoriesUrl, {
+    fetch(categoriesUrl, {
       headers: { Authorization: token },
     })
       .then(res => res.json())
       .then(data => {
         this.setState({
-          categories: data.results,
+          categories: data,
         });
       });
   }

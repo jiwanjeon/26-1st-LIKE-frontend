@@ -23,7 +23,7 @@ export class Detail extends Component {
     const { match } = this.props;
     const { token } = this.state;
     const product_id = match.params.id;
-    const detailUrl = `http://10.58.7.7:8000/products/details/${product_id}`;
+    const detailUrl = `${Config[0].API}/products/details/${product_id}`;
 
     fetch(detailUrl, {
       headers: { Authorization: token },
@@ -40,13 +40,14 @@ export class Detail extends Component {
     const { match } = this.props;
     const { token } = this.state;
     const product_id = match.params.id;
-    const reviewUrl = `http://10.58.7.7:8000/reviews/${product_id}`;
+    const reviewUrl = `${Config[0].API}/reviews/${product_id}`;
 
     fetch(reviewUrl, {
       headers: { Authorization: token },
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         this.setState({
           reviewsData: data.result,
         });

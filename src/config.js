@@ -8,9 +8,10 @@ export const Config = [
     accordianReview: `/data/review/accordianReview.json`,
     cartsMockUp: '/data/order/orderData.json',
     temp2: '/data/detail/detailData.json',
+    API: 'http://10.58.6.96:8000',
   },
   {
     token:
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.J0l-TH8nXh5mRWi4cwL455d8VMTWMMN3_B1csMmsyAc',
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.jugJgM3JP9XFInnwQJbQt02wCRW_aUnWnv5HWNC0X_g',
   },
 ];
