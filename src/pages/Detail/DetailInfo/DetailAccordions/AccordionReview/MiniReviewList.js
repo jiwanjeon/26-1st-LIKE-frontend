@@ -5,6 +5,7 @@ import './MiniReviewList.scss';
 export class MiniReviewList extends Component {
   render() {
     const { reviewsData } = this.props;
+
     return (
       <ul className="MiniReviewList">
         {reviewsData.map((review, index) => (
