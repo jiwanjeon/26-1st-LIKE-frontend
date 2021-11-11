@@ -13,175 +13,46 @@ export class Main extends Component {
       selectedItemColor: [],
     };
   }
-  componentDidUpdate(prevProps) {
-    // =======================================
 
+  componentDidMount() {
+    this.getProducts();
+  }
+
+  componentDidUpdate(prevProps) {
     // eslint-disable-next-line react/destructuring-assignment
     const { search, pathname } = this.props.location;
     const { search: prevSearch, pathname: prevPathname } = prevProps.location;
-    console.log('com did up');
-    console.log('search', search);
-    console.log('pathname', pathname);
-    console.log('prevSearch', prevSearch);
-    console.log('prevPathname', prevPathname);
-    console.log('API + pathname', API + pathname);
-    console.log(pathname);
-    let mainCategoryNameToNumber = 0;
 
-    if (!search) {
-      if (
-        (pathname === prevPathname) &
-        !pathname.includes('shoes') &
-        !pathname.includes('clothing') &
-        !pathname.includes('supplies') &
-        !pathname.includes('sports')
-      ) {
-        fetch(API + pathname)
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            this.setState({
-              productsInfo: data.results,
-            });
-          });
-      } else if ((pathname === prevPathname) & pathname.includes('shoes')) {
-        fetch(API + '/' + pathname.split('/')[1] + '?main_category=2')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            this.setState({
-              productsInfo: data.results,
-            });
-          });
-      } else if ((pathname === prevPathname) & pathname.includes('clothing')) {
-        fetch(API + '/' + pathname.split('/')[1] + '?main_category=3')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            this.setState({
-              productsInfo: data.results,
-            });
-          });
-      } else if ((pathname === prevPathname) & pathname.includes('supplies')) {
-        fetch(API + '/' + pathname.split('/')[1] + '?main_category=4')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            this.setState({
-              productsInfo: data.results,
-            });
-          });
-      } else if ((pathname === prevPathname) & pathname.includes('sports')) {
-        fetch(API + '/' + pathname.split('/')[1] + '?main_category=5')
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            this.setState({
-              productsInfo: data.results,
-            });
-          });
-      } else {
-        fetch(API + pathname)
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-            this.setState({
-              productsInfo: data.results,
-            });
-          });
-      }
+    if (pathname !== prevPathname || search !== prevSearch) {
+      this.getProducts();
     }
-    // if (search) {
-    //   const qs = search;
-    //   const url = new URLSearchParams(qs);
-    //   const sizes = url.getAll('size');
-    //   const colors = url.getAll('color');
-    //   if (search.includes('main_category')) {
-    //     api + ?main_category= + search.split("&")[0].split("?")[1].split("=")[1] +
-    //   } else {
-    //   }
-    // }
   }
 
-  // ================================디도스 공격=====================
-  // if (
-  //   search !== prevSearch &&
-  //   pathname !== prevPathname &&
-  //   'localhost:3000/' + pathname === 'localhost:3000/products'
-  // ) {
-  // fetch('http://10.58.6.96:8000/products')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     console.log(data);
-  //     this.setState({
-  //       productsInfo: data.results,
-  //     });
-  //   });
-  // ================================디도스 공격=====================
-  // }
+  getProducts = () => {
+    const { match, location } = this.props;
+    const { category } = match.params;
+    const { search } = location;
 
-  // componentDidUpdate(prevProps) {
-  //   console.log('com did up');
-  //   // eslint-disable-next-line react/destructuring-assignment
-  //   const { search, pathname } = this.props.location;
-  //   const { search: prevSearch, pathname: prevPathname } = prevProps.location;
+    const changeNumber = {
+      shoes: '2',
+      clothing: '3',
+      sports: '4',
+      supplies: '5',
+    };
 
-  //   if (search !== prevSearch && pathname !== prevPathname) {
-  //     fetch(`/data/${this.props.match.params.category || 'MainProducts'}.json`,
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         console.log(data);
-  //         this.setState({
-  //           productsInfo: data,
-  //         });
-  //       });
-  //   }
+    const categoryPath = category
+      ? '?main_category=' + changeNumber[category]
+      : '';
+    const queryString = search || '';
 
-  // componentDidMount() {
-  //   fetch(
-  //     `/data/${this.props.match.params.category || 'MainProducts'}.json`,
-  //     {}
-  //   )
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       this.setState({
-  //         productsInfo: data,
-  //       });
-  //     });
-  // }
-
-  componentDidMount() {
-    fetch(API + this.props.location.pathname)
+    fetch(API + '/products' + categoryPath + queryString)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({
           productsInfo: data.results,
         });
       });
-    // console.log('메롱', API);
-  }
-
-  updateProducts = name => {
-    fetch(`/data/${name}.json`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          productsInfo: data,
-        });
-        console.log(data);
-      });
   };
-
-  // updateProducts = name => {
-  //   fetch(`/data/${name}.json`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       this.setState({
-  //         productsInfo: data,
-  //       });
-  //     });
-  // };
 
   updateSize = e => {
     const { history, location } = this.props;
@@ -199,6 +70,7 @@ export class Main extends Component {
     }
 
     applyQueryStringToURL();
+
     function filterSizeExist() {
       const sizes = url.getAll('size');
       const isCertainSizeExist = sizes.includes(name);
@@ -255,12 +127,11 @@ export class Main extends Component {
   };
 
   render() {
-    // console.log(API);
-    // console.log(this.props.location.pathname);
-    // console.log('cccccc', `${API}${this.props.location.pathname}`);
+    // console.log(this.props);
+    // console.log('match.params.category:', this.props.match.params.category);
     const { productsInfo, selectedItemColor } = this.state;
 
-    console.log('1232131231231231', productsInfo);
+    // console.log('1232131231231231', productsInfo);
 
     return (
       <div className="MainWrapper">
@@ -386,58 +257,36 @@ export class Main extends Component {
           <main className="contentsBody">
             <div className="contentsLink">
               <div className="viewAll">
-                <Link
-                  to={{
-                    pathname: '/products',
-                  }}
-                >
-                  <button onClick={() => this.updateProducts('MainProducts')}>
-                    {/* <button onClick={this.updateProducts} value="acc"> 
-                    and then using e.currentTarget.value same as top one. */}
+                <Link to="/products">
+                  <button>
                     <span>전체 보기</span>
                   </button>
                 </Link>
               </div>
               <div className="Shoes">
-                <Link
-                  to={{
-                    pathname: '/products/shoes',
-                  }}
-                >
-                  <button onClick={() => this.updateProducts('shoes')}>
+                <Link to="/products/shoes">
+                  <button>
                     <span>신발</span>
                   </button>
                 </Link>
               </div>
               <div className="Clothes">
-                <Link
-                  to={{
-                    pathname: '/products/clothing',
-                  }}
-                >
-                  <button onClick={() => this.updateProducts('clothing')}>
+                <Link to="/products/clothing">
+                  <button>
                     <span>옷</span>
                   </button>
                 </Link>
               </div>
               <div className="Supplies">
-                <Link
-                  to={{
-                    pathname: '/products/supplies',
-                  }}
-                >
-                  <button onClick={() => this.updateProducts('supplies')}>
+                <Link to="/products/supplies">
+                  <button>
                     <span>용품</span>
                   </button>
                 </Link>
               </div>
               <div className="Sports">
-                <Link
-                  to={{
-                    pathname: '/products/sports',
-                  }}
-                >
-                  <button onClick={() => this.updateProducts('sports')}>
+                <Link to="/products/sports">
+                  <button>
                     <span>스포츠</span>
                   </button>
                 </Link>
@@ -447,7 +296,6 @@ export class Main extends Component {
             <article className="productsMapping">
               {productsInfo &&
                 productsInfo.map(product => {
-                  console.log('123123123123123123123', product);
                   return <Products key={product.id} productInfo={product} />;
                 })}
             </article>
