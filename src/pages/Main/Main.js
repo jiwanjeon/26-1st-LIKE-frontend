@@ -127,11 +127,7 @@ export class Main extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    // console.log('match.params.category:', this.props.match.params.category);
     const { productsInfo, selectedItemColor } = this.state;
-
-    // console.log('1232131231231231', productsInfo);
 
     return (
       <div className="MainWrapper">
