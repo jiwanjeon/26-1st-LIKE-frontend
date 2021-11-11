@@ -73,9 +73,9 @@ export class DetailInfo extends Component {
       descriptionTitle,
       description,
       shown,
+      reviewsData,
     } = this.props;
     const { isMiniCart } = this.state;
-
     return (
       <>
         <div className="DetailInfo">
@@ -94,7 +94,7 @@ export class DetailInfo extends Component {
               serial={serial}
               shown={shown}
             />
-            <DetailAccordions />
+            <DetailAccordions reviewsData={reviewsData} />
           </div>
         </div>
         <MiniCartModal

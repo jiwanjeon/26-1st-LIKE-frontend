@@ -8,14 +8,11 @@ import Cart from './pages/Cart/Cart';
 import Orders from './pages/Orders/Orders';
 import Filter from './pages/Main/Filter';
 import Nav from './components/Nav/Nav';
-import createHistory from 'history/createBrowserHistory';
-
-const history = createHistory();
 
 export class Routes extends Component {
   render() {
     return (
-      <Router history={history}>
+      <Router>
         <Nav />
         <Switch>
           <Route exact path="/signup" component={SignUp} />

@@ -11,6 +11,6 @@ export const Config = [
   },
   {
     token:
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.AQEOvUX-GQ0_TIr-7dzZ2Ld7fZ3P-JmeU8s_ko27mN8',
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NX0.J0l-TH8nXh5mRWi4cwL455d8VMTWMMN3_B1csMmsyAc',
   },
 ];

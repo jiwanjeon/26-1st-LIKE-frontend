@@ -1,48 +1,15 @@
 import React, { Component } from 'react';
 import ReviewStarBar from './AccordionReview/ReviewStarBar';
 import AccordionReview from './AccordionReview/AccordionReview';
-import { Config } from '../../../../config';
 import './DetailAccordions.scss';
 
 export class DetailAccordions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewsData: [],
       isReview: false,
-      reviewScore: 0,
-      reviewUrl: Config[0].accordianReview,
-      token: Config[1].token,
     };
   }
-
-  componentDidMount() {
-    this.getReviewData();
-  }
-
-  getReviewData = () => {
-    const { reviewUrl, token } = this.state;
-
-    fetch(reviewUrl, {
-      headers: { Authorization: token },
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          reviewsData: data.results,
-          reviewScore: this.calculateScore(data.results),
-        });
-      });
-  };
-
-  calculateScore = reviews => {
-    const averageScore =
-      reviews
-        .map(review => Number(review.rating))
-        .reduce((accumulator, score) => accumulator + score) / reviews.length;
-
-    return averageScore.toFixed(1);
-  };
 
   toggleAccordion = () => {
     const { isReview } = this.state;
@@ -52,7 +19,8 @@ export class DetailAccordions extends Component {
   };
 
   render() {
-    const { isReview, reviewsData, reviewScore } = this.state;
+    const { isReview } = this.state;
+    const { reviewsData } = this.props;
 
     return (
       <div className="DetailAccordions">
@@ -63,16 +31,16 @@ export class DetailAccordions extends Component {
         </div>
         <div className="ukAccordion">
           <div className="popTitle">
-            <h2>리뷰(71)</h2>
+            <h2>리뷰({reviewsData.total_number_of_reviews})</h2>
             <div className="toggleArrow">
-              <ReviewStarBar score={reviewScore} />
+              <ReviewStarBar score={reviewsData.average_rating} />
               <span onClick={this.toggleAccordion}>{`<`}</span>
             </div>
           </div>
           <AccordionReview
             isReview={isReview}
-            reviewScore={reviewScore}
-            reviewsData={reviewsData}
+            reviewScore={reviewsData.average_rating}
+            reviewsData={reviewsData.reviews}
           />
         </div>
         <div className="ukAccordion">

@@ -8,13 +8,14 @@ export class MiniReviewList extends Component {
 
     return (
       <ul className="MiniReviewList">
-        {reviewsData.map((review, index) => (
-          <MiniReviewItem
-            key={index + 1}
-            title={review.title}
-            reviewData={review}
-          />
-        ))}
+        {reviewsData &&
+          reviewsData.map((review, index) => (
+            <MiniReviewItem
+              key={index + 1}
+              title={review.title}
+              reviewData={review}
+            />
+          ))}
       </ul>
     );
   }

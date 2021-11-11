@@ -9,19 +9,21 @@ export class Detail extends Component {
     super(props);
     this.state = {
       detailData: [],
+      reviewsData: [],
       token: Config[1].token,
     };
   }
 
   componentDidMount() {
     this.getDetailData();
+    this.getReviewData();
   }
 
   getDetailData = () => {
     const { match } = this.props;
     const { token } = this.state;
     const product_id = match.params.id;
-    const detailUrl = `http://10.58.6.96:8000/products/details/${product_id}`;
+    const detailUrl = `http://10.58.7.7:8000/products/details/${product_id}`;
 
     fetch(detailUrl, {
       headers: { Authorization: token },
@@ -34,8 +36,25 @@ export class Detail extends Component {
       });
   };
 
+  getReviewData = () => {
+    const { match } = this.props;
+    const { token } = this.state;
+    const product_id = match.params.id;
+    const reviewUrl = `http://10.58.7.7:8000/reviews/${product_id}`;
+
+    fetch(reviewUrl, {
+      headers: { Authorization: token },
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          reviewsData: data.result,
+        });
+      });
+  };
+
   render() {
-    const { detailData } = this.state;
+    const { detailData, reviewsData } = this.state;
     const {
       product_id,
       serial,
@@ -65,6 +84,7 @@ export class Detail extends Component {
             descriptionTitle={description_title}
             description={description}
             shown={current_color}
+            reviewsData={reviewsData}
           />
         </main>
       </div>
