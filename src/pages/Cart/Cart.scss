@@ -1,0 +1,123 @@
+@import '../../styles/variables.scss';
+
+.Cart {
+  position: relative;
+  top: 120px;
+  padding-bottom: 200px;
+
+  .cartInner {
+    margin-top: 40px;
+
+    .cartTitle {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .cartNumber {
+      margin-top: 15px;
+      color: var(--color-gray-6);
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .cartContainer {
+      margin-top: 30px;
+
+      .info {
+        color: #fb5306;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.4;
+      }
+      .myCart {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 60px;
+        margin-top: 10px;
+
+        .myCartList {
+          .productSelectAll {
+            padding: 20px 0;
+            border-top: 1px solid var(--color-gray-1);
+            border-bottom: 1px solid var(--color-gray-1);
+            font-size: 13px;
+            font-weight: 300;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .myCartCheckOut {
+    .checkoutList {
+      border: 1px solid var(--color-gray-1);
+      font-size: 14px;
+
+      .title {
+        padding: 20px;
+        background-color: var(--color-gray-1);
+        font-size: 16px;
+      }
+      .priceInfo {
+        padding: 10px 20px 20px 20px;
+        line-height: 1.6;
+
+        .pricing {
+          @include flexVerticalCenter();
+          justify-content: space-between;
+          margin-top: 10px;
+
+          .label {
+            font-weight: 300;
+          }
+        }
+
+        .deliveryPrice .price,
+        .salePrice .price,
+        .totalPrice {
+          color: var(--color-orange);
+        }
+
+        .price {
+          font-size: 1.25rem;
+          font-weight: 400;
+        }
+
+        .checkout {
+          width: 100%;
+          margin-top: 20px;
+          padding: 16px 0;
+          background-color: var(--color-orange);
+          color: var(--color-white);
+          border: none;
+          font-size: 14px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .promoList {
+      margin-top: 20px;
+
+      .offerItem {
+        line-height: 1.4;
+      }
+
+      .marketingInfo {
+        font-size: 14px;
+
+        .code {
+          color: var(--color-orange);
+          text-decoration: underline;
+        }
+      }
+
+      .subeMarketingInfo {
+        margin: 3px 10px 0 10px;
+        font-size: 11px;
+      }
+    }
+  }
+}

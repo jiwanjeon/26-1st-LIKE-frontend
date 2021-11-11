@@ -1,0 +1,50 @@
+{
+  "results": {
+    "product_id": 1,
+    "price": "139000.00",
+    "product_images": [
+      "https://picsum.photos/300/300",
+      "https://picsum.photos/150/150",
+      "https://picsum.photos/250/250",
+      "https://picsum.photos/350/350",
+      "https://picsum.photos/200/200",
+      "https://picsum.photos/100/100"
+    ],
+    "sub_title": "성인공용 트레이닝화",
+    "title": "나이키 프리 메트콘 4 MFS",
+    "eco_friendly": false,
+    "size_quan": [
+      {
+        "sizeName": "255",
+        "quantity": 0
+      },
+      {
+        "sizeName": "260",
+        "quantity": 10
+      },
+      {
+        "sizeName": "265",
+        "quantity": 20
+      },
+      {
+        "sizeName": "270",
+        "quantity": 0
+      },
+      {
+        "sizeName": "275",
+        "quantity": 10
+      },
+      {
+        "sizeName": "280",
+        "quantity": 20
+      },
+      {
+        "sizeName": "285",
+        "quantity": 0
+      }
+    ],
+    "description_title": "유연성과 안정성을 더한 퍼포먼스.",
+    "description": "나이키 프리 메트콘 4로 트레이닝 프로그램의 효과를 최대한 이끌어보세요. 한층 새로워진 '체인 링크' 메쉬 소재는 민첩성 훈련을 하며 속도를 높이는 동안에도 시원하고 유연한 착화감을 전해주며",
+    "serial": "DH2726-091"
+  }
+}

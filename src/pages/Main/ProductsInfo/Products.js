@@ -7,7 +7,7 @@ export class Products extends Component {
     // child에서 선택한 값을 parent state에 값을 반영하기 위해서
     //  어떤 props를 parent에서 child로 전달할 수 있을지 생각해보세요!
     return (
-      <Link to={`/products/${productInfo.main_category}/${productInfo.id}`}>
+      <Link to={`/details/${productInfo.product}`}>
         <div className="productsContainer">
           <div className="productLayout">
             <div className="productImage">

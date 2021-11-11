@@ -1,0 +1,28 @@
+@import '../../../../../styles/variables.scss';
+
+.AccordionReview {
+  display: none;
+  height: 0;
+  font-size: 14px;
+  line-height: 1.4;
+
+  &.activate {
+    display: block;
+    height: auto;
+  }
+
+  .starAverage {
+    @include flexVerticalCenter();
+    margin-top: 40px;
+
+    .totalStarPoint {
+      display: inline-block;
+      font-weight: 300;
+      transform: (translateX(-22px));
+    }
+  }
+
+  .writeReview {
+    font-weight: 300;
+  }
+}

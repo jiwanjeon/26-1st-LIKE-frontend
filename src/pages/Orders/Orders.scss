@@ -1,0 +1,161 @@
+@import '../../styles/variables.scss';
+
+.Orders {
+  position: relative;
+  top: 120px;
+  padding-bottom: 200px;
+
+  .ordersInner {
+    margin-top: 40px;
+
+    .ordersTitle {
+      font-size: 24px;
+      text-align: center;
+    }
+    .orderContainer {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 60px;
+      margin-top: 40px;
+
+      .orderInfos {
+        .messeageBox {
+          padding: 50px 20px 50px 20px;
+          background-color: var(--color-black);
+          color: var(--color-white);
+
+          .projectEndingCredit {
+            padding-bottom: 50px;
+            font-size: 1.6rem;
+            border-bottom: 1px var(--color-gray-4) solid;
+            line-height: 1.4;
+            text-align: center;
+
+            .wholeTeamShot {
+              width: 800px;
+            }
+
+            .congrates {
+              font-weight: 300;
+            }
+
+            .andThankYou {
+              color: var(--color-gray-6);
+              font-weight: 300;
+            }
+          }
+
+          .completeMesseage {
+            display: inline-block;
+            padding-top: 50px;
+            font-size: 20px;
+            font-weight: 700;
+          }
+
+          .deliveryMesseage {
+            display: inline-block;
+            margin-top: 20px;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 1.2;
+          }
+        }
+
+        .link {
+          padding: 20px;
+          font-size: 12px;
+          color: var(--color-gray-8);
+        }
+
+        .userInfo {
+          margin-top: 60px;
+          padding: 20px;
+          line-height: 1.5;
+
+          .title {
+            padding-bottom: 10px;
+            border-bottom: 1px var(--color-gray-4) solid;
+            font-size: 18px;
+            font-weight: 700;
+          }
+
+          .info {
+            color: var(--color-black);
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+
+        .deliveryInfo {
+          padding: 20px;
+          line-height: 1.5;
+
+          .title {
+            padding-bottom: 10px;
+            border-bottom: 1px var(--color-gray-4) solid;
+            font-size: 18px;
+            font-weight: 700;
+          }
+
+          .info {
+            color: var(--color-black);
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+      }
+
+      .myOrdersCheckOut {
+        .checkOutList {
+          border: 1px solid var(--color-gray-1);
+          font-size: 14px;
+
+          h5.title {
+            padding: 20px;
+            background-color: var(--color-gray-1);
+            font-size: 16px;
+          }
+
+          .priceInfo {
+            padding: 10px 20px 20px 20px;
+            line-height: 1.6;
+
+            .priceList {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 10px;
+
+              .label {
+                font-weight: 300;
+              }
+            }
+
+            .deliveryPrice .price,
+            .salePrice .price,
+            .totalPrice {
+              color: var(--color-orange);
+            }
+
+            .price {
+              font-size: 1.25rem;
+              font-weight: 400;
+            }
+
+            .checkout {
+              width: 100%;
+              margin-top: 20px;
+              padding: 16px 0;
+              background-color: var(--color-orange);
+              color: var(--color-white);
+              border: none;
+              font-size: 14px;
+              font-weight: 700;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

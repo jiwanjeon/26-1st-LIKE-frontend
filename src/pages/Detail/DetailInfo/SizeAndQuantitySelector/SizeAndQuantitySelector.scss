@@ -1,0 +1,13 @@
+.SizeAndQuantitySelector {
+  position: relative;
+  margin: 40px 0;
+
+  .sizeList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    position: relative;
+    width: 100%;
+    margin: 40px 0;
+  }
+}

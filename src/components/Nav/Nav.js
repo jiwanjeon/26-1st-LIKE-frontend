@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PreHeader from './PreHeader/PreHeader';
 import Header from './Header/Header';
+import { Config } from '../../config';
 import './Nav.scss';
 
 export class Nav extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      categoriesUrl: Config[0].categories,
+      token: Config[1].token,
       categories: [],
     };
   }
@@ -16,7 +19,11 @@ export class Nav extends Component {
   }
 
   getCategoriesData() {
-    fetch('/data/nav/navCategories.json')
+    const { categoriesUrl, token } = this.state;
+
+    fetch(categoriesUrl, {
+      headers: { Authorization: token },
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({

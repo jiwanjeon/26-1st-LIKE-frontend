@@ -1,6 +1,14 @@
 :root {
-  --color-navy-900: #0a0d1c;
+  --color-black: var(--color-navy-900);
   --color-white: #ffffff;
+  --color-gray-1: #e5e5e5;
+  --color-gray-4: #dedfda;
+  --color-gray-6: #666666;
+  --color-gray-8: #888888;
+  --color-gray-9: #999999;
+  --color-navy-900: #0a0d1c;
+  --color-orange: #fb7634;
+  --color-point: var(--color-orange);
 }
 
 @mixin flexCenter {
@@ -12,4 +20,15 @@
 @mixin flexVerticalCenter {
   display: flex;
   align-items: center;
+}
+
+@mixin sectionDivider {
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    border-bottom: 1px solid #ddd;
+  }
 }

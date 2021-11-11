@@ -3,7 +3,7 @@ import './Main.scss';
 import COLOR_LISTS from './colorList';
 import Products from './ProductsInfo/Products';
 import { Link } from 'react-router-dom';
-import { API } from '../../config';
+import { Config } from '../../config';
 
 export class Main extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ export class Main extends Component {
       : '';
     const queryString = search || '';
 
-    fetch(API + '/products' + categoryPath + queryString)
+    fetch(Config[0].API + '/products' + categoryPath + queryString)
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -93,6 +93,7 @@ export class Main extends Component {
 
       history.push('/products' + query);
     }
+    // eslint-disable-next-line react/no-unused-state
     this.setState({ selectedItemSize: url.getAll('size') });
   };
 

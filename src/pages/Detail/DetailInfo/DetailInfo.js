@@ -1,154 +1,107 @@
 import React, { Component } from 'react';
-import ColorItem from './ColorItem';
+import SizeAndQuantitySelector from './SizeAndQuantitySelector/SizeAndQuantitySelector';
+import DetailButtons from './DetailButtons/DetailButtons';
+import DetailAccordions from './DetailAccordions/DetailAccordions';
+import MiniCartModal from './MiniCartModal/MiniCartModal';
+import DetailTitles from './DetailInfos/DetailTitles/DetailTitles';
+import DetailEcoFriendly from './DetailInfos/DetailEcoFriendly/DetailEcoFriendly';
+import DetailDescription from './DetailInfos/DetailDescription/DetailDescription';
+import { Config } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cartUrl: Config[0].carts,
+      token: Config[1].token,
+      sizeName: '',
       quantity: 1,
+      isMiniCart: false,
     };
   }
 
-  handleInput = e => {
-    const numberOnly = /^[0-9\b]+$/;
-    const { value } = e.target;
-
-    if (numberOnly.test(value)) {
-      this.setState({ quantity: Number(value) });
-    }
-    if (!value) {
-      this.setState({ quantity: Number(1) });
-    }
+  selectSize = sizeName => {
+    this.setState({
+      sizeName: sizeName,
+    });
   };
 
-  increment = () => {
-    const { quantity } = this.state;
-    const { maxQuantity } = this.props;
-
-    if (quantity < maxQuantity) {
-      this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
-    }
+  selectQuantity = quantity => {
+    this.setState({
+      quantity: quantity,
+    });
   };
 
-  decrement = () => {
-    const { quantity } = this.state;
+  addToCart = () => {
+    const { cartUrl, token } = this.state;
+    const { productId } = this.props;
+    const { sizeName, quantity } = this.state;
 
-    if (quantity > 1) {
-      this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
+    if (sizeName === '') {
+      alert('사이즈를 선택해주세요!');
     }
+
+    fetch(cartUrl, {
+      method: 'POST',
+      headers: { Authorization: token },
+      body: JSON.stringify({
+        product_id: productId,
+        size: sizeName,
+        quantity: quantity,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        if (result.message === 'SUCCESS') this.toggleMiniCart();
+      });
   };
 
-  formatNumber = number => {
-    return Number(number).toLocaleString('en-US');
+  toggleMiniCart = () => {
+    const { isMiniCart } = this.state;
+    this.setState({ isMiniCart: !isMiniCart });
   };
 
   render() {
-    const { quantity } = this.state;
     const {
       serial,
       title,
       subTitle,
       price,
-      colors,
       ecoFriendly,
-      maxQuantity,
-      descriptionHead,
+      sizeAndQuan,
+      descriptionTitle,
       description,
+      shown,
+      reviewsData,
     } = this.props;
-
+    const { isMiniCart } = this.state;
     return (
-      <div className="DetailInfo">
-        <div className="detailInfoWrap">
-          <div className="preInfo">
-            <span className="subTitle">{subTitle}</span>
-            <span className="price">{`${this.formatNumber(price)}원`}</span>
-          </div>
-          <div>
-            <h1 className="title">{title}</h1>
-          </div>
-          {ecoFriendly ? <div className="ecoFriendly">친환경 소재</div> : null}
-          <div className="colors">
-            <div className="colorList">
-              {colors &&
-                colors.map((colors, index) => (
-                  <ColorItem key={index + 1} color={colors} />
-                ))}
-            </div>
-          </div>
-          <div className="sizes">
-            <h2>사이즈 선택</h2>
-            <div className="sizeList">
-              <span className="input-ratio">250</span>
-              <span className="input-ratio">255</span>
-              <span className="input-ratio">260</span>
-              <span className="input-ratio">265</span>
-              <span className="input-ratio">270</span>
-              <span className="input-ratio">275</span>
-              <span className="input-ratio">280</span>
-              <span className="input-ratio">285</span>
-              <span className="input-ratio">290</span>
-              <span className="input-ratio">295</span>
-              <span className="input-ratio">300</span>
-              <span className="input-ratio">305</span>
-              <span className="input-ratio">310</span>
-            </div>
-          </div>
-          <div className="quantity">
-            <h2>수량</h2>
-            <div className="quantitySelector">
-              <input
-                pattern="[0-9]*"
-                type="text"
-                value={quantity}
-                onChange={this.handleInput}
-              />
-              <button
-                onClick={this.decrement}
-                className={`btn decrement ${quantity === 1 && 'deactivate'}`}
-              >
-                -
-              </button>
-              <button
-                onClick={this.increment}
-                className={`btn increament ${
-                  quantity === maxQuantity && 'deactivate'
-                }`}
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div className="btnGroup">
-            <button className="btn order">바로구매</button>
-            <button className="btn addcart">장바구니</button>
-            <button className="btn wishlist">위시리스트</button>
-          </div>
-          <div className="description">
-            <p>{descriptionHead}</p>
-            <br />
-            <p>{description}</p>
-            <br />
-            현재 컬러 : 트와인/세일/게임 로열/폴른
-            <br />
-            스타일 : {serial}
-            <br />
-            <br />
-          </div>
-          <div className="uk-accordion">
-            <h2>고객안내</h2>
-          </div>
-          <div className="uk-accordion">
-            <h2>리뷰</h2>
-          </div>
-          <div className="uk-accordion">
-            <h2>배송</h2>
-          </div>
-          <div className="uk-accordion">
-            <h2>반품/AS</h2>
+      <>
+        <div className="DetailInfo">
+          <div className="detailInfoWrap">
+            <DetailTitles title={title} subTitle={subTitle} price={price} />
+            <DetailEcoFriendly ecoFriendly={ecoFriendly} />
+            <SizeAndQuantitySelector
+              selectSize={this.selectSize}
+              selectQuantity={this.selectQuantity}
+              sizeAndQuan={sizeAndQuan}
+            />
+            <DetailButtons addToCart={this.addToCart} />
+            <DetailDescription
+              descriptionTitle={descriptionTitle}
+              description={description}
+              serial={serial}
+              shown={shown}
+            />
+            <DetailAccordions reviewsData={reviewsData} />
           </div>
         </div>
-      </div>
+        <MiniCartModal
+          isMiniCart={isMiniCart}
+          toggleMiniCart={this.toggleMiniCart}
+        />
+      </>
     );
   }
 }

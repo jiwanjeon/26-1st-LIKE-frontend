@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
-import Nav from '../../components/Nav/Nav';
+import { Config } from '../../config';
 import './Detail.scss';
 
 export class Detail extends Component {
@@ -9,58 +9,86 @@ export class Detail extends Component {
     super(props);
     this.state = {
       detailData: [],
+      reviewsData: [],
+      token: Config[1].token,
     };
   }
 
   componentDidMount() {
-    this.detailData();
+    this.getDetailData();
+    this.getReviewData();
   }
 
-  detailData() {
-    fetch('/data/detail/detailData.json')
+  getDetailData = () => {
+    const { match } = this.props;
+    const { token } = this.state;
+    const product_id = match.params.id;
+    const detailUrl = `${Config[0].API}/products/details/${product_id}`;
+
+    fetch(detailUrl, {
+      headers: { Authorization: token },
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({
-          detailData: data[0],
+          detailData: data.results,
         });
       });
-  }
+  };
+
+  getReviewData = () => {
+    const { match } = this.props;
+    const { token } = this.state;
+    const product_id = match.params.id;
+    const reviewUrl = `${Config[0].API}/reviews/${product_id}`;
+
+    fetch(reviewUrl, {
+      headers: { Authorization: token },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        this.setState({
+          reviewsData: data.result,
+        });
+      });
+  };
 
   render() {
-    const { detailData } = this.state;
+    const { detailData, reviewsData } = this.state;
     const {
+      product_id,
       serial,
       title,
       sub_title,
       price,
-      colors,
       eco_friendly,
-      quantity,
-      description_head,
+      size_quan,
+      description_title,
       description,
-      images,
+      product_images,
+      current_color,
     } = detailData;
 
     return (
-      <>
-        <Nav toggle={this.toggleLogin} />
-        <div className="Detail">
-          <main className="detailWrap">
-            <DetailGallery image={images} />
-            <DetailInfo
-              serial={serial}
-              title={title}
-              subTitle={sub_title}
-              price={price}
-              colors={colors}
-              ecoFriendly={eco_friendly}
-              maxQuantity={quantity}
-              descriptionHead={description_head}
-              description={description}
-            />
-          </main>
-        </div>
-      </>
+      <div className="Detail">
+        <main className="detailInner">
+          <DetailGallery image={product_images} />
+          <DetailInfo
+            productId={product_id}
+            serial={serial}
+            title={title}
+            subTitle={sub_title}
+            price={price}
+            ecoFriendly={eco_friendly}
+            sizeAndQuan={size_quan}
+            descriptionTitle={description_title}
+            description={description}
+            shown={current_color}
+            reviewsData={reviewsData}
+          />
+        </main>
+      </div>
     );
   }
 }

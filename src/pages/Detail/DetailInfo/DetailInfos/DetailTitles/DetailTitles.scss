@@ -1,0 +1,26 @@
+.DetailTitles {
+  position: relative;
+  margin: 40px 0;
+
+  .preInfo {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    margin: 40px 0 40px 0;
+
+    .subTitle {
+      font-weight: 300;
+    }
+
+    .price {
+      font-weight: 700;
+    }
+  }
+
+  h1.title {
+    width: 279px;
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
