@@ -20,6 +20,20 @@ export class SignUp extends Component {
     };
   }
 
+  checkmail = e => {
+    const emailRegex = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-_]+$/;
+    this.setState({
+      checkmail: emailRegex.test(e.target.value),
+    });
+  };
+
+  checkingpassword = e => {
+    const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
+    this.setState({
+      checkpw: pwdRegex.test(e.target.value),
+    });
+  };
+
   handleIdInput = e => {
     const { value } = e.target;
     this.setState({
@@ -34,12 +48,25 @@ export class SignUp extends Component {
     });
   };
 
-  handleConfirmPwInput = e => {
-    const { value } = e.target;
-    this.setState({
-      confirmPw: value,
-    });
+  confirmPw = () => {
+    let timer;
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      if (this.state.password === this.state.passwordCheck) {
+        this.setState({ isMatchPassword: true });
+      } else {
+        this.setState({ isMatchPassword: false });
+      }
+    }, 500);
   };
+  // handleConfirmPwInput = e => {
+  //   const { value } = e.target;
+  //   this.setState({
+  //     confirmPw: value,
+  //   });
+  // };
 
   handleNameInput = e => {
     const { value } = e.target;
@@ -94,6 +121,7 @@ export class SignUp extends Component {
               type="text"
               value={email}
               onChange={this.handleIdInput}
+              onKeyUp={this.checkmail}
             />
             {this.state.checkmail ? null : (
               <div className="checking">
@@ -107,35 +135,43 @@ export class SignUp extends Component {
               maxLength="16"
               value={password}
               onChange={this.handlePwInput}
+              onKeyUp={this.checkpw}
             />
             {this.state.checkpw ? null : (
               <div className="checking">
                 <span>필수 입력 항목입니다.</span>
               </div>
             )}
-            <input
-              className="confirmPw"
-              placeholder="패스워드를 다시 입력해 주세요."
-              type="password"
-              maxLength="16"
-              value={confirmPw}
-              onChange={this.handleConfirmPwInput}
-            />
-            {this.state.samepw ? null : (
-              <div className="checking">
-                <span>필수 입력 항목입니다.</span>
-              </div>
-            )}
+            <div>
+              <input
+                className="confirmPw"
+                placeholder="패스워드를 다시 입력해 주세요."
+                type="password"
+                maxLength="16"
+                value={confirmPw}
+                onChange={e => this.repeatPassword(e)}
+              />
+              {this.state.passwordCheck ? (
+                this.state.isMatchPassword ? (
+                  <span style={{ color: 'blue' }}>비밀번호 확인완료</span>
+                ) : (
+                  <span style={{ color: 'red' }}>
+                    비밀번호가 일치하지 않습니다.
+                  </span>
+                )
+              ) : null}
+            </div>
             <input
               className="name"
               placeholder="이름을 입력해 주세요."
               type="text"
               value={name}
               onChange={this.handleNameInput}
+              onKeyUp={this.checkname}
             />
             {this.state.checkname ? null : (
               <div className="checking">
-                <span>필수 입력 항목입니다.</span>
+                <span>한글과 영문만 입력 가능합니다.</span>
               </div>
             )}
             <input
@@ -144,10 +180,11 @@ export class SignUp extends Component {
               type="tel"
               value={phone_number}
               onChange={this.handlePhoneInput}
+              onKeyUp={this.checkPhone}
             />
             {this.state.checkPhone ? null : (
               <div className="checking">
-                <span>필수 입력 항목입니다.</span>
+                <span>숫자만 입력 가능합니다.</span>
               </div>
             )}
           </div>
