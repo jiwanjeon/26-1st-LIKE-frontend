@@ -255,35 +255,35 @@ export class Main extends Component {
             <div className="contentsLink">
               <div className="viewAll">
                 <Link to="/products">
-                  <button>
+                  <button className="btn">
                     <span>전체 보기</span>
                   </button>
                 </Link>
               </div>
               <div className="Shoes">
                 <Link to="/products/shoes">
-                  <button>
+                  <button className="btn">
                     <span>신발</span>
                   </button>
                 </Link>
               </div>
               <div className="Clothes">
                 <Link to="/products/clothing">
-                  <button>
+                  <button className="btn">
                     <span>옷</span>
                   </button>
                 </Link>
               </div>
               <div className="Supplies">
                 <Link to="/products/supplies">
-                  <button>
+                  <button className="btn">
                     <span>용품</span>
                   </button>
                 </Link>
               </div>
               <div className="Sports">
                 <Link to="/products/sports">
-                  <button>
+                  <button className="btn">
                     <span>스포츠</span>
                   </button>
                 </Link>

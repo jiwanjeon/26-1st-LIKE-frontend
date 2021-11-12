@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './PreHeader.scss';
-import Login from '../../Login/Login';
 import LoginModal from '../../Login/LoginModal';
 import { Link } from 'react-router-dom';
-//목적어를 찾아주세요
+
 export class PreHeader extends Component {
   constructor() {
     super();
@@ -13,16 +12,22 @@ export class PreHeader extends Component {
   }
 
   openLoginModal = () => {
+    const { modal } = this.state;
+
     this.setState({
-      modal: !this.state.modal,
+      modal: !modal,
     });
   };
+
   closeLoginModal = () => {
     this.setState({
       modal: false,
     });
   };
+
   render() {
+    const { modal } = this.state;
+
     return (
       <div className="PreHeader">
         <ul>
@@ -33,18 +38,7 @@ export class PreHeader extends Component {
           </li>
           <li onClick={this.openLoginModal}>로그인</li>
         </ul>
-        <LoginModal
-          isModal={this.state.modal}
-          closeLoginModal={this.closeLoginModal}
-        />
-        {/* {this.state.modal && (
-          <div className="modalBackground">
-            <div className="loginWrapper">
-              <button onClick={this.closeingLoginModal}>x</button>
-              <Login />
-            </div>
-          </div>
-        )} */}
+        <LoginModal isModal={modal} closeLoginModal={this.closeLoginModal} />
       </div>
     );
   }

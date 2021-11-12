@@ -4,9 +4,11 @@ import './LoginModal.scss';
 
 export class LoginModal extends Component {
   render() {
-    return this.props.isModal ? (
+    const { isModal, closeLoginModal } = this.props;
+
+    return isModal ? (
       <div className="modalBackground">
-        <Login closeLoginModal={this.props.closeLoginModal} />
+        <Login closeLoginModal={closeLoginModal} />
         <div className="overlay" />
       </div>
     ) : null;
