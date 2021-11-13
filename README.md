@@ -1,6 +1,6 @@
 # LIKE Project
 
-[웹사이트](http://wecode26likeproject.s3-website.ap-northeast-2.amazonaws.com/) | [시연영상](https://drive.google.com/file/d/1TyeGsUcogieXJmMcxchkl2-tk5qylNw8/view?usp=sharing)
+[웹 사이트](http://wecode26likeproject.s3-website.ap-northeast-2.amazonaws.com/) | [시연영상](https://drive.google.com/file/d/1TyeGsUcogieXJmMcxchkl2-tk5qylNw8/view?usp=sharing)
 
 ### 팀명 : LIKE - 라이키
 
@@ -17,7 +17,7 @@
 
 ## 1. 개발 기간 및 개발 인원
 
-- 개발 기간 : 2021년 11월 01일 ~ 11월 12일
+- 개발 기간 : 2021년 11월 01일 – 11월 12일
 
 - 개발 인원
   - **Front-end** 3명 : 임연수, 전지완, 신유진 👉️ [Front-end github 링크](https://github.com/wecode-bootcamp-korea/26-1st-LIKE-frontend.git)
@@ -36,15 +36,12 @@
 
 ## 3. 구현 기능
 
-### FRONTEND ❤️
-
 #### 신유진
 
 > 로그인 & 회원가입
 
 - 로그인 모달 구현
 - 로그인과 회원기입 유효성 검사 로직구현
-
 
 &nbsp;
 
@@ -115,7 +112,7 @@
    -
 
 - 임연수
-   - 리엑트에 대한 전반적인 이해를 할 수 있었던는 프로젝트였습니다. 제일 기억에 남는 코드는 상세페이지에 사이즈 주문 수량 체크하는 부분이었어요.
+   - 리엑트에 대한 전반적인 이해를 할 수 있었던는 프로젝트였습니다. 제일 기억에 남는 코드는 상세페이지에 사이즈 주문 수량 체크하는 부분이었어요. 그 기능을 구현하면 리엑트가 선언형이라는 대한 전반적인 이해를 할 수 있었어요.
 
 - 전지완
    - 
