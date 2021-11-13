@@ -34,14 +34,6 @@
 
 &nbsp;
 
-### ER-Diagram
-
-[🔗️ Modeling Link](https://dbdiagram.io/d/617fcaf3d5d522682df3078d)
-
-![나이키 ERD](https://user-images.githubusercontent.com/39111959/141236667-6c277022-a537-420e-8586-bd4fb07be73d.png)
-
-&nbsp;
-
 ## 3. 구현 기능
 
 ### FRONTEND ❤️
