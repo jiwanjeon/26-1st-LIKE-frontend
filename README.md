@@ -23,7 +23,7 @@
   - **Front-end** 3명 : 임연수, 전지완, 신유진 👉️ [Front-end github 링크](https://github.com/wecode-bootcamp-korea/26-1st-LIKE-frontend.git)
   - **Back-end** 2명 : 이지은, 김봉철 👉️ [Back-end github 링크](https://github.com/wecode-bootcamp-korea/26-1st-LIKE-backend.git)
 
-&nbsp;!
+&nbsp;
 
 
 ## 2. 스택
@@ -83,16 +83,19 @@
 
 ## 4. 결과물
 
-### 로그인 & 회원가입
+### 로그인
 
+<img width="1440" alt="Screen Shot 2021-11-13 at 2 50 32 PM" src="https://user-images.githubusercontent.com/22067260/141607594-8cea47d7-89c8-43c8-97e7-e142cb6947d5.png">
+
+### 회원가입
 
 <img width="1440" alt="Screen Shot 2021-11-13 at 1 16 03 PM" src="https://user-images.githubusercontent.com/22067260/141605403-02dbca63-8e94-4f36-a443-402e61daa55c.png">
-
 
 ### 메인 페이지
 
 <img width="1440" alt="Screen Shot 2021-11-13 at 1 10 22 PM" src="https://user-images.githubusercontent.com/22067260/141605212-3e8a7e92-9ed0-4a71-b091-1c91c6ff708e.png">
 
+<img width="1440" alt="Screen Shot 2021-11-13 at 1 14 42 PM" src="https://user-images.githubusercontent.com/22067260/141607599-034a4712-ea15-4e07-aae4-b730b0dfc6a2.png">
 
 ### 상세 페이지
 
