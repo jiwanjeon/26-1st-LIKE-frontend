@@ -1,5 +1,7 @@
 # LIKE Project
 
+[http://wecode26likeproject.s3-website.ap-northeast-2.amazonaws.com/](http://wecode26likeproject.s3-website.ap-northeast-2.amazonaws.com/)
+
 ### 팀명 : LIKE - 라이키
 
 > 나이키 클론 프로젝트.
@@ -21,7 +23,8 @@
   - **Front-end** 3명 : 임연수, 전지완, 신유진 👉️ [Front-end github 링크](https://github.com/wecode-bootcamp-korea/26-1st-LIKE-frontend.git)
   - **Back-end** 2명 : 이지은, 김봉철 👉️ [Back-end github 링크](https://github.com/wecode-bootcamp-korea/26-1st-LIKE-backend.git)
 
-&nbsp;
+&nbsp;!
+
 
 ## 2. 스택
 
@@ -68,7 +71,6 @@
 
 - `GET`, `POST`, `DELETE`로 백엔드와 통신 구현
 
-
 &nbsp;
 
 #### 전지완
@@ -84,24 +86,30 @@
 ### 로그인 & 회원가입
 
 
+<img width="1440" alt="Screen Shot 2021-11-13 at 1 16 03 PM" src="https://user-images.githubusercontent.com/22067260/141605403-02dbca63-8e94-4f36-a443-402e61daa55c.png">
+
 
 ### 메인 페이지
 
+<img width="1440" alt="Screen Shot 2021-11-13 at 1 10 22 PM" src="https://user-images.githubusercontent.com/22067260/141605212-3e8a7e92-9ed0-4a71-b091-1c91c6ff708e.png">
 
 
 ### 상세 페이지
 
-<img width="1440" alt="Screen Shot 2021-11-11 at 8 50 51 PM" src="https://user-images.githubusercontent.com/22067260/141293428-c96186c5-dfdd-4ba9-9dff-9178a7f1da66.png">
-
-![Untitled](https://user-images.githubusercontent.com/22067260/141299675-a3f29be1-da04-4315-a90c-bc318606ffaa.gif)
-
-![Untitled](https://user-images.githubusercontent.com/22067260/141300085-fd910527-6af5-4071-9067-d2a5e92a7438.gif)
+<img width="1440" alt="Screen Shot 2021-11-13 at 2 12 09 PM" src="https://user-images.githubusercontent.com/22067260/141606669-6b040a91-f51f-4913-99f2-cecbeb1a2a38.png">
 
 
 ### 장바구니 및 주문조회
 
+<img width="1440" alt="Screen Shot 2021-11-13 at 2 31 36 PM" src="https://user-images.githubusercontent.com/22067260/141607177-7a4748f3-64c1-4229-a2ad-499d6b9d5896.png">
 
 
+<img width="1440" alt="Screen Shot 2021-11-13 at 2 32 14 PM" src="https://user-images.githubusercontent.com/22067260/141607185-73b62508-a4b5-4baf-8dd6-82cec09a5d3e.png">
+
+
+### 주문조회
+
+<img width="1440" alt="Screen Shot 2021-11-13 at 2 32 39 PM" src="https://user-images.githubusercontent.com/22067260/141607195-163b8458-bfae-41a8-9f60-6c1732d00bb6.png">
 
 
 &nbsp;
