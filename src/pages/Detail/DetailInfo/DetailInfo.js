@@ -17,9 +17,17 @@ export class DetailInfo extends Component {
       token: Config[1].token,
       sizeName: '',
       quantity: 1,
+      maxQuantity: 1,
       isMiniCart: false,
     };
   }
+
+  setSizeAndQuantity = quantity => {
+    this.setState({
+      maxQuantity: quantity,
+    });
+    this.resetQuantity();
+  };
 
   selectSize = sizeName => {
     this.setState({
@@ -27,10 +35,47 @@ export class DetailInfo extends Component {
     });
   };
 
-  selectQuantity = quantity => {
-    this.setState({
-      quantity: quantity,
-    });
+  handleQuantityInput = e => {
+    const numberOnly = /^[0-9\b]+$/;
+    const { value } = e.target;
+    const { maxQuantity } = this.state;
+    const { selectQuantity } = this.props;
+
+    if (numberOnly.test(value)) {
+      this.setState(
+        {
+          quantity: Number(value),
+        },
+        () => {
+          selectQuantity(Number(value));
+        }
+      );
+    }
+
+    if (value === '' || value < maxQuantity || value > maxQuantity) {
+      selectQuantity(Number(1));
+      this.setState({ quantity: Number(1) });
+    }
+  };
+
+  incrementQuantity = () => {
+    const { maxQuantity, quantity } = this.state;
+
+    if (quantity < maxQuantity) {
+      this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
+    }
+  };
+
+  decrementQuantity = () => {
+    const { quantity } = this.state;
+
+    if (quantity > 1) {
+      this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
+    }
+  };
+
+  resetQuantity = () => {
+    this.setState({ quantity: 1 });
   };
 
   addToCart = () => {
@@ -75,7 +120,8 @@ export class DetailInfo extends Component {
       shown,
       reviewsData,
     } = this.props;
-    const { isMiniCart } = this.state;
+    const { isMiniCart, sizeName, quantity, maxQuantity } = this.state;
+
     return (
       <>
         <div className="DetailInfo">
@@ -83,9 +129,16 @@ export class DetailInfo extends Component {
             <DetailTitles title={title} subTitle={subTitle} price={price} />
             <DetailEcoFriendly ecoFriendly={ecoFriendly} />
             <SizeAndQuantitySelector
-              selectSize={this.selectSize}
-              selectQuantity={this.selectQuantity}
               sizeAndQuan={sizeAndQuan}
+              setSizeAndQuantity={this.setSizeAndQuantity}
+              selectSize={this.selectSize}
+              selectedSizeName={sizeName}
+              handleQuantityInput={this.handleQuantityInput}
+              incrementQuantity={this.incrementQuantity}
+              decrementQuantity={this.decrementQuantity}
+              selectQuantity={this.selectQuantity}
+              maxQuantity={maxQuantity}
+              quantity={quantity}
             />
             <DetailButtons addToCart={this.addToCart} />
             <DetailDescription

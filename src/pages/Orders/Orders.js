@@ -50,9 +50,9 @@ export class Orders extends Component {
             <h2 className="ordersTitle">주문완료</h2>
             <div className="orderContainer">
               <div className="orderInfos">
-                <div className="messeageBox">
+                <div className="messageBox">
                   <div className="projectEndingCredit">
-                    <div className="congrates">
+                    <div className="congrats">
                       ❤️지은, 지완, 유진, 봉철, 연수님 라이키팀 2주 동안 고생
                       많으셨습니다❤️ <br />
                     </div>
@@ -70,11 +70,11 @@ export class Orders extends Component {
                       />
                     </div>
                   </div>
-                  <span className="completeMesseage">
+                  <span className="completeMessage">
                     주문이 완료되었습니다! 감사합니다.
                   </span>
                   <br />
-                  <span className="deliveryMesseage">
+                  <span className="deliveryMessage">
                     배송이 시작되면 SMS, 이메일로 배송정보가 안내됩니다.
                     <br />
                     상품이 출고되는 장소가 여러 곳일 경우, 택배 상자가 분리되어

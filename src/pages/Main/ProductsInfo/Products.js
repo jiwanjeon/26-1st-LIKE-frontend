@@ -26,11 +26,15 @@ export class Products extends Component {
                   <span className="test">{productInfo.sub_title}</span>
                 </div>
                 <div className="productColorChoices">
-                  <span className="test">{productInfo.color_kind} 컬러</span>
+                  <span className="test">
+                    {productInfo.color.toUpperCase()}
+                  </span>
                 </div>
               </div>
               <div className="productPrice">
-                <span className="test">{productInfo.price}원</span>
+                <span className="test">
+                  {productInfo.price.toLocaleString('en-US')}원
+                </span>
               </div>
             </div>
           </div>

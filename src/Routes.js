@@ -14,7 +14,11 @@ export class Routes extends Component {
         <Nav />
         <Switch>
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/products/:category?/:id?" component={Main} />
+          <Route
+            exact
+            path={['/', '/products/:category?/:id?']}
+            component={Main}
+          />
           <Route exact path="/details/:id" component={Detail} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/orders" component={Orders} />

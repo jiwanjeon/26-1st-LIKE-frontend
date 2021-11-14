@@ -74,7 +74,7 @@ export class Login extends Component {
             />
             {!isEmailValid ? (
               <div className="checking">
-                <span className="Message">필수 입력 항목입니다.</span>
+                <span className="errorMessage">필수 입력 항목입니다.</span>
               </div>
             ) : null}
             <input
@@ -87,7 +87,7 @@ export class Login extends Component {
             />
             {isPasswordValid ? null : (
               <div className="checking">
-                <span className="Message">필수 입력 항목입니다.</span>
+                <span className="errorMessage">필수 입력 항목입니다.</span>
               </div>
             )}
             <div className="inputBox">

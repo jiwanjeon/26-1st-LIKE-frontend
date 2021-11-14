@@ -19,8 +19,8 @@ export class Main extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // eslint-disable-next-line react/destructuring-assignment
-    const { search, pathname } = this.props.location;
+    const { location } = this.props;
+    const { search, pathname } = location;
     const { search: prevSearch, pathname: prevPathname } = prevProps.location;
 
     if (pathname !== prevPathname || search !== prevSearch) {
@@ -49,7 +49,7 @@ export class Main extends Component {
       .then(res => res.json())
       .then(data => {
         this.setState({
-          productsInfo: data.results,
+          productsInfo: data.results.reverse(),
         });
       });
   };
@@ -93,8 +93,6 @@ export class Main extends Component {
 
       history.push('/products' + query);
     }
-    // eslint-disable-next-line react/no-unused-state
-    this.setState({ selectedItemSize: url.getAll('size') });
   };
 
   updateColor = e => {
@@ -175,7 +173,9 @@ export class Main extends Component {
                           value={color.color_name}
                         />
                       </label>
-                      <span className="productColor">{color.color_name}</span>
+                      <span className="productColor">
+                        {color.color_name.toUpperCase()}
+                      </span>
                     </li>
                   );
                 })}
