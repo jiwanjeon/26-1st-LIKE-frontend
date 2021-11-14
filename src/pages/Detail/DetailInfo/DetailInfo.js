@@ -39,21 +39,14 @@ export class DetailInfo extends Component {
     const numberOnly = /^[0-9\b]+$/;
     const { value } = e.target;
     const { maxQuantity } = this.state;
-    const { selectQuantity } = this.props;
 
     if (numberOnly.test(value)) {
-      this.setState(
-        {
-          quantity: Number(value),
-        },
-        () => {
-          selectQuantity(Number(value));
-        }
-      );
+      this.setState({
+        quantity: Number(value),
+      });
     }
 
     if (value === '' || value < maxQuantity || value > maxQuantity) {
-      selectQuantity(Number(1));
       this.setState({ quantity: Number(1) });
     }
   };
@@ -136,7 +129,6 @@ export class DetailInfo extends Component {
               handleQuantityInput={this.handleQuantityInput}
               incrementQuantity={this.incrementQuantity}
               decrementQuantity={this.decrementQuantity}
-              selectQuantity={this.selectQuantity}
               maxQuantity={maxQuantity}
               quantity={quantity}
             />
