@@ -4,10 +4,12 @@ import './SubMenuItem.scss';
 
 export class SubMenuItem extends Component {
   categoryName = categoryId => {
-    if (categoryId === 1) return 'shoes';
-    if (categoryId === 2) return 'clothing';
-    if (categoryId === 3) return 'supply';
+    if (categoryId === 1) return 'new';
+    if (categoryId === 2) return 'shoes';
+    if (categoryId === 3) return 'clothing';
     if (categoryId === 4) return 'sports';
+    if (categoryId === 5) return 'supply';
+    if (categoryId === 6) return 'brand';
   };
 
   render() {
