@@ -13,7 +13,6 @@ export class SubMenuList extends Component {
             {subMenuList.map(subMenu => (
               <SubMenuItem
                 key={subMenu.id}
-                id={subMenu.id}
                 categoryId={categoryId}
                 name={subMenu.name}
               />
