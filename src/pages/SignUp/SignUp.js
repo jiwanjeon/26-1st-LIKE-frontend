@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './SignUp.scss';
-import { Config } from '../../config';
+import { API } from '../../config';
 
 export class SignUp extends Component {
   constructor() {
@@ -71,7 +71,7 @@ export class SignUp extends Component {
     const { history } = this.props;
     const { email, password, name, phoneNumber } = this.state;
 
-    fetch(`${Config[0].API}/users/signup`, {
+    fetch(API.signUp, {
       method: 'POST',
       body: JSON.stringify({
         email: email,

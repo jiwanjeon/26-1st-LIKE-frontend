@@ -3,7 +3,7 @@ import './Main.scss';
 import COLOR_LISTS from './colorList';
 import Products from './ProductsInfo/Products';
 import { Link } from 'react-router-dom';
-import { Config } from '../../config';
+import { API } from '../../config';
 
 export class Main extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ export class Main extends Component {
     this.state = {
       productsInfo: [],
       selectedItemColor: [],
+      baseUrl: API.baseUrl,
     };
   }
 
@@ -29,6 +30,7 @@ export class Main extends Component {
   }
 
   getProducts = () => {
+    const { baseUrl } = this.state;
     const { match, location } = this.props;
     const { category } = match.params;
     const { search } = location;
@@ -45,7 +47,7 @@ export class Main extends Component {
       : '';
     const queryString = search || '';
 
-    fetch(Config[0].API + '/products' + categoryPath + queryString)
+    fetch(baseUrl + '/products' + categoryPath + queryString)
       .then(res => res.json())
       .then(data => {
         this.setState({

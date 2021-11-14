@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
-import { Config } from '../../config';
+import { API } from '../../config';
 import './Detail.scss';
 
 export class Detail extends Component {
@@ -10,7 +10,8 @@ export class Detail extends Component {
     this.state = {
       detailData: [],
       reviewsData: [],
-      token: Config[1].token,
+      token: API.token,
+      baseUrl: API.baseUrl,
     };
   }
 
@@ -21,9 +22,9 @@ export class Detail extends Component {
 
   getDetailData = () => {
     const { match } = this.props;
-    const { token } = this.state;
+    const { baseUrl, token } = this.state;
     const product_id = match.params.id;
-    const detailUrl = `${Config[0].API}/products/details/${product_id}`;
+    const detailUrl = `${baseUrl}/products/details/${product_id}`;
 
     fetch(detailUrl, {
       headers: { Authorization: token },
@@ -38,9 +39,9 @@ export class Detail extends Component {
 
   getReviewData = () => {
     const { match } = this.props;
-    const { token } = this.state;
+    const { baseUrl, token } = this.state;
     const product_id = match.params.id;
-    const reviewUrl = `${Config[0].API}/reviews/${product_id}`;
+    const reviewUrl = `${baseUrl}/reviews/${product_id}`;
 
     fetch(reviewUrl, {
       headers: { Authorization: token },
