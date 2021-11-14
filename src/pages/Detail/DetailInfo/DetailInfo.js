@@ -6,15 +6,15 @@ import MiniCartModal from './MiniCartModal/MiniCartModal';
 import DetailTitles from './DetailInfos/DetailTitles/DetailTitles';
 import DetailEcoFriendly from './DetailInfos/DetailEcoFriendly/DetailEcoFriendly';
 import DetailDescription from './DetailInfos/DetailDescription/DetailDescription';
-import { Config } from '../../../config';
+import { API } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartUrl: Config[0].carts,
-      token: Config[1].token,
+      cartUrl: API.carts,
+      token: API.token,
       sizeName: '',
       quantity: 1,
       maxQuantity: 1,

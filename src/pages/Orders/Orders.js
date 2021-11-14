@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import OrderList from '../Detail/DetailInfo/MiniCartModal/OrderList/OrderList';
-import { Config } from '../../config';
+import { API } from '../../config';
 import './Orders.scss';
 export class Orders extends Component {
   constructor(props) {
     super(props);
     this.state = {
       orderData: [],
-      checkOutUrl: Config[0].orders,
-      token: Config[1].token,
+      checkOutUrl: API.orders,
+      token: API.token,
       totalPrice: 0,
     };
   }

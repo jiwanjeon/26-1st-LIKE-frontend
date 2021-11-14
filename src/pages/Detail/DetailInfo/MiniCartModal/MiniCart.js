@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import OrderList from './OrderList/OrderList';
-import { Config } from '../../../../config';
+import { API } from '../../../../config';
 import './MiniCart.scss';
 
 export class MiniCart extends Component {
@@ -9,6 +9,8 @@ export class MiniCart extends Component {
     super(props);
     this.state = {
       orderData: [],
+      cartUrl: API.carts,
+      token: API.token,
       totalPrice: 0,
     };
   }
@@ -18,8 +20,8 @@ export class MiniCart extends Component {
   }
 
   orderData = () => {
-    const cartUrl = Config[0].carts;
-    const token = Config[1].token;
+    const { cartUrl, token } = this.state;
+
     fetch(cartUrl, {
       headers: { Authorization: token },
     })
@@ -46,17 +48,17 @@ export class MiniCart extends Component {
     return (
       <div className="MiniCart">
         <div className="miniCartTitle">
-          <h5>미니 장바구니</h5>
+          <h5>미니 장바구니</h5>
         </div>
         <div className="miniCartSubTitle">
-          <h5>사용가능한 쿠폰이있습니다.</h5>
+          <h5>사용가능한 쿠폰이있습니다.</h5>
         </div>
         <OrderList orderData={orderData} />
         <div className="orderPrice">
           <span className="text">총 상품금액</span>
           <span className="totalPrice">{totalPrice}원</span>
         </div>
-        <div className="orderDeliveryinfo">
+        <div className="orderDeliveryInfo">
           <span>배송비는 주문서에서 확인이 가능합니다.</span>
         </div>
         <div className="orderBuy">

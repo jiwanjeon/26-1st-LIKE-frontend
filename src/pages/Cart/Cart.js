@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductCart from './ProductCart/ProductCart';
-import { Config } from '../../config';
+import { API } from '../../config';
 import './Cart.scss';
 
 export class Cart extends Component {
@@ -8,9 +8,9 @@ export class Cart extends Component {
     super(props);
     this.state = {
       orderData: [],
-      checkOutUrl: Config[0].orders,
-      cartUrl: Config[0].carts,
-      token: Config[1].token,
+      checkOutUrl: API.orders,
+      cartUrl: API.carts,
+      token: API.token,
       totalPrice: 0,
       totalItemQuantity: 0,
     };

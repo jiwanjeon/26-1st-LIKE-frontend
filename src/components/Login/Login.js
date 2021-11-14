@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Login.scss';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import { Config } from '../../config';
+import { API } from '../../config';
 
 export class Login extends Component {
   constructor() {
@@ -31,7 +31,7 @@ export class Login extends Component {
     const { history, closeLoginModal } = this.props;
     const { email, password, name, phoneNumber } = this.state;
 
-    fetch(`${Config[0].API}/users/login`, {
+    fetch(API.login, {
       method: 'POST',
       body: JSON.stringify({
         email: email,
