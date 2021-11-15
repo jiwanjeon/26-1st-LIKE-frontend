@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import DetailGallery from './DetailGallery/DetailGallery';
 import DetailInfo from './DetailInfo/DetailInfo';
-
-import { Config } from '../../config';
+import { API } from '../../config';
 import './Detail.scss';
 
 export class Detail extends Component {
@@ -10,33 +9,22 @@ export class Detail extends Component {
     super(props);
     this.state = {
       detailData: [],
+      reviewsData: [],
+      token: API.token,
+      baseUrl: API.baseUrl,
     };
   }
 
   componentDidMount() {
-    this.detailData();
+    this.getDetailData();
+    this.getReviewData();
   }
 
-  detailMockUp() {
-    const detailUrl = Config[0].detail;
-    const token = Config[1].token;
-
-    fetch(detailUrl, {
-      headers: { Authorization: token },
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          detailData: data.results,
-        });
-      });
-  }
-
-  detailData() {
+  getDetailData = () => {
     const { match } = this.props;
+    const { baseUrl, token } = this.state;
     const product_id = match.params.id;
-    const detailUrl = `http://10.58.6.96:8000/products/details/${product_id}`;
-    const token = Config[1].token;
+    const detailUrl = `${baseUrl}/products/details/${product_id}`;
 
     fetch(detailUrl, {
       headers: { Authorization: token },
@@ -47,10 +35,27 @@ export class Detail extends Component {
           detailData: data.results,
         });
       });
-  }
+  };
+
+  getReviewData = () => {
+    const { match } = this.props;
+    const { baseUrl, token } = this.state;
+    const product_id = match.params.id;
+    const reviewUrl = `${baseUrl}/reviews/${product_id}`;
+
+    fetch(reviewUrl, {
+      headers: { Authorization: token },
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          reviewsData: data.result,
+        });
+      });
+  };
 
   render() {
-    const { detailData } = this.state;
+    const { detailData, reviewsData } = this.state;
     const {
       product_id,
       serial,
@@ -80,6 +85,7 @@ export class Detail extends Component {
             descriptionTitle={description_title}
             description={description}
             shown={current_color}
+            reviewsData={reviewsData}
           />
         </main>
       </div>

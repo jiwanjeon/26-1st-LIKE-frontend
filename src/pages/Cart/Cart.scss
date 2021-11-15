@@ -63,8 +63,8 @@
         padding: 10px 20px 20px 20px;
         line-height: 1.6;
 
-        div {
-          display: flex;
+        .pricing {
+          @include flexVerticalCenter();
           justify-content: space-between;
           margin-top: 10px;
 

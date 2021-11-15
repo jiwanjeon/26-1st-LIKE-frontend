@@ -16,8 +16,18 @@
       display: inline-block;
       cursor: pointer;
 
+      a {
+        color: black;
+        text-decoration: none;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
       &:hover {
         text-decoration: underline;
+        opacity: 0.8;
       }
     }
 

@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import './QuantitySelector.scss';
 
-export class SelectQuantity extends Component {
+export class QuantitySelector extends Component {
   render() {
-    const { maxQuantity, selectedQuantity, handleInput, increment, decrement } =
+    const { maxQuantity, quantity, handleInput, increment, decrement } =
       this.props;
 
     return (
       <div className="QuantitySelector">
         <h2>수량</h2>
         <div className="quantitySelector">
-          <input type="text" value={selectedQuantity} onChange={handleInput} />
+          <input type="text" value={quantity} onChange={handleInput} />
           <button
             onClick={decrement}
-            className={`btn decrement ${
-              selectedQuantity === 1 && 'deactivate'
-            }`}
+            className={`btn decrement ${quantity === 1 && 'deactivate'}`}
           >
             -
           </button>
           <button
             onClick={increment}
             className={`btn increament ${
-              selectedQuantity === maxQuantity && 'deactivate'
+              quantity === maxQuantity && 'deactivate'
             }`}
           >
             +
@@ -33,4 +31,4 @@ export class SelectQuantity extends Component {
   }
 }
 
-export default SelectQuantity;
+export default QuantitySelector;

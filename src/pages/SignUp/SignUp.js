@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SignUp.scss';
+import { API } from '../../config';
 
 export class SignUp extends Component {
   constructor() {
@@ -7,10 +8,10 @@ export class SignUp extends Component {
     this.state = {
       email: '',
       password: '',
-      confrimPassword: '',
+      confirmPassword: '',
       name: '',
       phoneNumber: '',
-      termsCondi: false,
+      termsCondition: false,
       agreedInfo: false,
     };
   }
@@ -32,7 +33,7 @@ export class SignUp extends Component {
   handleConfirmPwInput = e => {
     const { value } = e.target;
     this.setState({
-      confrimPassword: value,
+      confirmPassword: value,
     });
   };
 
@@ -50,50 +51,71 @@ export class SignUp extends Component {
     });
   };
 
-  toggleTermsCondi = () => {
+  toggleTermsCondition = () => {
+    const { termsCondition } = this.state;
+
     this.setState({
-      termsCondi: !this.state.termsCondi,
+      termsCondition: !termsCondition,
     });
   };
 
   toggleAgreed = () => {
+    const { agreedInfo } = this.state;
+
     this.setState({
-      agreedInfo: !this.state.agreedInfo,
+      agreedInfo: !agreedInfo,
     });
   };
 
   goToMain = () => {
     const { history } = this.props;
-    history.push('/products');
-    // fetch('http://10.58.7.7:8000/users/signup', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     email: this.state.email,
-    //     password: this.state.password,
-    //     name: this.state.name,
-    //     phone_number: this.state.phoneNumber,
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   .then(res => console.log('결과: ', res));
+    const { email, password, name, phoneNumber } = this.state;
+
+    fetch(API.signUp, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        phone_number: phoneNumber,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'SUCCESS') {
+          alert('회원가입에 성공하였습니다!');
+          history.push('/products');
+        } else {
+          alert('양식을 다시 확인해주세요!');
+        }
+      });
   };
 
   render() {
-    const { email, password, confrimPassword, name, phoneNumber } = this.state;
-    const isEmailValid = this.state.email.includes('@' && '.');
-    const isPasswordValid = this.state.password.length > 7;
-    const isPasswordConfirmed =
-      this.state.password === this.state.confrimPassword;
-    const isNameValid = this.state.name !== '';
-    const isPhoneValid = this.state.phoneNumber.length === 11;
+    const {
+      email,
+      password,
+      confirmPassword,
+      termsCondition,
+      agreedInfo,
+      name,
+      phoneNumber,
+    } = this.state;
+
+    const isEmailValid = email.includes('@' && '.');
+    const isPasswordValid = password.length > 7;
+    const isPasswordConfirmed = password === confirmPassword;
+    const isNameValid = name !== '';
+    const isPhoneValid = phoneNumber.length === 11;
     const isSubmitActivated =
       isEmailValid &&
       isPasswordValid &&
       isNameValid &&
       isPhoneValid &&
       isPasswordConfirmed &&
-      this.state.termsCondi &&
-      this.state.agreedInfo;
+      termsCondition &&
+      agreedInfo;
+
     return (
       <section className="signUp">
         <div className="head">
@@ -134,7 +156,7 @@ export class SignUp extends Component {
                 placeholder="패스워드를 다시 입력해 주세요."
                 type="password"
                 maxLength="16"
-                value={confrimPassword}
+                value={confirmPassword}
                 onChange={this.handleConfirmPwInput}
               />
               {!isPasswordConfirmed ? (
@@ -165,7 +187,7 @@ export class SignUp extends Component {
                 className="option1"
                 type="checkbox"
                 name="terms"
-                onClick={this.toggleTermsCondi}
+                onClick={this.toggleTermsCondition}
               />
               약관동의
             </div>

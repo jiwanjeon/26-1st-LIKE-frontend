@@ -3,6 +3,7 @@ import './Main.scss';
 import COLOR_LISTS from './colorList';
 import Products from './ProductsInfo/Products';
 import { Link } from 'react-router-dom';
+import { API } from '../../config';
 
 export class Main extends Component {
   constructor(props) {
@@ -10,25 +11,47 @@ export class Main extends Component {
     this.state = {
       productsInfo: [],
       selectedItemColor: [],
+      baseUrl: API.baseUrl,
     };
   }
 
   componentDidMount() {
-    fetch('/data/MainProducts.json', {})
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          productsInfo: data,
-        });
-      });
+    this.getProducts();
   }
 
-  updateProducts = name => {
-    fetch(`/data/${name}.json`, {})
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+    const { search, pathname } = location;
+    const { search: prevSearch, pathname: prevPathname } = prevProps.location;
+
+    if (pathname !== prevPathname || search !== prevSearch) {
+      this.getProducts();
+    }
+  }
+
+  getProducts = () => {
+    const { baseUrl } = this.state;
+    const { match, location } = this.props;
+    const { category } = match.params;
+    const { search } = location;
+
+    const changeNumber = {
+      shoes: '2',
+      clothing: '3',
+      sports: '4',
+      supplies: '5',
+    };
+
+    const categoryPath = category
+      ? '?main_category=' + changeNumber[category]
+      : '';
+    const queryString = search || '';
+
+    fetch(baseUrl + '/products' + categoryPath + queryString)
       .then(res => res.json())
       .then(data => {
         this.setState({
-          productsInfo: data,
+          productsInfo: data.results.reverse(),
         });
       });
   };
@@ -49,6 +72,7 @@ export class Main extends Component {
     }
 
     applyQueryStringToURL();
+
     function filterSizeExist() {
       const sizes = url.getAll('size');
       const isCertainSizeExist = sizes.includes(name);
@@ -71,7 +95,6 @@ export class Main extends Component {
 
       history.push('/products' + query);
     }
-    this.setState({ selectedItemSize: url.getAll('size') });
   };
 
   updateColor = e => {
@@ -106,6 +129,7 @@ export class Main extends Component {
 
   render() {
     const { productsInfo, selectedItemColor } = this.state;
+
     return (
       <div className="MainWrapper">
         <div className="sectionHeader">
@@ -134,9 +158,9 @@ export class Main extends Component {
             <div className="colors">
               <span>색상</span>
               <ul className="colorLists">
-                {COLOR_LISTS.map((color, idx) => {
+                {COLOR_LISTS.map(color => {
                   return (
-                    <li className="colorLayout" key={idx}>
+                    <li className="colorLayout" key={color.id}>
                       <label
                         className={`checkboxLabel ${
                           selectedItemColor.includes(color.color_name)
@@ -151,7 +175,9 @@ export class Main extends Component {
                           value={color.color_name}
                         />
                       </label>
-                      <span className="productColor">{color.color_name}</span>
+                      <span className="productColor">
+                        {color.color_name.toUpperCase()}
+                      </span>
                     </li>
                   );
                 })}
@@ -171,35 +197,56 @@ export class Main extends Component {
                     230
                   </button>
                 </label>
-                <button onClick={this.updateSize} value="235" key="2">
+                <button onClick={this.updateSize} value="235">
                   235
                 </button>
-                <button onClick={this.updateSize} value="240" key="3">
+                <button onClick={this.updateSize} value="240">
                   240
                 </button>
-                <button onClick={this.updateSize} value="245" key="4">
+                <button onClick={this.updateSize} value="245">
                   245
                 </button>
-                <button onClick={this.updateSize} value="250" key="5">
+                <button onClick={this.updateSize} value="250">
                   250
                 </button>
-                <button onClick={this.updateSize} value="255" key="6">
+                <button onClick={this.updateSize} value="255">
                   255
                 </button>
-                <button onClick={this.updateSize} value="260" key="7">
+                <button onClick={this.updateSize} value="260">
                   260
                 </button>
-                <button onClick={this.updateSize} value="265" key="8">
+                <button onClick={this.updateSize} value="265">
                   265
                 </button>
-                <button onClick={this.updateSize} value="270" key="9">
+                <button onClick={this.updateSize} value="270">
                   270
                 </button>
-                <button onClick={this.updateSize} value="275" key="10">
+                <button onClick={this.updateSize} value="275">
                   275
                 </button>
-                <button onClick={this.updateSize} value="280" key="11">
+                <button onClick={this.updateSize} value="280">
                   280
+                </button>
+                <button onClick={this.updateSize} value="xs">
+                  XS
+                </button>
+                <button onClick={this.updateSize} value="s">
+                  S
+                </button>
+                <button onClick={this.updateSize} value="m">
+                  M
+                </button>
+                <button onClick={this.updateSize} value="l">
+                  L
+                </button>
+                <button onClick={this.updateSize} value="xl">
+                  XL
+                </button>
+                <button onClick={this.updateSize} value="xxl">
+                  XXL
+                </button>
+                <button onClick={this.updateSize} value="xxxl">
+                  XXXL
                 </button>
               </div>
               <div className="HorizontalLine" />
@@ -209,67 +256,36 @@ export class Main extends Component {
           <main className="contentsBody">
             <div className="contentsLink">
               <div className="viewAll">
-                <Link
-                  to={{
-                    pathname: '/products',
-                    state: { message: 'hello, im a passed message!' },
-                  }}
-                >
-                  <button onClick={() => this.updateProducts('MainProducts')}>
-                    {/* <button onClick={this.updateProducts} value="acc"> 
-                    and then using e.currentTarget.value same as top one. */}
+                <Link to="/products">
+                  <button className="btn">
                     <span>전체 보기</span>
                   </button>
                 </Link>
               </div>
               <div className="Shoes">
-                <Link
-                  to={{
-                    pathname: '/products/shoes',
-                  }}
-                >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsShoes')}
-                  >
+                <Link to="/products/shoes">
+                  <button className="btn">
                     <span>신발</span>
                   </button>
                 </Link>
               </div>
               <div className="Clothes">
-                <Link
-                  to={{
-                    pathname: '/products/clothing',
-                  }}
-                >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsClothing')}
-                  >
+                <Link to="/products/clothing">
+                  <button className="btn">
                     <span>옷</span>
                   </button>
                 </Link>
               </div>
               <div className="Supplies">
-                <Link
-                  to={{
-                    pathname: '/products/acc',
-                  }}
-                >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsAcc')}
-                  >
+                <Link to="/products/supplies">
+                  <button className="btn">
                     <span>용품</span>
                   </button>
                 </Link>
               </div>
               <div className="Sports">
-                <Link
-                  to={{
-                    pathname: '/products/sports',
-                  }}
-                >
-                  <button
-                    onClick={() => this.updateProducts('MainProductsSports')}
-                  >
+                <Link to="/products/sports">
+                  <button className="btn">
                     <span>스포츠</span>
                   </button>
                 </Link>
@@ -277,9 +293,10 @@ export class Main extends Component {
             </div>
 
             <article className="productsMapping">
-              {productsInfo.map((product, idx) => (
-                <Products key={idx} productInfo={product} />
-              ))}
+              {productsInfo &&
+                productsInfo.map(product => {
+                  return <Products key={product.id} productInfo={product} />;
+                })}
             </article>
           </main>
         </div>

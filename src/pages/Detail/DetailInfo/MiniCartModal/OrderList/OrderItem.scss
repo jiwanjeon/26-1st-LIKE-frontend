@@ -17,11 +17,16 @@
   }
   .orderInfo {
     flex: 4;
+    line-height: 1.2;
 
     .title {
       font-weight: 700;
     }
+    .serial {
+      margin-top: 6px;
+    }
     .price {
+      margin-top: 6px;
       color: var(--color-point);
     }
   }

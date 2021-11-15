@@ -2,14 +2,14 @@
 
 .QuantitySelector {
   @include flexVerticalCenter;
-
+  position: relative;
   height: 50px;
-  padding-bottom: 20px;
+  margin: 20px 0;
 
   h2 {
     display: inline-block;
-    font-size: 1.2em;
     margin-right: 10px;
+    font-size: 1.2em;
   }
 
   .quantitySelector {
@@ -17,20 +17,20 @@
     margin: 0;
 
     input {
-      font-size: 1.2em;
+      margin-right: 16px;
       width: 50px;
-      font-weight: 300;
       background-color: white;
       border: none;
+      font-size: 1.2em;
+      font-weight: 300;
       text-align: center;
-      margin-right: 16px;
     }
 
     .btn {
-      font-size: 1.5em;
+      margin-right: 16px;
       background-color: white;
       border: none;
-      margin-right: 16px;
+      font-size: 1.5em;
       cursor: pointer;
     }
 

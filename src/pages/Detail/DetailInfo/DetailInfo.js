@@ -6,20 +6,28 @@ import MiniCartModal from './MiniCartModal/MiniCartModal';
 import DetailTitles from './DetailInfos/DetailTitles/DetailTitles';
 import DetailEcoFriendly from './DetailInfos/DetailEcoFriendly/DetailEcoFriendly';
 import DetailDescription from './DetailInfos/DetailDescription/DetailDescription';
-import { Config } from '../../../config';
+import { API } from '../../../config';
 import './DetailInfo.scss';
 
 export class DetailInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartUrl: Config[0].carts,
-      token: Config[1].token,
+      cartUrl: API.carts,
+      token: API.token,
       sizeName: '',
       quantity: 1,
+      maxQuantity: 1,
       isMiniCart: false,
     };
   }
+
+  setSizeAndQuantity = quantity => {
+    this.setState({
+      maxQuantity: quantity,
+    });
+    this.resetQuantity();
+  };
 
   selectSize = sizeName => {
     this.setState({
@@ -27,10 +35,40 @@ export class DetailInfo extends Component {
     });
   };
 
-  selectQuantity = quantity => {
-    this.setState({
-      quantity: quantity,
-    });
+  handleQuantityInput = e => {
+    const numberOnly = /^[0-9\b]+$/;
+    const { value } = e.target;
+    const { maxQuantity } = this.state;
+
+    if (numberOnly.test(value)) {
+      this.setState({
+        quantity: Number(value),
+      });
+    }
+
+    if (value === '' || value < maxQuantity || value > maxQuantity) {
+      this.setState({ quantity: Number(1) });
+    }
+  };
+
+  incrementQuantity = () => {
+    const { maxQuantity, quantity } = this.state;
+
+    if (quantity < maxQuantity) {
+      this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
+    }
+  };
+
+  decrementQuantity = () => {
+    const { quantity } = this.state;
+
+    if (quantity > 1) {
+      this.setState(prevState => ({ quantity: prevState.quantity - 1 }));
+    }
+  };
+
+  resetQuantity = () => {
+    this.setState({ quantity: 1 });
   };
 
   addToCart = () => {
@@ -73,8 +111,9 @@ export class DetailInfo extends Component {
       descriptionTitle,
       description,
       shown,
+      reviewsData,
     } = this.props;
-    const { isMiniCart } = this.state;
+    const { isMiniCart, sizeName, quantity, maxQuantity } = this.state;
 
     return (
       <>
@@ -83,9 +122,15 @@ export class DetailInfo extends Component {
             <DetailTitles title={title} subTitle={subTitle} price={price} />
             <DetailEcoFriendly ecoFriendly={ecoFriendly} />
             <SizeAndQuantitySelector
-              selectSize={this.selectSize}
-              selectQuantity={this.selectQuantity}
               sizeAndQuan={sizeAndQuan}
+              setSizeAndQuantity={this.setSizeAndQuantity}
+              selectSize={this.selectSize}
+              selectedSizeName={sizeName}
+              handleQuantityInput={this.handleQuantityInput}
+              incrementQuantity={this.incrementQuantity}
+              decrementQuantity={this.decrementQuantity}
+              maxQuantity={maxQuantity}
+              quantity={quantity}
             />
             <DetailButtons addToCart={this.addToCart} />
             <DetailDescription
@@ -94,7 +139,7 @@ export class DetailInfo extends Component {
               serial={serial}
               shown={shown}
             />
-            <DetailAccordions />
+            <DetailAccordions reviewsData={reviewsData} />
           </div>
         </div>
         <MiniCartModal
