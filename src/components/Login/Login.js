@@ -28,7 +28,7 @@ export class Login extends Component {
 
   goToMain = () => {
     const { history } = this.props;
-    this.props.history.push('/prducts');
+    this.props.history.push('/products');
     this.props.closeLoginModal();
     // fetch('http://10.58.7.7:8000/users/signup', {
     //   method: 'POST',
@@ -104,7 +104,10 @@ export class Login extends Component {
           </div>
           <div className="last">
             <p>
-              아직 회원이 아니신가요? <Link to="/SignUp">회원가입</Link>
+              아직 회원이 아니신가요?{' '}
+              <Link onClick={this.props.closeLoginModal} to="/SignUp">
+                회원가입
+              </Link>
             </p>
           </div>
           <button className="closeModal" onClick={this.props.closeLoginModal}>
